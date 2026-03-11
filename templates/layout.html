@@ -6,6 +6,12 @@
     <title>{{title}}</title>
     <meta name="description" content="{{description}}">
     <link rel="canonical" href="{{canonicalUrl}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
@@ -32,6 +38,8 @@
         <small>&copy; {{year}} {{siteName}}</small>
       </footer>
     </main>
+    <button class="scroll-top-button" type="button" aria-label="Scroll to top">Top</button>
     <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   </body>
 </html>

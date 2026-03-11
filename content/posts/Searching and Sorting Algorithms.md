@@ -1,3 +1,15 @@
+---
+title: "Searching and Sorting Algorithms"
+description: ""
+date: 2026-02-04
+author: Rahul Kumar
+tags: [Data Structure and Algorithms , DSA , Searching , Sorting]
+category: "DSA"
+cover: ""
+readingTime: "20 min read"
+draft: false
+slug: "Searching-and-Sorting-Algorithms"
+---
 # Searching and Sorting Algorithms
 
 ---

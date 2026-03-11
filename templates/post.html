@@ -1,10 +1,18 @@
-<article>
-  <header>
+<article class="post-shell">
+  {{postNavTop}}
+  <header class="post-hero reveal-on-scroll">
+    <div class="eyebrow-row">
+      <span class="kind-pill">{{postKind}}</span>
+      <span class="filename-pill">{{postFilename}}</span>
+    </div>
     <h1>{{postTitle}}</h1>
-    <p><small>{{postDate}} | {{postAuthor}} | {{postReadingTime}}</small></p>
-    <p><small>{{postCategory}}</small></p>
-    <p>{{postTags}}</p>
+    {{postMetaPrimary}}
+    {{postMetaSecondary}}
+    <p class="tag-row">{{postTags}}</p>
     {{postCover}}
   </header>
-  {{postBody}}
+  <div class="article-body reveal-on-scroll">
+    {{postBody}}
+  </div>
+  {{postNavBottom}}
 </article>

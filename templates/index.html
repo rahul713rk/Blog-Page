@@ -1,11 +1,32 @@
-<section>
-  <header>
+<section class="hero-panel reveal-on-scroll">
+  <header class="hero-copy">
+    <p class="hero-kicker">Knowledge Hub</p>
     <h1>{{pageTitle}}</h1>
     <p>{{intro}}</p>
   </header>
+  <div class="hero-stats">
+    <article>
+      <strong>{{blogCount}}</strong>
+      <span>Blog posts</span>
+    </article>
+    <article>
+      <strong>{{tutorialCount}}</strong>
+      <span>Tutorial guides</span>
+    </article>
+  </div>
   {{search}}
 </section>
-<section>
-  {{posts}}
+
+<section class="content-section">
+  <header class="section-heading">
+    <h2>Blog Posts</h2>
+    <p>Fast access to standalone posts, listed with source filenames.</p>
+  </header>
+  <div class="card-grid">
+    {{posts}}
+  </div>
 </section>
+
 {{pagination}}
+
+{{tutorials}}
