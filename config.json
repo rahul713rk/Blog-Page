@@ -1,0 +1,6 @@
+{
+  "siteName": "Minimal Blog",
+  "siteDescription": "A minimal static blog generated from Markdown.",
+  "baseUrl": "https://yourusername.github.io/your-repository",
+  "postsPerPage": 5
+}

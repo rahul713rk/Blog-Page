@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <link rel="canonical" href="{{canonicalUrl}}">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+    >
+    <link rel="stylesheet" href="{{sitePath}}/assets/css/site.css">
+    {{head}}
+  </head>
+  <body data-site-path="{{sitePath}}">
+    <main class="container">
+      <nav>
+        <ul>
+          <li><strong><a href="{{sitePath}}/">{{siteName}}</a></strong></li>
+        </ul>
+        <ul>
+          <li><a href="{{sitePath}}/">Home</a></li>
+        </ul>
+      </nav>
+      {{content}}
+      <footer>
+        <small>&copy; {{year}} {{siteName}}</small>
+      </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
+  </body>
+</html>
