@@ -1,7 +1,7 @@
 ---
 title: "Ansible Roles and Reusability"
 description: ""
-date: 2026-02-05
+date: 2025-04-02
 author: Rahul Kumar
 tags: [devops, ansible, roles, reusability]
 category: "ansible"

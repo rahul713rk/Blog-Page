@@ -1,7 +1,7 @@
 ---
 title: "Database Design, SQL, and Spring Boot Integration"
 description: ""
-date: 2025-02-20
+date: 2025-01-22
 author: Rahul Kumar
 tags: [backend, spring-and-data, database, design, spring]
 category: "backend engineering"

@@ -1,7 +1,7 @@
 ---
 title: "Java Concurrency Essentials"
 description: ""
-date: 2025-01-26
+date: 2025-01-17
 author: Rahul Kumar
 tags: [backend, java-fundamentals, java, concurrency, essentials]
 category: "backend engineering"

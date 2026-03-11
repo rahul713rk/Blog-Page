@@ -1,7 +1,7 @@
 ---
 title: "Linux Process Management"
 description: ""
-date: 2025-06-05
+date: 2025-02-12
 author: Rahul Kumar
 tags: [devops, linux, process, management]
 category: "linux"

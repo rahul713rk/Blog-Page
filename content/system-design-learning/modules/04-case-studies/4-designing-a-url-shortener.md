@@ -1,7 +1,7 @@
 ---
 title: "Designing A URL Shortener"
 description: ""
-date: 2027-01-06
+date: 2025-06-08
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, shortener]
 category: "system design"

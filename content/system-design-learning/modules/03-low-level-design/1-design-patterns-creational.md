@@ -1,7 +1,7 @@
 ---
 title: "Design Patterns (Creational)"
 description: ""
-date: 2026-10-28
+date: 2025-05-25
 author: Rahul Kumar
 tags: [system-design, low-level-design, design, patterns, creational]
 category: "system design"

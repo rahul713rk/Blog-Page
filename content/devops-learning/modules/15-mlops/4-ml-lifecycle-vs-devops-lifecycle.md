@@ -1,7 +1,7 @@
 ---
 title: "ML Lifecycle vs DevOps Lifecycle"
 description: ""
-date: 2026-05-06
+date: 2025-04-20
 author: Rahul Kumar
 tags: [devops, mlops, lifecycle]
 category: "mlops"

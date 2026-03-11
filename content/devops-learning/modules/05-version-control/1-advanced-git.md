@@ -1,7 +1,7 @@
 ---
 title: "Advanced Git"
 description: ""
-date: 2025-08-04
+date: 2025-02-24
 author: Rahul Kumar
 tags: [devops, version-control, advanced]
 category: "version control"

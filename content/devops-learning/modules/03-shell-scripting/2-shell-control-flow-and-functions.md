@@ -1,7 +1,7 @@
 ---
 title: "Shell Control Flow and Functions"
 description: ""
-date: 2025-06-20
+date: 2025-02-15
 author: Rahul Kumar
 tags: [devops, shell-scripting, shell, control, flow]
 category: "shell scripting"

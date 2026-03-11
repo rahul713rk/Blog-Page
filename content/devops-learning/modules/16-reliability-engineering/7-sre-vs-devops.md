@@ -1,7 +1,7 @@
 ---
 title: "SRE vs DevOps"
 description: ""
-date: 2026-06-25
+date: 2025-04-30
 author: Rahul Kumar
 tags: [devops, reliability-engineering]
 category: "reliability engineering"

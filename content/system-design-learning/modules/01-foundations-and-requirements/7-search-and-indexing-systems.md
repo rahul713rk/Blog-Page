@@ -1,7 +1,7 @@
 ---
 title: "Search & Indexing Systems"
 description: ""
-date: 2026-09-23
+date: 2025-05-18
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, search, indexing, systems]
 category: "system design"

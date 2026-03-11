@@ -1,7 +1,7 @@
 ---
 title: "Domain Name Resolution"
 description: ""
-date: 2026-10-03
+date: 2025-05-20
 author: Rahul Kumar
 tags: [system-design, distributed-systems, domain, name, resolution]
 category: "system design"

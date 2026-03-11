@@ -1,7 +1,7 @@
 ---
 title: "Persistence & Repositories"
 description: ""
-date: 2026-12-02
+date: 2025-06-01
 author: Rahul Kumar
 tags: [system-design, low-level-design, persistence, repositories]
 category: "system design"

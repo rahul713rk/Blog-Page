@@ -1,7 +1,7 @@
 ---
 title: "DNS and Web Protocols"
 description: ""
-date: 2025-07-15
+date: 2025-02-20
 author: Rahul Kumar
 tags: [devops, networking, protocols]
 category: "networking"

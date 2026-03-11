@@ -1,7 +1,7 @@
 ---
 title: "Consistent Hashing"
 description: ""
-date: 2027-01-01
+date: 2025-06-07
 author: Rahul Kumar
 tags: [system-design, case-studies, consistent, hashing]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Terraform Workflow and Best Practices"
 description: ""
-date: 2025-12-27
+date: 2025-03-25
 author: Rahul Kumar
 tags: [devops, terraform, workflow, best, practices]
 category: "terraform"

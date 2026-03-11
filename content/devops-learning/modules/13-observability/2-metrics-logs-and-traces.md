@@ -1,7 +1,7 @@
 ---
 title: "Metrics, Logs, and Traces"
 description: ""
-date: 2026-02-15
+date: 2025-04-04
 author: Rahul Kumar
 tags: [devops, observability, metrics, logs, traces]
 category: "observability"

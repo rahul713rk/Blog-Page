@@ -1,7 +1,7 @@
 ---
 title: "Dockerfiles and Images"
 description: ""
-date: 2025-10-23
+date: 2025-03-12
 author: Rahul Kumar
 tags: [devops, docker, dockerfiles, images]
 category: "docker"

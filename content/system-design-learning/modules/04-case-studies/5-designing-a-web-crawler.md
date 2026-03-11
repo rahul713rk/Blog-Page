@@ -1,7 +1,7 @@
 ---
 title: "Designing A Web Crawler"
 description: ""
-date: 2027-01-11
+date: 2025-06-09
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, crawler]
 category: "system design"

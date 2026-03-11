@@ -1,7 +1,7 @@
 ---
 title: "The DevOps Lifecycle"
 description: ""
-date: 2025-04-26
+date: 2025-02-04
 author: Rahul Kumar
 tags: [devops, foundations, lifecycle]
 category: "foundations"

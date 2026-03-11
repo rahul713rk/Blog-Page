@@ -1,7 +1,7 @@
 ---
 title: "Git Fundamentals"
 description: ""
-date: 2025-08-19
+date: 2025-02-27
 author: Rahul Kumar
 tags: [devops, version-control, fundamentals]
 category: "version control"

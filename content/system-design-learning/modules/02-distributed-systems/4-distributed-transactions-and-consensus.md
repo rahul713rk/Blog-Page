@@ -1,7 +1,7 @@
 ---
 title: "Distributed Transactions & Consensus"
 description: ""
-date: 2026-10-13
+date: 2025-05-22
 author: Rahul Kumar
 tags: [system-design, distributed-systems, distributed, transactions, consensus]
 category: "system design"

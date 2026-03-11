@@ -1,7 +1,7 @@
 ---
 title: "Logging and Error Handling"
 description: ""
-date: 2025-06-30
+date: 2025-02-17
 author: Rahul Kumar
 tags: [devops, shell-scripting, logging, error, handling]
 category: "shell scripting"

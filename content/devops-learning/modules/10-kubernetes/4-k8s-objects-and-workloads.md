@@ -1,7 +1,7 @@
 ---
 title: "K8s Objects and Workloads"
 description: ""
-date: 2025-12-07
+date: 2025-03-21
 author: Rahul Kumar
 tags: [devops, kubernetes, objects, workloads]
 category: "kubernetes"

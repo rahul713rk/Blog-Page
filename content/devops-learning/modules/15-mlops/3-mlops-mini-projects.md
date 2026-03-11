@@ -1,7 +1,7 @@
 ---
 title: "MLOps Mini Projects"
 description: ""
-date: 2026-05-01
+date: 2025-04-19
 author: Rahul Kumar
 tags: [devops, mlops, mini, projects]
 category: "mlops"

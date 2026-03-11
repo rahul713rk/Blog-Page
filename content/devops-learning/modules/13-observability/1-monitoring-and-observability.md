@@ -1,7 +1,7 @@
 ---
 title: "Monitoring and Observability"
 description: ""
-date: 2026-02-10
+date: 2025-04-03
 author: Rahul Kumar
 tags: [devops, observability, monitoring]
 category: "observability"

@@ -1,7 +1,7 @@
 ---
 title: "AIOps and Future Trends"
 description: ""
-date: 2026-06-30
+date: 2025-05-01
 author: Rahul Kumar
 tags: [devops, advanced-devops, aiops, future, trends]
 category: "advanced devops"

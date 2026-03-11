@@ -1,7 +1,7 @@
 ---
 title: "Shift-Left Security"
 description: ""
-date: 2026-04-16
+date: 2025-04-16
 author: Rahul Kumar
 tags: [devops, security, shift, left]
 category: "security"

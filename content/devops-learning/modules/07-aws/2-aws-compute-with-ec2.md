@@ -1,7 +1,7 @@
 ---
 title: "AWS Compute with EC2"
 description: ""
-date: 2025-09-13
+date: 2025-03-04
 author: Rahul Kumar
 tags: [devops, aws, compute, with]
 category: "aws"

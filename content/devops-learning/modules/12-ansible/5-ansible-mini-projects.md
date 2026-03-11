@@ -1,7 +1,7 @@
 ---
 title: "Ansible Mini Projects"
 description: ""
-date: 2026-01-26
+date: 2025-03-31
 author: Rahul Kumar
 tags: [devops, ansible, mini, projects]
 category: "ansible"

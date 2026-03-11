@@ -1,7 +1,7 @@
 ---
 title: "MLOps Fundamentals"
 description: ""
-date: 2026-05-16
+date: 2025-04-22
 author: Rahul Kumar
 tags: [devops, mlops, fundamentals]
 category: "mlops"

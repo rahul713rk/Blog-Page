@@ -1,7 +1,7 @@
 ---
 title: "CI/CD Fundamentals"
 description: ""
-date: 2025-11-02
+date: 2025-03-14
 author: Rahul Kumar
 tags: [devops, ci-cd, fundamentals]
 category: "ci cd"

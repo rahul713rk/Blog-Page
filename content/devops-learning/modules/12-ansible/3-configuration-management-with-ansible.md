@@ -1,7 +1,7 @@
 ---
 title: "Configuration Management with Ansible"
 description: ""
-date: 2026-01-16
+date: 2025-03-29
 author: Rahul Kumar
 tags: [devops, ansible, configuration, management, with]
 category: "ansible"

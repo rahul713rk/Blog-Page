@@ -1,7 +1,7 @@
 ---
 title: "DevOps Principles"
 description: ""
-date: 2025-05-06
+date: 2025-02-06
 author: Rahul Kumar
 tags: [devops, foundations, principles]
 category: "foundations"

@@ -1,7 +1,7 @@
 ---
 title: "Observability Mini Projects"
 description: ""
-date: 2026-02-20
+date: 2025-04-05
 author: Rahul Kumar
 tags: [devops, observability, mini, projects]
 category: "observability"

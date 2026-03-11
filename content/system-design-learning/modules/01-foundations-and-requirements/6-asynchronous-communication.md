@@ -1,7 +1,7 @@
 ---
 title: "Asynchronous Communication"
 description: ""
-date: 2026-09-18
+date: 2025-05-17
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, asynchronous, communication]
 category: "system design"

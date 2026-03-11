@@ -1,7 +1,7 @@
 ---
 title: "Cloud Infrastructure Foundations"
 description: ""
-date: 2025-08-29
+date: 2025-03-01
 author: Rahul Kumar
 tags: [devops, cloud-computing, cloud, infrastructure, foundations]
 category: "cloud computing"

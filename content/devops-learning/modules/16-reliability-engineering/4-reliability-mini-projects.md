@@ -1,7 +1,7 @@
 ---
 title: "Reliability Mini Projects"
 description: ""
-date: 2026-06-10
+date: 2025-04-27
 author: Rahul Kumar
 tags: [devops, reliability-engineering, reliability, mini, projects]
 category: "reliability engineering"

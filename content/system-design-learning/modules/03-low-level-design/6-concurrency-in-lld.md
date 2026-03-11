@@ -1,7 +1,7 @@
 ---
 title: "Concurrency in LLD"
 description: ""
-date: 2026-11-22
+date: 2025-05-30
 author: Rahul Kumar
 tags: [system-design, low-level-design, concurrency]
 category: "system design"

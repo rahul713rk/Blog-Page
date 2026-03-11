@@ -1,7 +1,7 @@
 ---
 title: "Security Mini Projects"
 description: ""
-date: 2026-04-01
+date: 2025-04-13
 author: Rahul Kumar
 tags: [devops, security, mini, projects]
 category: "security"

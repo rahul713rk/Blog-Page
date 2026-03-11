@@ -1,7 +1,7 @@
 ---
 title: "Postmortems"
 description: ""
-date: 2026-06-15
+date: 2025-04-28
 author: Rahul Kumar
 tags: [devops, reliability-engineering, postmortems]
 category: "reliability engineering"

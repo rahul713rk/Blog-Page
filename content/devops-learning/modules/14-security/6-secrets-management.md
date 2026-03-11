@@ -1,7 +1,7 @@
 ---
 title: "Secrets Management"
 description: ""
-date: 2026-04-11
+date: 2025-04-15
 author: Rahul Kumar
 tags: [devops, security, secrets, management]
 category: "security"

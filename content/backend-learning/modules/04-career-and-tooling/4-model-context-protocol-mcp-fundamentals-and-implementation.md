@@ -1,7 +1,7 @@
 ---
 title: "Model Context Protocol (MCP) — Fundamentals & Implementation"
 description: ""
-date: 2025-04-21
+date: 2025-02-03
 author: Rahul Kumar
 tags: [backend, career-and-tooling, model, context, protocol]
 category: "backend engineering"

@@ -1,7 +1,7 @@
 ---
 title: "DevOps Essentials — Docker & CI/CD"
 description: ""
-date: 2025-03-17
+date: 2025-01-27
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, devops, essentials, docker]
 category: "backend engineering"

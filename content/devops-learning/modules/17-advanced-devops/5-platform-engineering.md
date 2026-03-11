@@ -1,7 +1,7 @@
 ---
 title: "Platform Engineering"
 description: ""
-date: 2026-07-20
+date: 2025-05-05
 author: Rahul Kumar
 tags: [devops, advanced-devops, platform, engineering]
 category: "advanced devops"

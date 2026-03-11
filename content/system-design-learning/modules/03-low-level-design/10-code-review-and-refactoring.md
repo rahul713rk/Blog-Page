@@ -1,7 +1,7 @@
 ---
 title: "Code Review & Refactoring"
 description: ""
-date: 2026-12-12
+date: 2025-06-03
 author: Rahul Kumar
 tags: [system-design, low-level-design, code, review, refactoring]
 category: "system design"

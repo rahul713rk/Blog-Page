@@ -1,7 +1,7 @@
 ---
 title: "Docker Compose"
 description: ""
-date: 2025-10-13
+date: 2025-03-10
 author: Rahul Kumar
 tags: [devops, docker, compose]
 category: "docker"

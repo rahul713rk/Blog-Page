@@ -1,7 +1,7 @@
 ---
 title: "Low-Level Design Capstone"
 description: ""
-date: 2026-12-17
+date: 2025-06-04
 author: Rahul Kumar
 tags: [system-design, low-level-design, level, design, capstone]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Designing A Rate Limiter"
 description: ""
-date: 2026-12-22
+date: 2025-06-05
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, rate, limiter]
 category: "system design"

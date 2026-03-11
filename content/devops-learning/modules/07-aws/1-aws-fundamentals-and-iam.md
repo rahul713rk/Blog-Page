@@ -1,7 +1,7 @@
 ---
 title: "AWS Fundamentals and IAM"
 description: ""
-date: 2025-09-08
+date: 2025-03-03
 author: Rahul Kumar
 tags: [devops, aws, fundamentals]
 category: "aws"

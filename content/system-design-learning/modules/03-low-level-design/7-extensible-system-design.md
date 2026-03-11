@@ -1,7 +1,7 @@
 ---
 title: "Extensible System Design"
 description: ""
-date: 2026-11-27
+date: 2025-05-31
 author: Rahul Kumar
 tags: [system-design, low-level-design, extensible, system, design]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Spring Boot and JDBC Essentials"
 description: ""
-date: 2025-04-16
+date: 2025-02-02
 author: Rahul Kumar
 tags: [backend, career-and-tooling, spring, boot, jdbc]
 category: "backend engineering"

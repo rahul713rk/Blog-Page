@@ -1,7 +1,7 @@
 ---
 title: "DevSecOps Fundamentals"
 description: ""
-date: 2026-03-22
+date: 2025-04-11
 author: Rahul Kumar
 tags: [devops, security, devsecops, fundamentals]
 category: "security"

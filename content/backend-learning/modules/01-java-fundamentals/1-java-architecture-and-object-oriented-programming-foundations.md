@@ -1,7 +1,7 @@
 ---
 title: "Java Architecture and Object-Oriented Programming Foundations"
 description: ""
-date: 2025-01-06
+date: 2025-01-13
 author: Rahul Kumar
 tags: [backend, java-fundamentals, java, architecture, object]
 category: "backend engineering"

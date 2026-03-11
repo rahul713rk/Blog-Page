@@ -1,7 +1,7 @@
 ---
 title: "Design Patterns for Backend Development"
 description: ""
-date: 2025-03-02
+date: 2025-01-24
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, design, patterns, development]
 category: "backend engineering"

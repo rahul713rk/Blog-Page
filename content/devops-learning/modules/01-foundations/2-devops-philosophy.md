@@ -1,7 +1,7 @@
 ---
 title: "DevOps Philosophy"
 description: ""
-date: 2025-05-01
+date: 2025-02-05
 author: Rahul Kumar
 tags: [devops, foundations, philosophy]
 category: "foundations"

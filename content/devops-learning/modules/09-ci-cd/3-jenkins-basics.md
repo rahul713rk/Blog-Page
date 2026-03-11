@@ -1,7 +1,7 @@
 ---
 title: "Jenkins Basics"
 description: ""
-date: 2025-11-12
+date: 2025-03-16
 author: Rahul Kumar
 tags: [devops, ci-cd, jenkins, basics]
 category: "ci cd"

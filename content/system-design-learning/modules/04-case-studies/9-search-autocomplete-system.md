@@ -1,7 +1,7 @@
 ---
 title: "Search Autocomplete System"
 description: ""
-date: 2027-01-31
+date: 2025-06-13
 author: Rahul Kumar
 tags: [system-design, case-studies, search, autocomplete, system]
 category: "system design"

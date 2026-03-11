@@ -1,7 +1,7 @@
 ---
 title: "Spring MVC Basics & REST API Implementation"
 description: ""
-date: 2025-02-05
+date: 2025-01-19
 author: Rahul Kumar
 tags: [backend, spring-and-data, spring, basics, rest]
 category: "backend engineering"

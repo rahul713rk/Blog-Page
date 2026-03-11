@@ -1,7 +1,7 @@
 ---
 title: "Designing YouTube"
 description: ""
-date: 2027-02-05
+date: 2025-06-14
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, youtube]
 category: "system design"

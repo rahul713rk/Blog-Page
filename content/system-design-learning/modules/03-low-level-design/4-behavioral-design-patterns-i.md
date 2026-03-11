@@ -1,7 +1,7 @@
 ---
 title: "Behavioral Design Patterns I"
 description: ""
-date: 2026-11-12
+date: 2025-05-28
 author: Rahul Kumar
 tags: [system-design, low-level-design, behavioral, design, patterns]
 category: "system design"

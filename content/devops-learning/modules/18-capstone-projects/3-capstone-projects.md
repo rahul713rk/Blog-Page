@@ -1,7 +1,7 @@
 ---
 title: "Capstone Projects"
 description: ""
-date: 2026-08-14
+date: 2025-05-10
 author: Rahul Kumar
 tags: [devops, capstone-projects, capstone, projects]
 category: "capstone projects"

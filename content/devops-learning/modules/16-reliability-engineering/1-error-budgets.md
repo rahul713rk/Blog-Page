@@ -1,7 +1,7 @@
 ---
 title: "Error Budgets"
 description: ""
-date: 2026-05-26
+date: 2025-04-24
 author: Rahul Kumar
 tags: [devops, reliability-engineering, error, budgets]
 category: "reliability engineering"

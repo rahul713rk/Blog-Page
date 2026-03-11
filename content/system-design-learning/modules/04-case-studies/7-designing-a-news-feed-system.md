@@ -1,7 +1,7 @@
 ---
 title: "Designing A News Feed System"
 description: ""
-date: 2027-01-21
+date: 2025-06-11
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, news, feed]
 category: "system design"

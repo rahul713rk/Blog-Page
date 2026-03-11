@@ -1,7 +1,7 @@
 ---
 title: "Container Registries"
 description: ""
-date: 2025-10-08
+date: 2025-03-09
 author: Rahul Kumar
 tags: [devops, docker, container, registries]
 category: "docker"

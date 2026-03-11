@@ -1,7 +1,7 @@
 ---
 title: "System Design Fundamentals"
 description: ""
-date: 2025-04-01
+date: 2025-01-30
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, system, design, fundamentals]
 category: "backend engineering"

@@ -1,7 +1,7 @@
 ---
 title: "Git Branching and Merging"
 description: ""
-date: 2025-08-09
+date: 2025-02-25
 author: Rahul Kumar
 tags: [devops, version-control, branching, merging]
 category: "version control"

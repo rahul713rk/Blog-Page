@@ -1,7 +1,7 @@
 ---
 title: "Core Ansible Modules"
 description: ""
-date: 2026-01-11
+date: 2025-03-28
 author: Rahul Kumar
 tags: [devops, ansible, core, modules]
 category: "ansible"

@@ -1,7 +1,7 @@
 ---
 title: "Database Architecture"
 description: ""
-date: 2026-09-08
+date: 2025-05-15
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, database, architecture]
 category: "system design"

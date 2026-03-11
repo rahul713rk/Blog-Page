@@ -1,7 +1,7 @@
 ---
 title: "Advanced DevOps Trends"
 description: ""
-date: 2026-07-10
+date: 2025-05-03
 author: Rahul Kumar
 tags: [devops, advanced-devops, advanced, trends]
 category: "advanced devops"

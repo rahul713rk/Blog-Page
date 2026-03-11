@@ -1,7 +1,7 @@
 ---
 title: "Message Queues with Kafka and RabbitMQ"
 description: ""
-date: 2025-03-27
+date: 2025-01-29
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, message, queues, with]
 category: "backend engineering"

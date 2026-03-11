@@ -1,7 +1,7 @@
 ---
 title: "MLOps Fundamentals and Production Practice"
 description: ""
-date: 2026-04-26
+date: 2025-04-18
 author: Rahul Kumar
 tags: [devops, mlops, fundamentals, production, practice]
 category: "mlops"

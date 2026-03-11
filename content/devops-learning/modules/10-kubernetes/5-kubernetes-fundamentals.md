@@ -1,7 +1,7 @@
 ---
 title: "Kubernetes Fundamentals"
 description: ""
-date: 2025-12-12
+date: 2025-03-22
 author: Rahul Kumar
 tags: [devops, kubernetes, fundamentals]
 category: "kubernetes"

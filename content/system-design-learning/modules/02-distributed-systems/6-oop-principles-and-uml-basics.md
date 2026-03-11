@@ -1,7 +1,7 @@
 ---
 title: "OOP Principles & UML Basics"
 description: ""
-date: 2026-10-23
+date: 2025-05-24
 author: Rahul Kumar
 tags: [system-design, distributed-systems, principles, basics]
 category: "system design"

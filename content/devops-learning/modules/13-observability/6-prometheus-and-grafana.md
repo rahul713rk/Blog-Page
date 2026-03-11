@@ -1,7 +1,7 @@
 ---
 title: "Prometheus and Grafana"
 description: ""
-date: 2026-03-07
+date: 2025-04-08
 author: Rahul Kumar
 tags: [devops, observability, prometheus, grafana]
 category: "observability"

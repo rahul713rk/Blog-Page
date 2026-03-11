@@ -1,7 +1,7 @@
 ---
 title: "Interview Preparation and Project Portfolio"
 description: ""
-date: 2025-04-11
+date: 2025-02-01
 author: Rahul Kumar
 tags: [backend, career-and-tooling, interview, preparation, project]
 category: "backend engineering"

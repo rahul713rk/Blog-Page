@@ -1,7 +1,7 @@
 ---
 title: "Inventory and SSH Connectivity"
 description: ""
-date: 2026-01-21
+date: 2025-03-30
 author: Rahul Kumar
 tags: [devops, ansible, inventory, connectivity]
 category: "ansible"

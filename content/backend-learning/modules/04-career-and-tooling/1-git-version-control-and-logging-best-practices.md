@@ -1,7 +1,7 @@
 ---
 title: "Git Version Control & Logging Best Practices"
 description: ""
-date: 2025-04-06
+date: 2025-01-31
 author: Rahul Kumar
 tags: [backend, career-and-tooling, version, control, logging]
 category: "backend engineering"

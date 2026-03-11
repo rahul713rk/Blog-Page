@@ -1,7 +1,7 @@
 ---
 title: "SOLID Principles"
 description: ""
-date: 2026-11-02
+date: 2025-05-26
 author: Rahul Kumar
 tags: [system-design, low-level-design, solid, principles]
 category: "system design"

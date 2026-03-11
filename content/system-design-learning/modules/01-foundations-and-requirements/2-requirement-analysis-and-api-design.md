@@ -1,7 +1,7 @@
 ---
 title: "Requirement Analysis & API Design"
 description: ""
-date: 2026-08-29
+date: 2025-05-13
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, requirement, analysis, design]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "API Layer & Error Handling"
 description: ""
-date: 2026-12-07
+date: 2025-06-02
 author: Rahul Kumar
 tags: [system-design, low-level-design, layer, error, handling]
 category: "system design"

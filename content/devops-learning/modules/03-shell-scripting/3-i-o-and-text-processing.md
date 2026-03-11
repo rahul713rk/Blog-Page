@@ -1,7 +1,7 @@
 ---
 title: "I/O and Text Processing"
 description: ""
-date: 2025-06-25
+date: 2025-02-16
 author: Rahul Kumar
 tags: [devops, shell-scripting, text, processing]
 category: "shell scripting"

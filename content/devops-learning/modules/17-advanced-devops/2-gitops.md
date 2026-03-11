@@ -1,7 +1,7 @@
 ---
 title: "GitOps"
 description: ""
-date: 2026-07-05
+date: 2025-05-02
 author: Rahul Kumar
 tags: [devops, advanced-devops, gitops]
 category: "advanced devops"

@@ -1,7 +1,7 @@
 ---
 title: "Service Management with Systemd"
 description: ""
-date: 2025-06-10
+date: 2025-02-13
 author: Rahul Kumar
 tags: [devops, linux, service, management, with]
 category: "linux"

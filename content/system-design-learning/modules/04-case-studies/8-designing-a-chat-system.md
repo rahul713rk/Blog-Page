@@ -1,7 +1,7 @@
 ---
 title: "Designing A Chat System"
 description: ""
-date: 2027-01-26
+date: 2025-06-12
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, chat, system]
 category: "system design"

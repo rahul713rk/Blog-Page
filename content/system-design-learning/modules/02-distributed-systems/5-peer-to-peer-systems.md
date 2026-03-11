@@ -1,7 +1,7 @@
 ---
 title: "Peer-to-Peer Systems"
 description: ""
-date: 2026-10-18
+date: 2025-05-23
 author: Rahul Kumar
 tags: [system-design, distributed-systems, peer, systems]
 category: "system design"

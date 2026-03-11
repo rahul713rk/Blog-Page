@@ -1,7 +1,7 @@
 ---
 title: "Maven Project Management and Plugins"
 description: ""
-date: 2025-01-31
+date: 2025-01-18
 author: Rahul Kumar
 tags: [backend, spring-and-data, maven, project, management]
 category: "backend engineering"

@@ -1,7 +1,7 @@
 ---
 title: "Hibernate, JPA & Advanced JPA Concepts"
 description: ""
-date: 2025-02-15
+date: 2025-01-21
 author: Rahul Kumar
 tags: [backend, spring-and-data, hibernate, advanced, concepts]
 category: "backend engineering"

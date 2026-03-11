@@ -1,7 +1,7 @@
 ---
 title: "Monitoring Fundamentals"
 description: ""
-date: 2026-02-25
+date: 2025-04-06
 author: Rahul Kumar
 tags: [devops, observability, monitoring, fundamentals]
 category: "observability"

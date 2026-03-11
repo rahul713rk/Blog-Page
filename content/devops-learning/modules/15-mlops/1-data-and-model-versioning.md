@@ -1,7 +1,7 @@
 ---
 title: "Data and Model Versioning"
 description: ""
-date: 2026-04-21
+date: 2025-04-17
 author: Rahul Kumar
 tags: [devops, mlops, data, model, versioning]
 category: "mlops"

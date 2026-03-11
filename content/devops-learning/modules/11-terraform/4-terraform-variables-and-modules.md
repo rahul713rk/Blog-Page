@@ -1,7 +1,7 @@
 ---
 title: "Terraform Variables and Modules"
 description: ""
-date: 2026-01-01
+date: 2025-03-26
 author: Rahul Kumar
 tags: [devops, terraform, variables, modules]
 category: "terraform"

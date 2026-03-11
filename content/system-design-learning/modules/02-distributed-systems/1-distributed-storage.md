@@ -1,7 +1,7 @@
 ---
 title: "Distributed Storage"
 description: ""
-date: 2026-09-28
+date: 2025-05-19
 author: Rahul Kumar
 tags: [system-design, distributed-systems, distributed, storage]
 category: "system design"

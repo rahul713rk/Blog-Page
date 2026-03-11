@@ -1,7 +1,7 @@
 ---
 title: "Terraform Fundamentals"
 description: ""
-date: 2025-12-22
+date: 2025-03-24
 author: Rahul Kumar
 tags: [devops, terraform, fundamentals]
 category: "terraform"

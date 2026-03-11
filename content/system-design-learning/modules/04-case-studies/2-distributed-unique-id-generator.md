@@ -1,7 +1,7 @@
 ---
 title: "Distributed Unique ID Generator"
 description: ""
-date: 2026-12-27
+date: 2025-06-06
 author: Rahul Kumar
 tags: [system-design, case-studies, distributed, unique, generator]
 category: "system design"

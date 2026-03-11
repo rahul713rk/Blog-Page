@@ -1,7 +1,7 @@
 ---
 title: "OSI and TCP/IP"
 description: ""
-date: 2025-07-20
+date: 2025-02-21
 author: Rahul Kumar
 tags: [devops, networking]
 category: "networking"

@@ -1,7 +1,7 @@
 ---
 title: "AWS Serverless and Monitoring"
 description: ""
-date: 2025-10-03
+date: 2025-03-08
 author: Rahul Kumar
 tags: [devops, aws, serverless, monitoring]
 category: "aws"

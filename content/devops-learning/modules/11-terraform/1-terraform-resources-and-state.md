@@ -1,7 +1,7 @@
 ---
 title: "Terraform Resources and State"
 description: ""
-date: 2025-12-17
+date: 2025-03-23
 author: Rahul Kumar
 tags: [devops, terraform, resources, state]
 category: "terraform"

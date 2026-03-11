@@ -1,7 +1,7 @@
 ---
 title: "Bash Fundamentals"
 description: ""
-date: 2025-06-15
+date: 2025-02-14
 author: Rahul Kumar
 tags: [devops, shell-scripting, bash, fundamentals]
 category: "shell scripting"

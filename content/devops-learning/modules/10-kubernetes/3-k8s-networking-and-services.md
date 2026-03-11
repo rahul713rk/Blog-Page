@@ -1,7 +1,7 @@
 ---
 title: "K8s Networking and Services"
 description: ""
-date: 2025-12-02
+date: 2025-03-20
 author: Rahul Kumar
 tags: [devops, kubernetes, networking, services]
 category: "kubernetes"

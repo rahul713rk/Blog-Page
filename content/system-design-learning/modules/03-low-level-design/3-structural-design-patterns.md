@@ -1,7 +1,7 @@
 ---
 title: "Structural Design Patterns"
 description: ""
-date: 2026-11-07
+date: 2025-05-27
 author: Rahul Kumar
 tags: [system-design, low-level-design, structural, design, patterns]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Java 8 Functional Programming & Collections Overview"
 description: ""
-date: 2025-01-16
+date: 2025-01-15
 author: Rahul Kumar
 tags: [backend, java-fundamentals, java, functional, programming]
 category: "backend engineering"

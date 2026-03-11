@@ -1,7 +1,7 @@
 ---
 title: "System Design Foundations"
 description: ""
-date: 2026-08-24
+date: 2025-05-12
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, system, design, foundations]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Low-Level Design Capstone"
 description: ""
-date: 2026-08-04
+date: 2025-05-08
 author: Rahul Kumar
 tags: [devops, capstone-projects, level, design, capstone]
 category: "capstone projects"

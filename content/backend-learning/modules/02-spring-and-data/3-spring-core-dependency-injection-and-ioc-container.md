@@ -1,7 +1,7 @@
 ---
 title: "Spring Core — Dependency Injection & IoC Container"
 description: ""
-date: 2025-02-10
+date: 2025-01-20
 author: Rahul Kumar
 tags: [backend, spring-and-data, spring, core, dependency]
 category: "backend engineering"

@@ -1,7 +1,7 @@
 ---
 title: "Microservices Architecture"
 description: ""
-date: 2025-03-07
+date: 2025-01-25
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, microservices, architecture]
 category: "backend engineering"

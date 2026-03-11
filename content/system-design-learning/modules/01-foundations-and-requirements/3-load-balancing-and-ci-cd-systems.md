@@ -1,7 +1,7 @@
 ---
 title: "Load Balancing & CI/CD Systems"
 description: ""
-date: 2026-09-03
+date: 2025-05-14
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, load, balancing, systems]
 category: "system design"

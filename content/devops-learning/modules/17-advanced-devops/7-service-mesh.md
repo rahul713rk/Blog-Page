@@ -1,7 +1,7 @@
 ---
 title: "Service Mesh"
 description: ""
-date: 2026-07-30
+date: 2025-05-07
 author: Rahul Kumar
 tags: [devops, advanced-devops, service, mesh]
 category: "advanced devops"

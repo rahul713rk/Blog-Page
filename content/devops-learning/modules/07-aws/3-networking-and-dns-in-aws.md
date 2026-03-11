@@ -1,7 +1,7 @@
 ---
 title: "Networking and DNS in AWS"
 description: ""
-date: 2025-09-18
+date: 2025-03-05
 author: Rahul Kumar
 tags: [devops, aws, networking]
 category: "aws"

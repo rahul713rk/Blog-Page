@@ -1,7 +1,7 @@
 ---
 title: "Jenkins Pipelines"
 description: ""
-date: 2025-11-17
+date: 2025-03-17
 author: Rahul Kumar
 tags: [devops, ci-cd, jenkins, pipelines]
 category: "ci cd"

@@ -1,7 +1,7 @@
 ---
 title: "Java Advanced Features — Generics, Streams API, HashMap & Hashing"
 description: ""
-date: 2025-01-21
+date: 2025-01-16
 author: Rahul Kumar
 tags: [backend, java-fundamentals, java, advanced, features]
 category: "backend engineering"

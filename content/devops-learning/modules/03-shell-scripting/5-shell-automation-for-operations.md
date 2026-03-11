@@ -1,7 +1,7 @@
 ---
 title: "Shell Automation for Operations"
 description: ""
-date: 2025-07-05
+date: 2025-02-18
 author: Rahul Kumar
 tags: [devops, shell-scripting, shell, automation, operations]
 category: "shell scripting"

@@ -1,7 +1,7 @@
 ---
 title: "Incident Management"
 description: ""
-date: 2026-05-31
+date: 2025-04-25
 author: Rahul Kumar
 tags: [devops, reliability-engineering, incident, management]
 category: "reliability engineering"

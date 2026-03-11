@@ -1,7 +1,7 @@
 ---
 title: "Reliability Fundamentals"
 description: ""
-date: 2026-06-20
+date: 2025-04-29
 author: Rahul Kumar
 tags: [devops, reliability-engineering, reliability, fundamentals]
 category: "reliability engineering"

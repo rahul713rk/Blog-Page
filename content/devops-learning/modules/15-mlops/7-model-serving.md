@@ -1,7 +1,7 @@
 ---
 title: "Model Serving"
 description: ""
-date: 2026-05-21
+date: 2025-04-23
 author: Rahul Kumar
 tags: [devops, mlops, model, serving]
 category: "mlops"

@@ -1,7 +1,7 @@
 ---
 title: "Serverless DevOps"
 description: ""
-date: 2026-07-25
+date: 2025-05-06
 author: Rahul Kumar
 tags: [devops, advanced-devops, serverless]
 category: "advanced devops"

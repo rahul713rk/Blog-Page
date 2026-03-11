@@ -1,7 +1,7 @@
 ---
 title: "Designing Google Drive"
 description: ""
-date: 2027-02-10
+date: 2025-06-15
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, google, drive]
 category: "system design"

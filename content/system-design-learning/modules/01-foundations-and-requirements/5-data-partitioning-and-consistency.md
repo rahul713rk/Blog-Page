@@ -1,7 +1,7 @@
 ---
 title: "Data Partitioning & Consistency"
 description: ""
-date: 2026-09-13
+date: 2025-05-16
 author: Rahul Kumar
 tags: [system-design, foundations-and-requirements, data, partitioning, consistency]
 category: "system design"

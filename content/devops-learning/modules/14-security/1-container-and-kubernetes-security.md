@@ -1,7 +1,7 @@
 ---
 title: "Container and Kubernetes Security"
 description: ""
-date: 2026-03-17
+date: 2025-04-10
 author: Rahul Kumar
 tags: [devops, security, container, kubernetes]
 category: "security"

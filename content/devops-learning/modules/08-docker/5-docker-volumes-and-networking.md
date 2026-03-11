@@ -1,7 +1,7 @@
 ---
 title: "Docker Volumes and Networking"
 description: ""
-date: 2025-10-28
+date: 2025-03-13
 author: Rahul Kumar
 tags: [devops, docker, volumes, networking]
 category: "docker"

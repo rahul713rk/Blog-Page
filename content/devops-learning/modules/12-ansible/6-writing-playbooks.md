@@ -1,7 +1,7 @@
 ---
 title: "Writing Playbooks"
 description: ""
-date: 2026-01-31
+date: 2025-04-01
 author: Rahul Kumar
 tags: [devops, ansible, writing, playbooks]
 category: "ansible"

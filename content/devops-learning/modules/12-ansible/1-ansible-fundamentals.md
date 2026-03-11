@@ -1,7 +1,7 @@
 ---
 title: "Ansible Fundamentals"
 description: ""
-date: 2026-01-06
+date: 2025-03-27
 author: Rahul Kumar
 tags: [devops, ansible, fundamentals]
 category: "ansible"

@@ -1,7 +1,7 @@
 ---
 title: "Caching and Performance Optimization"
 description: ""
-date: 2025-03-22
+date: 2025-01-28
 author: Rahul Kumar
 tags: [backend, architecture-and-scalability, caching, performance, optimization]
 category: "backend engineering"

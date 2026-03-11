@@ -1,7 +1,7 @@
 ---
 title: "Distributed Locks & Coordination"
 description: ""
-date: 2026-10-08
+date: 2025-05-21
 author: Rahul Kumar
 tags: [system-design, distributed-systems, distributed, locks, coordination]
 category: "system design"

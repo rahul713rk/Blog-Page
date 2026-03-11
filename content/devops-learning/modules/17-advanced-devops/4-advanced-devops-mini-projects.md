@@ -1,7 +1,7 @@
 ---
 title: "Advanced DevOps Mini Projects"
 description: ""
-date: 2026-07-15
+date: 2025-05-04
 author: Rahul Kumar
 tags: [devops, advanced-devops, advanced, mini, projects]
 category: "advanced devops"

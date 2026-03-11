@@ -1,7 +1,7 @@
 ---
 title: "SAST, DAST, and SCA"
 description: ""
-date: 2026-04-06
+date: 2025-04-14
 author: Rahul Kumar
 tags: [devops, security, sast, dast]
 category: "security"

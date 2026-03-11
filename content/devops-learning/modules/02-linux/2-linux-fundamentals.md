@@ -1,7 +1,7 @@
 ---
 title: "Linux Fundamentals"
 description: ""
-date: 2025-05-21
+date: 2025-02-09
 author: Rahul Kumar
 tags: [devops, linux, fundamentals]
 category: "linux"

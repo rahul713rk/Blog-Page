@@ -1,7 +1,7 @@
 ---
 title: "Spring Security, JWT, and OAuth 2.0"
 description: ""
-date: 2025-02-25
+date: 2025-01-23
 author: Rahul Kumar
 tags: [backend, spring-and-data, spring, security, oauth]
 category: "backend engineering"

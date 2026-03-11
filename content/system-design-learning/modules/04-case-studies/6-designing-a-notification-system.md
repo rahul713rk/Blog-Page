@@ -1,7 +1,7 @@
 ---
 title: "Designing A Notification System"
 description: ""
-date: 2027-01-16
+date: 2025-06-10
 author: Rahul Kumar
 tags: [system-design, case-studies, designing, notification, system]
 category: "system design"

@@ -1,7 +1,7 @@
 ---
 title: "Git Collaboration Workflows"
 description: ""
-date: 2025-08-14
+date: 2025-02-26
 author: Rahul Kumar
 tags: [devops, version-control, collaboration, workflows]
 category: "version control"
