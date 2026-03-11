@@ -1,4 +1,5 @@
-:root {
+:root,
+:root[data-theme="sand"] {
   --pico-font-family: "IBM Plex Sans", sans-serif;
   --pico-border-radius: 1rem;
   --pico-background-color: #f5f2ea;
@@ -16,6 +17,66 @@
   --surface-outline: rgba(18, 56, 49, 0.12);
   --warm-accent: #c77d32;
   --shadow-soft: 0 20px 45px rgba(17, 32, 28, 0.08);
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(199, 125, 50, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.18), transparent 26%),
+    linear-gradient(180deg, #f8f4ec 0%, #f3f0e8 42%, #eef3f1 100%);
+  --theme-grid: rgba(18, 56, 49, 0.03);
+  --panel-bg: rgba(255, 255, 255, 0.72);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --soft-bg: rgba(245, 242, 234, 0.84);
+}
+
+:root[data-theme="slate"] {
+  --pico-background-color: #0f1720;
+  --pico-card-background-color: rgba(18, 25, 35, 0.82);
+  --pico-card-sectioning-background-color: rgba(18, 25, 35, 0.88);
+  --pico-primary: #38bdf8;
+  --pico-primary-hover: #7dd3fc;
+  --pico-primary-focus: rgba(56, 189, 248, 0.22);
+  --pico-muted-color: #9bb0bf;
+  --pico-color: #e7eff6;
+  --pico-h1-color: #f5fbff;
+  --pico-h2-color: #d8edf8;
+  --surface-strong: #d8f3ff;
+  --surface-soft: rgba(56, 189, 248, 0.12);
+  --surface-outline: rgba(125, 211, 252, 0.18);
+  --warm-accent: #f59e0b;
+  --shadow-soft: 0 22px 60px rgba(1, 8, 18, 0.38);
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 24%),
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 28%),
+    linear-gradient(180deg, #0c131c 0%, #111926 45%, #16212f 100%);
+  --theme-grid: rgba(216, 243, 255, 0.04);
+  --panel-bg: rgba(16, 24, 35, 0.78);
+  --card-bg: rgba(17, 27, 39, 0.92);
+  --soft-bg: rgba(11, 19, 29, 0.88);
+}
+
+:root[data-theme="paper"] {
+  --pico-background-color: #f6f4ef;
+  --pico-card-background-color: rgba(255, 252, 245, 0.88);
+  --pico-card-sectioning-background-color: rgba(255, 252, 245, 0.94);
+  --pico-primary: #7c3aed;
+  --pico-primary-hover: #6d28d9;
+  --pico-primary-focus: rgba(124, 58, 237, 0.2);
+  --pico-muted-color: #675f71;
+  --pico-color: #211d29;
+  --pico-h1-color: #1a1422;
+  --pico-h2-color: #34224a;
+  --surface-strong: #442c69;
+  --surface-soft: rgba(124, 58, 237, 0.08);
+  --surface-outline: rgba(68, 44, 105, 0.12);
+  --warm-accent: #d97706;
+  --shadow-soft: 0 18px 48px rgba(53, 32, 82, 0.1);
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.1), transparent 26%),
+    radial-gradient(circle at top right, rgba(217, 119, 6, 0.12), transparent 28%),
+    linear-gradient(180deg, #fbfaf7 0%, #f5f1e9 50%, #f0edf7 100%);
+  --theme-grid: rgba(68, 44, 105, 0.03);
+  --panel-bg: rgba(255, 252, 245, 0.76);
+  --card-bg: rgba(255, 252, 245, 0.92);
+  --soft-bg: rgba(245, 241, 233, 0.84);
 }
 
 html {
@@ -24,18 +85,15 @@ html {
 
 body {
   padding: 2rem 0 4rem;
-  background:
-    radial-gradient(circle at top left, rgba(199, 125, 50, 0.16), transparent 28%),
-    radial-gradient(circle at top right, rgba(15, 118, 110, 0.18), transparent 26%),
-    linear-gradient(180deg, #f8f4ec 0%, #f3f0e8 42%, #eef3f1 100%);
+  background: var(--page-gradient);
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(rgba(18, 56, 49, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 56, 49, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(var(--theme-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--theme-grid) 1px, transparent 1px);
   background-size: 32px 32px;
   pointer-events: none;
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 85%);
@@ -61,7 +119,7 @@ nav {
   padding: 0.9rem 1.1rem;
   border: 1px solid var(--surface-outline);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--panel-bg);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(14px);
 }
@@ -84,7 +142,7 @@ nav strong a {
   padding: 1.4rem;
   border: 1px solid var(--surface-outline);
   border-radius: 1.5rem;
-  background: rgba(255, 255, 255, 0.72);
+  background: var(--panel-bg);
   box-shadow: var(--shadow-soft);
   backdrop-filter: blur(14px);
 }
@@ -159,7 +217,7 @@ nav strong a {
   margin-top: 1.5rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: rgba(245, 242, 234, 0.92);
+  background: var(--soft-bg);
 }
 
 .card-grid,
@@ -183,7 +241,7 @@ nav strong a {
   padding: 1.1rem;
   border: 1px solid var(--surface-outline);
   border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--card-bg);
 }
 
 .post-card-header h2,
@@ -218,6 +276,51 @@ nav strong a {
   color: #7b4a10;
 }
 
+:root[data-theme="slate"] .filename-pill {
+  background: rgba(245, 158, 11, 0.12);
+  color: #ffd89a;
+}
+
+.theme-switcher {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.theme-chip,
+.text-link,
+.qa-toggle,
+.scroll-top-button,
+.pagination a,
+.page-jump,
+.tutorial-item a,
+.tag-link {
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.theme-chip,
+.text-link,
+.qa-toggle,
+.scroll-top-button {
+  border: 1px solid var(--surface-outline);
+  border-radius: 999px;
+  background: var(--soft-bg);
+  color: var(--pico-color);
+  font-weight: 600;
+}
+
+.theme-chip {
+  padding: 0.42rem 0.8rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.theme-chip.is-active {
+  background: linear-gradient(135deg, var(--pico-primary), var(--surface-strong));
+  border-color: transparent;
+  color: #fff;
+}
+
 .post-meta,
 .tag-row,
 .tutorial-module p,
@@ -239,6 +342,14 @@ nav strong a {
   flex-wrap: wrap;
 }
 
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.68rem 1rem;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.16);
+}
+
 .tag-row {
   display: flex;
   gap: 0.5rem;
@@ -256,6 +367,18 @@ nav strong a {
   color: var(--surface-strong);
 }
 
+.page-jump:hover,
+.text-link:hover,
+.theme-chip:hover,
+.qa-toggle:hover,
+.scroll-top-button:hover,
+.tutorial-item a:hover,
+.pagination a:hover,
+.tag-link:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+
 .tutorial-module ol {
   margin: 0;
   padding-left: 1.25rem;
@@ -268,6 +391,10 @@ nav strong a {
 .tutorial-item a {
   display: grid;
   gap: 0.2rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--surface-outline);
+  border-radius: 0.9rem;
+  background: var(--soft-bg);
 }
 
 .tutorial-filename {
@@ -288,7 +415,7 @@ nav strong a {
   padding: 0.95rem 1rem;
   border: 1px solid var(--surface-outline);
   border-radius: 1rem;
-  background: rgba(245, 242, 234, 0.84);
+  background: var(--soft-bg);
   color: inherit;
 }
 
@@ -346,7 +473,7 @@ pre code {
   margin: 1rem 0;
   border: 1px solid var(--surface-outline);
   border-radius: 1rem;
-  background: rgba(245, 242, 234, 0.62);
+  background: color-mix(in srgb, var(--soft-bg) 78%, transparent);
 }
 
 .collapsible-toggle {
@@ -402,7 +529,7 @@ pre code {
   padding: 1rem;
   overflow-x: auto;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--card-bg);
 }
 
 .pagination {
@@ -413,15 +540,26 @@ pre code {
   padding: 1rem 1.25rem;
   border: 1px solid var(--surface-outline);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.74);
+  background: var(--panel-bg);
   box-shadow: var(--shadow-soft);
+}
+
+.pagination a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--surface-outline);
+  border-radius: 999px;
+  background: var(--soft-bg);
 }
 
 #search-results article {
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.88);
+  background: var(--card-bg);
 }
 
 .scroll-top-button {
@@ -442,6 +580,12 @@ pre code {
 }
 
 .reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  transition: opacity 450ms ease, transform 450ms ease;
+}
+
+.js .reveal-on-scroll {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 450ms ease, transform 450ms ease;
@@ -470,5 +614,11 @@ pre code {
 
   .pagination {
     border-radius: 1.25rem;
+  }
+
+  .theme-switcher {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 }

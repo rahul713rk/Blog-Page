@@ -308,13 +308,14 @@ function renderPostCard(post) {
     post.readingTime,
     `${post.collectionLabel}${post.moduleLabel ? ` / ${post.moduleLabel}` : ""}`
   ]);
+  const secondaryLabel = post.kind === "tutorial" ? `Lesson ${post.filenameOrder}` : post.kindLabel;
 
   return `
     <article class="post-card ${post.kind}-card reveal-on-scroll">
       <header class="post-card-header">
         <div class="eyebrow-row">
           <span class="kind-pill">${escapeHtml(post.kindLabel)}</span>
-          <span class="filename-pill">${escapeHtml(post.filename)}</span>
+          <span class="filename-pill">${escapeHtml(secondaryLabel)}</span>
         </div>
         <h2><a href="${post.url}">${escapeHtml(post.title)}</a></h2>
         ${metaLine}
@@ -337,7 +338,7 @@ function renderPagerLink(post, label, direction) {
     <a class="page-jump ${direction}" href="${post.url}">
       <span class="jump-label">${escapeHtml(label)}</span>
       <strong>${escapeHtml(post.title)}</strong>
-      <small>${escapeHtml(post.filename)}</small>
+      <small>${escapeHtml(post.moduleLabel || post.collectionLabel)}</small>
     </a>
   `;
 }
@@ -405,7 +406,7 @@ function renderTutorialTracks(posts) {
               (post) => `
                 <li class="tutorial-item">
                   <a href="${post.url}">
-                    <span class="tutorial-filename">${escapeHtml(post.filename)}</span>
+                    <span class="tutorial-filename">Lesson ${escapeHtml(String(post.filenameOrder))}</span>
                     <span class="tutorial-title">${escapeHtml(post.title)}</span>
                   </a>
                 </li>
@@ -518,7 +519,7 @@ function generatePostPages(posts) {
       postMetaPrimary: renderMetaLine([post.formattedDate, post.author, post.readingTime]),
       postMetaSecondary: renderMetaLine([post.collectionLabel, post.moduleLabel, post.category]),
       postKind: escapeHtml(post.kindLabel),
-      postFilename: escapeHtml(post.filename),
+      postFilename: escapeHtml(post.kind === "tutorial" ? `Lesson ${post.filenameOrder}` : post.kindLabel),
       postCover: post.cover ? `<img src="${escapeHtml(post.cover)}" alt="${escapeHtml(post.title)}">` : "",
       postBody: post.contentHtml,
       postTags: tagLinks,

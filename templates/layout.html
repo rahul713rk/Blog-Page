@@ -6,6 +6,15 @@
     <title>{{title}}</title>
     <meta name="description" content="{{description}}">
     <link rel="canonical" href="{{canonicalUrl}}">
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        const savedTheme = localStorage.getItem("blog-theme");
+        if (savedTheme) {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -31,6 +40,11 @@
         </ul>
         <ul>
           <li><a href="{{sitePath}}/">Home</a></li>
+          <li class="theme-switcher" aria-label="Theme switcher">
+            <button class="theme-chip" type="button" data-theme-option="sand">Sand</button>
+            <button class="theme-chip" type="button" data-theme-option="slate">Slate</button>
+            <button class="theme-chip" type="button" data-theme-option="paper">Paper</button>
+          </li>
         </ul>
       </nav>
       {{content}}

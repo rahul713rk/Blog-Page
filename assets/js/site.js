@@ -15,6 +15,33 @@ function setupScrollTopButton() {
   toggleVisibility();
 }
 
+function setupThemeSwitcher() {
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll("[data-theme-option]");
+  if (!buttons.length) {
+    return;
+  }
+
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    buttons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.themeOption === theme);
+    });
+    try {
+      localStorage.setItem("blog-theme", theme);
+    } catch {}
+  };
+
+  const activeTheme = root.dataset.theme || "sand";
+  applyTheme(activeTheme);
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      applyTheme(button.dataset.themeOption || "sand");
+    });
+  });
+}
+
 function buildHeadingCollapsibles() {
   const container = document.querySelector(".article-body");
   if (!container) {
@@ -144,11 +171,13 @@ function setupMermaid() {
 }
 
 function initSiteUi() {
+  setupThemeSwitcher();
   setupScrollTopButton();
   buildHeadingCollapsibles();
   setupQuestionAnswerMask();
   setupRevealOnScroll();
   setupMermaid();
+  document.querySelectorAll(".reveal-on-scroll").forEach((node) => node.classList.add("is-visible"));
 }
 
 if (document.readyState === "loading") {
