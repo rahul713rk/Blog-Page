@@ -93,7 +93,7 @@ Edit `config.json`:
 {
   "siteName": "Minimal Blog",
   "siteDescription": "A minimal static blog generated from Markdown.",
-  "baseUrl": "https://yourusername.github.io/your-repository",
+  "baseUrl": "https://rahul713rk.github.io/Blog-Page",
   "postsPerPage": 5
 }
 ```
@@ -113,7 +113,7 @@ Running the build creates:
 
 1. Push the project to GitHub.
 2. In repository settings, enable GitHub Pages and set source to GitHub Actions.
-3. Update `baseUrl` in `config.json`.
+3. Set `baseUrl` in `config.json` to `https://rahul713rk.github.io/Blog-Page`.
 4. Push to `main` to trigger deployment.
 
 ## Extend later
