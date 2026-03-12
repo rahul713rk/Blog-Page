@@ -1,6 +1,9 @@
 {
-  "siteName": "Minimal Blog",
-  "siteDescription": "A minimal static blog generated from Markdown.",
+  "siteName": "Rahul Blogs",
+  "siteDescription": "Technical blogs, practical guides, and structured learning notes by Rahul Kumar.",
   "baseUrl": "https://rahul713rk.github.io/Blog-Page",
-  "postsPerPage": 5
+  "postsPerPage": 5,
+  "ownerName": "Rahul Kumar",
+  "ownerRole": "Backend, DevOps, and system design writer",
+  "aboutBlurb": "I use this space to publish standalone engineering articles and longer guide tracks built from my learning notes. The goal is a clean library for revisiting ideas quickly and shipping better systems."
 }
