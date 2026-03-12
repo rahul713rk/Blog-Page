@@ -182,31 +182,82 @@ function setupQuestionAnswerMask() {
     return;
   }
 
-  const targets = Array.from(articleBody.querySelectorAll("h2, h3, h4, p, li")).filter((node) =>
-    /\?|exercise|answer|solution|faq|question/i.test(node.textContent || "")
-  );
+  const isQaSection = (text) => /q\s*&\s*a|faq|question|exercise/i.test(text || "");
+  const isAnswerNode = (node) => /answer|solution/i.test(node.textContent || "");
 
-  if (!targets.length) {
-    return;
-  }
+  const mountToggle = ({ host, targets, compact = false }) => {
+    if (!host || !targets.length) {
+      return;
+    }
 
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "qa-toggle";
-  button.textContent = "Hide Q&A / exercise answers";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `qa-toggle${compact ? " is-compact" : ""}`;
+    button.dataset.state = "visible";
+    button.textContent = "Hide answers";
 
-  let hidden = false;
-  button.addEventListener("click", () => {
-    hidden = !hidden;
-    button.textContent = hidden ? "Show Q&A / exercise answers" : "Hide Q&A / exercise answers";
-    targets.forEach((node) => {
-      if (/answer|solution/i.test(node.textContent || "")) {
+    let hidden = false;
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      hidden = !hidden;
+      button.dataset.state = hidden ? "hidden" : "visible";
+      button.textContent = hidden ? "Show answers" : "Hide answers";
+      targets.forEach((node) => {
         node.classList.toggle("is-qa-hidden", hidden);
-      }
+      });
+    });
+
+    host.appendChild(button);
+  };
+
+  Array.from(articleBody.querySelectorAll(".collapsible-section")).forEach((section) => {
+    const heading = section.querySelector(":scope > .collapsible-toggle .collapsible-heading");
+    const content = section.querySelector(":scope > .collapsible-content .collapsible-inner");
+    if (!heading || !content || !isQaSection(heading.textContent || "")) {
+      return;
+    }
+
+    const targets = Array.from(
+      content.querySelectorAll("p, li, blockquote, pre, .code-block-shell, .diagram-shell, table")
+    ).filter(isAnswerNode);
+
+    mountToggle({
+      host: section.querySelector(":scope > .collapsible-toggle"),
+      targets,
+      compact: true
     });
   });
 
-  articleBody.prepend(button);
+  Array.from(articleBody.querySelectorAll("h3, h4, h5, h6")).forEach((heading) => {
+    if (heading.closest(".collapsible-section") || !isQaSection(heading.textContent || "")) {
+      return;
+    }
+
+    const level = Number(heading.tagName.slice(1));
+    const targets = [];
+    let current = heading.nextElementSibling;
+
+    while (current) {
+      if (/^H[1-6]$/.test(current.tagName) && Number(current.tagName.slice(1)) <= level) {
+        break;
+      }
+
+      if (isAnswerNode(current)) {
+        targets.push(current);
+      }
+
+      current = current.nextElementSibling;
+    }
+
+    if (!targets.length) {
+      return;
+    }
+
+    const host = document.createElement("div");
+    host.className = "qa-toggle-row";
+    heading.insertAdjacentElement("afterend", host);
+    mountToggle({ host, targets });
+  });
 }
 
 function copyText(text) {

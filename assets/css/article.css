@@ -249,8 +249,33 @@
   opacity: 0;
 }
 
+.qa-toggle-row {
+  margin: 0.45rem 0 0.95rem;
+}
+
 .qa-toggle {
-  margin: 1.5rem 0 1rem;
+  margin: 0;
+  padding: 0.32rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #157f3b, #d93636);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 22px rgba(8, 16, 14, 0.16);
+}
+
+.qa-toggle[data-state="hidden"] {
+  background: linear-gradient(90deg, #d93636, #157f3b);
+}
+
+.qa-toggle.is-compact {
+  margin-left: auto;
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  padding: 0.24rem 0.58rem;
 }
 
 .is-qa-hidden {
