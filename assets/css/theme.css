@@ -98,11 +98,11 @@
     radial-gradient(circle at top right, rgba(169, 107, 42, 0.12), transparent 24%),
     linear-gradient(180deg, #fbf8f2 0%, #f6efe5 46%, #efe9e0 100%);
   --grid-line: rgba(61, 48, 36, 0.035);
-  --code-bg: #000000;
-  --code-bg-strong: #000000;
-  --code-color: #ffffff;
-  --code-muted: #c5e27a;
-  --code-border: rgba(121, 150, 207, 0.422);
+  --code-bg: #15171d;
+  --code-bg-strong: #101218;
+  --code-color: #f4f7ff;
+  --code-muted: #b2bdd3;
+  --code-border: rgba(178, 189, 211, 0.16);
 }
 
 html {
