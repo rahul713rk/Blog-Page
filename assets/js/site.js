@@ -24,26 +24,29 @@ function setupThemeSwitcher() {
     return;
   }
 
+  const legacyThemeMap = { sand: "default", slate: "dark", paper: "default" };
+  const supportedThemes = new Set(["default", "dark", "rainbow", "computer", "colorblind"]);
   const applyTheme = (theme) => {
-    root.dataset.theme = theme;
+    const nextTheme = supportedThemes.has(theme) ? theme : legacyThemeMap[theme] || "default";
+    root.dataset.theme = nextTheme;
     buttons.forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.themeOption === theme);
+      button.classList.toggle("is-active", button.dataset.themeOption === nextTheme);
     });
-    const activeButton = buttons.find((button) => button.dataset.themeOption === theme);
+    const activeButton = buttons.find((button) => button.dataset.themeOption === nextTheme);
     if (label && activeButton?.dataset.themeLabel) {
       label.textContent = activeButton.dataset.themeLabel;
     }
     try {
-      localStorage.setItem("blog-theme", theme);
+      localStorage.setItem("blog-theme", nextTheme);
     } catch {}
   };
 
-  const activeTheme = root.dataset.theme || "sand";
+  const activeTheme = legacyThemeMap[root.dataset.theme] || root.dataset.theme || "default";
   applyTheme(activeTheme);
 
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
-      applyTheme(button.dataset.themeOption || "sand");
+      applyTheme(button.dataset.themeOption || "default");
       if (dropdown) {
         dropdown.open = false;
       }
@@ -118,7 +121,7 @@ function buildHeadingCollapsibles() {
     return;
   }
 
-  [4, 3, 2].forEach((level) => {
+  [2, 1].forEach((level) => {
     const headings = Array.from(container.querySelectorAll(`h${level}`));
     headings.forEach((heading) => {
       if (!heading.parentNode || heading.closest(".collapsible-section")) {
@@ -132,6 +135,7 @@ function buildHeadingCollapsibles() {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "collapsible-toggle";
+      button.setAttribute("aria-controls", `${heading.id || `section-${level}`}-content`);
       button.setAttribute("aria-expanded", "false");
       button.innerHTML = `
         <span class="collapsible-heading">${heading.textContent}</span>
@@ -140,6 +144,7 @@ function buildHeadingCollapsibles() {
 
       const content = document.createElement("div");
       content.className = "collapsible-content";
+      content.id = `${heading.id || `section-${level}`}-content`;
 
       const inner = document.createElement("div");
       inner.className = "collapsible-inner";
@@ -332,7 +337,14 @@ function setupMermaid() {
     return;
   }
 
-  const currentTheme = document.documentElement.dataset.theme === "slate" ? "dark" : "base";
+  const mermaidThemeMap = {
+    default: "base",
+    dark: "dark",
+    rainbow: "base",
+    computer: "dark",
+    colorblind: "base"
+  };
+  const currentTheme = mermaidThemeMap[document.documentElement.dataset.theme] || "base";
   const computedStyles = getComputedStyle(document.documentElement);
   const diagramFontFamily = computedStyles.getPropertyValue("--diagram-font-family").trim();
   mermaid.initialize({

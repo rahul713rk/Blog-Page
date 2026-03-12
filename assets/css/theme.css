@@ -1,5 +1,5 @@
 :root,
-:root[data-theme="sand"] {
+:root[data-theme="default"] {
   --pico-font-family: "Space Grotesk", sans-serif;
   --code-font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --diagram-font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
@@ -35,9 +35,12 @@
   --code-color: #edf4ff;
   --code-muted: #9db5d6;
   --code-border: rgba(157, 181, 214, 0.16);
+  --metric-card-bg: linear-gradient(145deg, rgba(10, 26, 42, 0.96), rgba(26, 63, 99, 0.9));
+  --metric-card-color: #f5fbff;
+  --metric-card-muted: rgba(245, 251, 255, 0.84);
 }
 
-:root[data-theme="slate"] {
+:root[data-theme="dark"] {
   --pico-background-color: #0b1320;
   --pico-card-background-color: rgba(17, 25, 39, 0.84);
   --pico-card-sectioning-background-color: rgba(17, 25, 39, 0.9);
@@ -69,40 +72,133 @@
   --code-color: #ebf5fc;
   --code-muted: #9ec7dd;
   --code-border: rgba(158, 199, 221, 0.16);
+  --metric-card-bg: linear-gradient(145deg, rgba(10, 26, 42, 0.96), rgba(32, 76, 114, 0.92));
+  --metric-card-color: #f5fbff;
+  --metric-card-muted: rgba(245, 251, 255, 0.84);
 }
 
-:root[data-theme="paper"] {
-  --pico-background-color: #f5efe5;
-  --pico-card-background-color: rgba(255, 251, 244, 0.88);
-  --pico-card-sectioning-background-color: rgba(255, 251, 244, 0.94);
-  --pico-primary: #355b4d;
-  --pico-primary-hover: #27453a;
-  --pico-primary-focus: rgba(53, 91, 77, 0.18);
-  --pico-muted-color: #655d53;
-  --pico-color: #211c17;
-  --pico-h1-color: #16120e;
-  --pico-h2-color: #2a231b;
-  --surface-strong: #334e41;
-  --surface-soft: rgba(53, 91, 77, 0.08);
-  --surface-outline: rgba(69, 55, 39, 0.12);
-  --surface-line: rgba(69, 55, 39, 0.07);
-  --panel-bg: rgba(255, 251, 244, 0.72);
-  --card-bg: rgba(255, 251, 244, 0.94);
-  --soft-bg: rgba(247, 239, 226, 0.9);
-  --accent: #9e6426;
-  --accent-soft: rgba(158, 100, 38, 0.14);
-  --shadow-soft: 0 20px 58px rgba(61, 48, 36, 0.12);
-  --shadow-strong: 0 28px 82px rgba(61, 48, 36, 0.14);
+:root[data-theme="rainbow"] {
+  --pico-background-color: #fff8eb;
+  --pico-card-background-color: rgba(255, 255, 255, 0.86);
+  --pico-card-sectioning-background-color: rgba(255, 255, 255, 0.92);
+  --pico-primary: #0057b8;
+  --pico-primary-hover: #00489a;
+  --pico-primary-focus: rgba(0, 87, 184, 0.2);
+  --pico-muted-color: #54495f;
+  --pico-color: #21172a;
+  --pico-h1-color: #431f5f;
+  --pico-h2-color: #0c4a78;
+  --surface-strong: #146356;
+  --surface-soft: rgba(255, 89, 94, 0.08);
+  --surface-outline: rgba(67, 31, 95, 0.12);
+  --surface-line: rgba(12, 74, 120, 0.08);
+  --panel-bg: rgba(255, 255, 255, 0.74);
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --soft-bg: rgba(255, 248, 235, 0.92);
+  --accent: #ff595e;
+  --accent-soft: rgba(255, 89, 94, 0.16);
+  --shadow-soft: 0 22px 60px rgba(63, 34, 81, 0.14);
+  --shadow-strong: 0 28px 84px rgba(63, 34, 81, 0.18);
   --page-gradient:
-    radial-gradient(circle at top left, rgba(83, 128, 103, 0.12), transparent 28%),
-    radial-gradient(circle at top right, rgba(169, 107, 42, 0.12), transparent 24%),
-    linear-gradient(180deg, #fbf8f2 0%, #f6efe5 46%, #efe9e0 100%);
-  --grid-line: rgba(61, 48, 36, 0.035);
-  --code-bg: #15171d;
-  --code-bg-strong: #101218;
-  --code-color: #f4f7ff;
-  --code-muted: #b2bdd3;
-  --code-border: rgba(178, 189, 211, 0.16);
+    linear-gradient(135deg, rgba(255, 89, 94, 0.16), transparent 22%),
+    linear-gradient(160deg, rgba(255, 202, 58, 0.14), transparent 34%),
+    linear-gradient(185deg, rgba(138, 201, 38, 0.12), transparent 46%),
+    linear-gradient(205deg, rgba(25, 130, 196, 0.12), transparent 58%),
+    linear-gradient(230deg, rgba(106, 76, 147, 0.14), transparent 70%),
+    linear-gradient(180deg, #fffaf1 0%, #fff2db 100%);
+  --grid-line: rgba(67, 31, 95, 0.04);
+  --code-bg: #171225;
+  --code-bg-strong: #100b1a;
+  --code-color: #f7f0ff;
+  --code-muted: #c3b3db;
+  --code-border: rgba(195, 179, 219, 0.18);
+  --metric-card-bg: linear-gradient(
+    110deg,
+    rgba(255, 89, 94, 0.95) 0 14.28%,
+    rgba(255, 146, 43, 0.95) 14.28% 28.56%,
+    rgba(255, 202, 58, 0.95) 28.56% 42.84%,
+    rgba(138, 201, 38, 0.95) 42.84% 57.12%,
+    rgba(25, 130, 196, 0.95) 57.12% 71.4%,
+    rgba(106, 76, 147, 0.95) 71.4% 85.68%,
+    rgba(211, 94, 165, 0.95) 85.68% 100%
+  );
+  --metric-card-color: #fffdfb;
+  --metric-card-muted: rgba(255, 253, 251, 0.9);
+}
+
+:root[data-theme="computer"] {
+  --pico-font-family: "IBM Plex Mono", monospace;
+  --diagram-font-family: "IBM Plex Mono", monospace;
+  --pico-background-color: #07130a;
+  --pico-card-background-color: rgba(6, 20, 11, 0.86);
+  --pico-card-sectioning-background-color: rgba(6, 20, 11, 0.92);
+  --pico-primary: #47ff8a;
+  --pico-primary-hover: #7cffab;
+  --pico-primary-focus: rgba(71, 255, 138, 0.18);
+  --pico-muted-color: #8cb99a;
+  --pico-color: #d5ffe2;
+  --pico-h1-color: #9bffbf;
+  --pico-h2-color: #7ef1a6;
+  --surface-strong: #b4ffd0;
+  --surface-soft: rgba(71, 255, 138, 0.08);
+  --surface-outline: rgba(71, 255, 138, 0.16);
+  --surface-line: rgba(71, 255, 138, 0.1);
+  --panel-bg: rgba(4, 12, 7, 0.8);
+  --card-bg: rgba(5, 16, 9, 0.94);
+  --soft-bg: rgba(8, 27, 14, 0.92);
+  --accent: #16c47f;
+  --accent-soft: rgba(22, 196, 127, 0.16);
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.34);
+  --shadow-strong: 0 28px 80px rgba(0, 0, 0, 0.44);
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(71, 255, 138, 0.14), transparent 28%),
+    linear-gradient(180deg, #040b05 0%, #07130a 40%, #0b1c0e 100%);
+  --grid-line: rgba(110, 255, 156, 0.08);
+  --code-bg: #000;
+  --code-bg-strong: #020502;
+  --code-color: #9bffbf;
+  --code-muted: #6fc48d;
+  --code-border: rgba(71, 255, 138, 0.16);
+  --metric-card-bg: linear-gradient(145deg, rgba(1, 18, 8, 0.96), rgba(8, 45, 19, 0.92));
+  --metric-card-color: #caffd8;
+  --metric-card-muted: rgba(202, 255, 216, 0.84);
+}
+
+:root[data-theme="colorblind"] {
+  --pico-background-color: #f5f3ef;
+  --pico-card-background-color: rgba(255, 255, 255, 0.9);
+  --pico-card-sectioning-background-color: rgba(255, 255, 255, 0.95);
+  --pico-primary: #0072b2;
+  --pico-primary-hover: #005b8e;
+  --pico-primary-focus: rgba(0, 114, 178, 0.2);
+  --pico-muted-color: #555e68;
+  --pico-color: #1f2730;
+  --pico-h1-color: #12202d;
+  --pico-h2-color: #233647;
+  --surface-strong: #1a5c7a;
+  --surface-soft: rgba(0, 114, 178, 0.08);
+  --surface-outline: rgba(34, 52, 68, 0.14);
+  --surface-line: rgba(34, 52, 68, 0.08);
+  --panel-bg: rgba(255, 255, 255, 0.78);
+  --card-bg: rgba(255, 255, 255, 0.96);
+  --soft-bg: rgba(245, 243, 239, 0.94);
+  --accent: #e69f00;
+  --accent-soft: rgba(230, 159, 0, 0.16);
+  --shadow-soft: 0 22px 60px rgba(33, 43, 54, 0.12);
+  --shadow-strong: 0 28px 84px rgba(33, 43, 54, 0.16);
+  --page-gradient:
+    radial-gradient(circle at top left, rgba(0, 114, 178, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(230, 159, 0, 0.12), transparent 24%),
+    linear-gradient(180deg, #fbfaf7 0%, #f3efe8 100%);
+  --grid-line: rgba(33, 43, 54, 0.035);
+  --code-bg: #11202d;
+  --code-bg-strong: #0d1822;
+  --code-color: #f1f7fc;
+  --code-muted: #b7cad9;
+  --code-border: rgba(183, 202, 217, 0.18);
+  --metric-card-bg: linear-gradient(145deg, rgba(0, 114, 178, 0.96), rgba(230, 159, 0, 0.9));
+  --metric-card-color: #fffdf8;
+  --metric-card-muted: rgba(255, 253, 248, 0.9);
 }
 
 html {
@@ -111,7 +207,7 @@ html {
 
 body {
   min-height: 100vh;
-  padding: 1.25rem 0 4rem;
+  padding: 0.4rem 0 3rem;
   background: var(--page-gradient);
   color: var(--pico-color);
 }
@@ -148,15 +244,17 @@ a {
 }
 
 .container {
-  width: min(1120px, calc(100vw - 2rem));
+  width: calc(100vw - 0.8rem);
+  max-width: none;
   margin: 0 auto;
 }
 
 .site-header {
   position: sticky;
-  top: 1rem;
+  top: 0.35rem;
   z-index: 20;
-  width: min(1120px, calc(100vw - 2rem));
+  width: calc(100vw - 0.8rem);
+  max-width: none;
   margin: 0 auto 1.5rem;
 }
 
@@ -218,11 +316,11 @@ a {
 
 @media (max-width: 768px) {
   body {
-    padding-top: 0.85rem;
+    padding-top: 0.3rem;
   }
 
   .container,
   .site-header {
-    width: min(100vw - 1rem, 1120px);
+    width: calc(100vw - 0.4rem);
   }
 }
