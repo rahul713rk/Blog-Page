@@ -1,6 +1,8 @@
 :root,
 :root[data-theme="sand"] {
   --pico-font-family: "Space Grotesk", sans-serif;
+  --code-font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --diagram-font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
   --pico-border-radius: 1.25rem;
   --pico-background-color: #eef2ea;
   --pico-card-background-color: rgba(255, 255, 255, 0.78);

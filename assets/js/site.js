@@ -333,10 +333,17 @@ function setupMermaid() {
   }
 
   const currentTheme = document.documentElement.dataset.theme === "slate" ? "dark" : "base";
+  const computedStyles = getComputedStyle(document.documentElement);
+  const diagramFontFamily = computedStyles.getPropertyValue("--diagram-font-family").trim();
   mermaid.initialize({
     startOnLoad: false,
     securityLevel: "loose",
-    theme: currentTheme
+    theme: currentTheme,
+    fontFamily: diagramFontFamily || "Arial, sans-serif",
+    themeVariables: {
+      fontFamily: diagramFontFamily || "Arial, sans-serif",
+      fontSize: "18px"
+    }
   });
   mermaid.run({ nodes: mermaidBlocks });
 }

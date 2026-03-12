@@ -37,7 +37,8 @@
   border-radius: 0.45rem;
   background: var(--surface-soft);
   color: var(--pico-h1-color);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--code-font-family);
+  font-size: 0.95em;
 }
 
 .code-block-shell,
@@ -64,7 +65,7 @@
 .code-block-language,
 .diagram-label {
   color: var(--code-muted);
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--code-font-family);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -85,26 +86,47 @@
 .diagram-shell pre,
 .article-body pre {
   margin: 0;
-  padding: 1rem;
+  padding: 1.1rem 1.15rem;
   overflow-x: auto;
   background: transparent;
   color: var(--code-color);
+  font-size: 0.98rem;
+  line-height: 1.7;
 }
 
 .article-body pre code,
 .article-body code {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--code-font-family);
+}
+
+.article-body pre code {
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .diagram-shell pre {
   display: flex;
   justify-content: center;
   min-width: max-content;
+  font-family: var(--diagram-font-family);
 }
 
 .diagram-shell .mermaid svg {
   max-width: none;
   height: auto;
+}
+
+.diagram-shell .mermaid svg text,
+.diagram-shell .mermaid svg tspan,
+.diagram-shell .mermaid svg foreignObject,
+.diagram-shell .mermaid svg .nodeLabel,
+.diagram-shell .mermaid svg .edgeLabel {
+  font-family: var(--diagram-font-family) !important;
+}
+
+.diagram-shell .mermaid svg text,
+.diagram-shell .mermaid svg tspan {
+  font-size: 18px !important;
 }
 
 .article-body blockquote {
