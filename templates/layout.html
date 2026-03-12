@@ -6,6 +6,7 @@
     <title>{{title}}</title>
     <meta name="description" content="{{description}}">
     <link rel="canonical" href="{{canonicalUrl}}">
+    <link rel="icon" type="image/svg+xml" href="{{sitePath}}/assets/icons/tree.svg">
     <script>
       document.documentElement.classList.add("js");
       try {
@@ -18,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     >
     <link
@@ -33,25 +34,88 @@
     {{head}}
   </head>
   <body data-site-path="{{sitePath}}">
-    <main class="container">
-      <nav>
-        <ul>
-          <li><strong><a href="{{sitePath}}/">{{siteName}}</a></strong></li>
-        </ul>
-        <ul>
-          <li><a href="{{sitePath}}/">Home</a></li>
-          <li class="theme-switcher" aria-label="Theme switcher">
-            <button class="theme-chip" type="button" data-theme-option="sand">Sand</button>
-            <button class="theme-chip" type="button" data-theme-option="slate">Slate</button>
-            <button class="theme-chip" type="button" data-theme-option="paper">Paper</button>
-          </li>
-        </ul>
-      </nav>
-      {{content}}
-      <footer>
-        <small>&copy; {{year}} {{siteName}}</small>
-      </footer>
-    </main>
+    <div class="page-shell">
+      <header class="site-header">
+        <nav class="glass-nav">
+          <a class="brand-link" href="{{homeHref}}" aria-label="{{siteName}} home">
+            <span class="brand-mark">
+              <img src="{{sitePath}}/assets/icons/tree.svg" alt="">
+            </span>
+            <span class="brand-copy">
+              <strong>{{siteName}}</strong>
+              <small>Blogs and guides</small>
+            </span>
+          </a>
+
+          <div class="nav-links">
+            <a href="{{homeHref}}#blogs-section">Blogs</a>
+            <a href="{{homeHref}}#guides-section">Guides</a>
+
+            <details class="theme-dropdown">
+              <summary class="theme-trigger" aria-label="Theme switcher">
+                <span class="theme-trigger-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v3"></path>
+                    <path d="M12 18v3"></path>
+                    <path d="M3 12h3"></path>
+                    <path d="M18 12h3"></path>
+                    <path d="M5.64 5.64l2.12 2.12"></path>
+                    <path d="M16.24 16.24l2.12 2.12"></path>
+                    <path d="M5.64 18.36l2.12-2.12"></path>
+                    <path d="M16.24 7.76l2.12-2.12"></path>
+                    <circle cx="12" cy="12" r="4.2"></circle>
+                  </svg>
+                </span>
+                <span class="theme-trigger-label">Theme</span>
+                <span class="theme-trigger-caret" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m5 7 5 6 5-6"></path>
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="theme-menu">
+                <button class="theme-option" type="button" data-theme-option="sand" data-theme-label="Canopy">
+                  <span class="theme-option-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3c3.6 0 6.5 2.3 7.2 5.6C16.9 8.9 14.4 11 12 14c-2.4-3-4.9-5.1-7.2-5.4C5.5 5.3 8.4 3 12 3Z"></path>
+                      <path d="M12 14v7"></path>
+                    </svg>
+                  </span>
+                  <span>Canopy</span>
+                </button>
+                <button class="theme-option" type="button" data-theme-option="slate" data-theme-label="Midnight">
+                  <span class="theme-option-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
+                    </svg>
+                  </span>
+                  <span>Midnight</span>
+                </button>
+                <button class="theme-option" type="button" data-theme-option="paper" data-theme-label="Linen">
+                  <span class="theme-option-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="6" y="4" width="12" height="16" rx="2"></rect>
+                      <path d="M9 8h6"></path>
+                      <path d="M9 12h6"></path>
+                      <path d="M9 16h4"></path>
+                    </svg>
+                  </span>
+                  <span>Linen</span>
+                </button>
+              </div>
+            </details>
+
+            <a href="{{homeHref}}#about-section">About Me</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="container">
+        {{content}}
+      </main>
+    </div>
+
     <button class="scroll-top-button" type="button" aria-label="Scroll to top">Top</button>
     <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>

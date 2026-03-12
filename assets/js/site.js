@@ -17,7 +17,9 @@ function setupScrollTopButton() {
 
 function setupThemeSwitcher() {
   const root = document.documentElement;
-  const buttons = document.querySelectorAll("[data-theme-option]");
+  const buttons = Array.from(document.querySelectorAll("[data-theme-option]"));
+  const dropdown = document.querySelector(".theme-dropdown");
+  const label = document.querySelector(".theme-trigger-label");
   if (!buttons.length) {
     return;
   }
@@ -27,6 +29,10 @@ function setupThemeSwitcher() {
     buttons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.themeOption === theme);
     });
+    const activeButton = buttons.find((button) => button.dataset.themeOption === theme);
+    if (label && activeButton?.dataset.themeLabel) {
+      label.textContent = activeButton.dataset.themeLabel;
+    }
     try {
       localStorage.setItem("blog-theme", theme);
     } catch {}
@@ -38,7 +44,66 @@ function setupThemeSwitcher() {
   buttons.forEach((button) => {
     button.addEventListener("click", () => {
       applyTheme(button.dataset.themeOption || "sand");
+      if (dropdown) {
+        dropdown.open = false;
+      }
     });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!dropdown?.open) {
+      return;
+    }
+    if (!dropdown.contains(event.target)) {
+      dropdown.open = false;
+    }
+  });
+}
+
+function setupContentToggle() {
+  const buttons = Array.from(document.querySelectorAll("[data-content-toggle]"));
+  const panels = Array.from(document.querySelectorAll("[data-content-panel]"));
+  if (!buttons.length || !panels.length) {
+    return;
+  }
+
+  const applyPanel = (panelName) => {
+    buttons.forEach((button) => {
+      const isActive = button.dataset.contentToggle === panelName;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-selected", String(isActive));
+    });
+
+    panels.forEach((panel) => {
+      panel.classList.toggle("is-active", panel.dataset.contentPanel === panelName);
+    });
+  };
+
+  const panelFromHash = () => {
+    if (window.location.hash === "#guides-section") {
+      return "guides";
+    }
+    return "blogs";
+  };
+
+  applyPanel(panelFromHash());
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const panelName = button.dataset.contentToggle || "blogs";
+      applyPanel(panelName);
+
+      const targetId = panelName === "guides" ? "guides-section" : "blogs-section";
+      const target = document.getElementById(targetId);
+      if (target) {
+        history.replaceState(null, "", `#${targetId}`);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  window.addEventListener("hashchange", () => {
+    applyPanel(panelFromHash());
   });
 }
 
@@ -172,6 +237,7 @@ function setupMermaid() {
 
 function initSiteUi() {
   setupThemeSwitcher();
+  setupContentToggle();
   setupScrollTopButton();
   buildHeadingCollapsibles();
   setupQuestionAnswerMask();

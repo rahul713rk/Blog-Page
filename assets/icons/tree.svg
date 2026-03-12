@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Tree icon</title>
+  <desc id="desc">A stylized tree used as the site icon.</desc>
+  <defs>
+    <linearGradient id="canopy" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#73c57f"/>
+      <stop offset="100%" stop-color="#2f7a4b"/>
+    </linearGradient>
+    <linearGradient id="trunk" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8f6237"/>
+      <stop offset="100%" stop-color="#5f3c1f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#f3efe4"/>
+  <path d="M32 10c-9.8 0-17 6.7-17 15.8 0 1.9.3 3.7.9 5.2-4.2 1.6-6.9 5.4-6.9 10 0 6.2 4.9 11 11.7 11H44c6.1 0 11-4.7 11-10.7 0-4.8-3-8.9-7.3-10.2.5-1.5.8-3.1.8-4.8C48.5 17.1 41.9 10 32 10Z" fill="url(#canopy)"/>
+  <path d="M29 33h6v17h-6z" fill="url(#trunk)"/>
+  <path d="M24 54h16" stroke="#5f3c1f" stroke-width="3" stroke-linecap="round"/>
+  <path d="M22 30c4.3 1.2 7.7 4.1 10 8.7 2.4-4.7 5.7-7.7 10-8.7" fill="none" stroke="#eaf8ec" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

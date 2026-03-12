@@ -275,7 +275,7 @@ function parsePosts() {
         slug,
         tags,
         kind,
-        kindLabel: kind === "blog" ? "Blog" : "Tutorial",
+        kindLabel: kind === "blog" ? "Blog" : "Guide",
         filename,
         filenameLabel: getFilenameLabel(filename),
         filenameOrder: readOrderPrefix(filename),
@@ -326,6 +326,239 @@ function renderPostCard(post) {
         <a class="text-link" href="${post.url}">Open ${escapeHtml(post.kindLabel.toLowerCase())}</a>
       </footer>
     </article>
+  `;
+}
+
+function collectTagSummaries(posts) {
+  const tagMap = new Map();
+
+  for (const post of posts) {
+    for (const tag of post.tags) {
+      const name = String(tag || "").trim();
+      const tagSlug = slugify(name);
+      if (!name || !tagSlug) {
+        continue;
+      }
+
+      if (!tagMap.has(tagSlug)) {
+        tagMap.set(tagSlug, { name, slug: tagSlug, count: 0 });
+      }
+
+      tagMap.get(tagSlug).count += 1;
+    }
+  }
+
+  return Array.from(tagMap.values()).sort((a, b) => {
+    if (b.count !== a.count) {
+      return b.count - a.count;
+    }
+    return a.name.localeCompare(b.name);
+  });
+}
+
+function renderHomeHero(blogCount, guideCount) {
+  return `
+    <section class="home-hero reveal-on-scroll">
+      <div class="hero-copy">
+        <p class="section-kicker">Professional knowledge base</p>
+        <h1>${escapeHtml(config.siteName)}</h1>
+        <p>${escapeHtml(config.siteDescription)}</p>
+      </div>
+      <div class="stats-stack" aria-label="Site statistics">
+        <article class="stat-card">
+          <span class="stat-label">Articles</span>
+          <strong>${blogCount}</strong>
+          <small>Standalone blogs from content/posts</small>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Guides</span>
+          <strong>${guideCount}</strong>
+          <small>Structured learning content from content/*</small>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function renderArchiveHero(pageNumber) {
+  return `
+    <section class="content-section reveal-on-scroll">
+      <header class="section-heading">
+        <p class="section-kicker">Archive</p>
+        <h1>Blog Archive${pageNumber > 1 ? ` · Page ${pageNumber}` : ""}</h1>
+        <p>Browse the paginated list of standalone articles.</p>
+      </header>
+    </section>
+  `;
+}
+
+function renderLatestArticle(post) {
+  if (!post) {
+    return "";
+  }
+
+  const metaLine = renderMetaLine([
+    post.formattedDate,
+    post.readingTime,
+    `${post.collectionLabel}${post.moduleLabel ? ` / ${post.moduleLabel}` : ""}`
+  ]);
+
+  return `
+    <section class="feature-section reveal-on-scroll">
+      <article class="feature-card">
+        <div class="feature-copy">
+          <p class="section-kicker">Latest article</p>
+          <div class="eyebrow-row">
+            <span class="kind-pill">${escapeHtml(post.kindLabel)}</span>
+            <span class="filename-pill">${escapeHtml(
+              post.kind === "tutorial" ? post.collectionLabel : "Fresh Publish"
+            )}</span>
+          </div>
+          <h2><a href="${post.url}">${escapeHtml(post.title)}</a></h2>
+          ${metaLine}
+          <p>${escapeHtml(post.description)}</p>
+          <a class="text-link feature-link" href="${post.url}">Read latest article</a>
+        </div>
+      </article>
+    </section>
+  `;
+}
+
+function renderSearchSection() {
+  return `
+    <section class="search-panel reveal-on-scroll">
+      <header class="section-heading compact-heading">
+        <p class="section-kicker">Search</p>
+        <h2>Find a post fast</h2>
+      </header>
+      <label for="search-input">Search blogs and guides</label>
+      <input id="search-input" type="search" placeholder="Search by title, tag, or content">
+      <div id="search-results"></div>
+    </section>
+  `;
+}
+
+function renderTagDirectory(posts) {
+  const tags = collectTagSummaries(posts);
+  if (!tags.length) {
+    return "";
+  }
+
+  const tagsHtml = tags
+    .map(
+      (tag) => `
+        <a class="tag-summary" href="${tagHref(tag.slug)}">
+          <span>#${escapeHtml(tag.name)}</span>
+          <strong>${tag.count}</strong>
+        </a>
+      `
+    )
+    .join("");
+
+  return `
+    <section class="content-section reveal-on-scroll">
+      <header class="section-heading">
+        <p class="section-kicker">Tags</p>
+        <h2>Browse by topic</h2>
+        <p>Each tag shows how many posts are indexed under it.</p>
+      </header>
+      <div class="tag-directory">
+        ${tagsHtml}
+      </div>
+    </section>
+  `;
+}
+
+function renderHomeLibrary(postsHtml, pagination, guidesHtml) {
+  return `
+    <section class="content-section content-library reveal-on-scroll">
+      <header class="section-heading section-heading-split">
+        <div>
+          <p class="section-kicker">Library</p>
+          <h2>Explore blogs and guides</h2>
+          <p>Switch between standalone writing and structured guide collections.</p>
+        </div>
+        <div class="content-toggle" role="tablist" aria-label="Content type switcher">
+          <button
+            class="content-toggle-button is-active"
+            type="button"
+            data-content-toggle="blogs"
+            aria-selected="true"
+          >
+            Blogs
+          </button>
+          <button
+            class="content-toggle-button"
+            type="button"
+            data-content-toggle="guides"
+            aria-selected="false"
+          >
+            Guides
+          </button>
+        </div>
+      </header>
+      <div class="content-panel is-active" data-content-panel="blogs" id="blogs-section">
+        <div class="card-grid">
+          ${postsHtml}
+        </div>
+        ${pagination}
+      </div>
+      <div class="content-panel" data-content-panel="guides" id="guides-section">
+        ${guidesHtml}
+      </div>
+    </section>
+  `;
+}
+
+function renderArchiveLibrary(postsHtml, pagination) {
+  return `
+    <section class="content-section reveal-on-scroll">
+      <header class="section-heading">
+        <p class="section-kicker">Blogs</p>
+        <h2>Archive entries</h2>
+      </header>
+      <div class="card-grid">
+        ${postsHtml}
+      </div>
+      ${pagination}
+    </section>
+  `;
+}
+
+function renderAboutSection(posts) {
+  const tags = collectTagSummaries(posts);
+  const guideCollections = new Set(
+    posts.filter((post) => post.kind === "tutorial").map((post) => post.collectionSlug)
+  );
+
+  return `
+    <section class="content-section about-section reveal-on-scroll" id="about-section">
+      <header class="section-heading">
+        <p class="section-kicker">About Me</p>
+        <h2>${escapeHtml(config.ownerName || "About the author")}</h2>
+        <p>${escapeHtml(config.ownerRole || "")}</p>
+      </header>
+      <div class="about-grid">
+        <article class="about-card">
+          <p class="about-copy">${escapeHtml(config.aboutBlurb || config.siteDescription)}</p>
+          <a class="text-link" href="${withSitePath("")}#blogs-section">Browse the library</a>
+        </article>
+        <div class="about-metrics" aria-label="Author snapshot">
+          <article>
+            <strong>${posts.length}</strong>
+            <span>Total published entries</span>
+          </article>
+          <article>
+            <strong>${guideCollections.size}</strong>
+            <span>Guide collections</span>
+          </article>
+          <article>
+            <strong>${tags.length}</strong>
+            <span>Topics indexed by tag</span>
+          </article>
+        </div>
+      </div>
+    </section>
   `;
 }
 
@@ -432,7 +665,7 @@ function renderTutorialTracks(posts) {
         <article class="tutorial-track reveal-on-scroll">
           <header class="track-header">
             <h2>${escapeHtml(track.label)}</h2>
-            <p>Structured tutorial path grouped by module and filename order.</p>
+            <p>Structured guide path grouped by module and filename order.</p>
           </header>
           <div class="tutorial-module-grid">
             ${modulesHtml}
@@ -501,6 +734,7 @@ function wrapPage({ title, description, content, canonicalPath = "", head = "" }
     baseUrl: config.baseUrl,
     canonicalUrl: canonicalPath ? joinUrl(config.baseUrl, canonicalPath) : config.baseUrl,
     sitePath,
+    homeHref: withSitePath(""),
     year: String(new Date().getFullYear()),
     head
   });
@@ -551,6 +785,7 @@ function paginate(items, perPage) {
 function generateIndexPages(posts) {
   const indexTemplate = readTemplate("index.html");
   const blogPosts = posts.filter((post) => post.kind === "blog");
+  const guideCount = posts.length - blogPosts.length;
   const paginatedPosts = paginate(blogPosts, config.postsPerPage);
   if (paginatedPosts.length === 0) {
     paginatedPosts.push([]);
@@ -560,29 +795,23 @@ function generateIndexPages(posts) {
     const pageNumber = index + 1;
     const postsHtml = pagePosts.map(renderPostCard).join("\n");
     const pagination = renderPagination("/", pageNumber, paginatedPosts.length);
-    const tutorialTracks = pageNumber === 1 ? renderTutorialTracks(posts) : "";
-    const searchMarkup = pageNumber === 1
-      ? `
-        <section class="search-panel reveal-on-scroll">
-          <label for="search-input">Search posts</label>
-          <input id="search-input" type="search" placeholder="Search by title, tag, or content">
-          <div id="search-results"></div>
-        </section>
-      `
-      : "";
+    const tutorialTracks = renderTutorialTracks(posts);
+    const hero = pageNumber === 1 ? renderHomeHero(blogPosts.length, guideCount) : renderArchiveHero(pageNumber);
+    const latestArticle = pageNumber === 1 ? renderLatestArticle(posts[0]) : "";
+    const searchMarkup = pageNumber === 1 ? renderSearchSection() : "";
+    const tagDirectory = pageNumber === 1 ? renderTagDirectory(posts) : "";
+    const library = pageNumber === 1
+      ? renderHomeLibrary(postsHtml, pagination, tutorialTracks)
+      : renderArchiveLibrary(postsHtml, pagination);
+    const aboutSection = pageNumber === 1 ? renderAboutSection(posts) : "";
 
     const content = render(indexTemplate, {
-      pageTitle: pageNumber === 1 ? "Blogs And Tutorials" : `Blog Archive · Page ${pageNumber}`,
-      intro:
-        pageNumber === 1
-          ? "Browse standalone blog posts, then continue into grouped tutorial tracks built from your guide filenames and module folders."
-          : escapeHtml(config.siteDescription),
-      posts: postsHtml,
-      pagination,
+      hero,
+      latestArticle,
       search: searchMarkup,
-      tutorials: tutorialTracks,
-      blogCount: String(blogPosts.length),
-      tutorialCount: String(posts.length - blogPosts.length)
+      tagDirectory,
+      library,
+      about: aboutSection
     });
 
     const outputPath = pageNumber === 1 ? "index.html" : `page/${pageNumber}/index.html`;
@@ -612,9 +841,13 @@ function generateTagPages(posts) {
 
   for (const post of posts) {
     for (const tag of post.tags) {
-      const tagSlug = slugify(tag);
+      const tagName = String(tag || "").trim();
+      const tagSlug = slugify(tagName);
+      if (!tagSlug) {
+        continue;
+      }
       if (!tagMap.has(tagSlug)) {
-        tagMap.set(tagSlug, { name: tag, posts: [] });
+        tagMap.set(tagSlug, { name: tagName, posts: [] });
       }
       tagMap.get(tagSlug).posts.push(post);
     }
