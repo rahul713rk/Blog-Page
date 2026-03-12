@@ -28,7 +28,7 @@ project/
 
 - Markdown parsing with `markdown-it`
 - Frontmatter with `gray-matter`
-- Language-aware code block labels with custom styling
+- Prism.js syntax highlighting
 - PicoCSS via CDN
 - Blog index page
 - Tags
