@@ -1,7 +1,7 @@
 {
   "siteName": "Rahul Blogs",
   "siteDescription": "Technical blogs, practical guides, and structured learning notes by Rahul Kumar.",
-  "baseUrl": "https://rahul713rk.github.io/Blogs",
+  "baseUrl": "https://rahul713rk.github.io/Blog-Page",
   "postsPerPage": 5,
   "ownerName": "Rahul Kumar",
   "ownerRole": "Backend, DevOps, and system design writer",
