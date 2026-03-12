@@ -9,7 +9,6 @@
   "dependencies": {
     "gray-matter": "^4.0.3",
     "lunr": "^2.3.9",
-    "markdown-it": "^14.1.0",
-    "prismjs": "^1.29.0"
+    "markdown-it": "^14.1.0"
   }
 }
