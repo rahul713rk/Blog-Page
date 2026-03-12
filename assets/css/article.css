@@ -100,6 +100,77 @@
   line-height: inherit;
 }
 
+.article-body pre[class*="language-"],
+.article-body pre[class*="language-"] > code,
+.article-body code[class*="language-"] {
+  color: var(--code-color);
+  text-shadow: none;
+}
+
+.article-body pre[class*="language-"] .token.comment,
+.article-body pre[class*="language-"] .token.prolog,
+.article-body pre[class*="language-"] .token.doctype,
+.article-body pre[class*="language-"] .token.cdata {
+  color: #6f859f;
+}
+
+.article-body pre[class*="language-"] .token.punctuation {
+  color: #c9d7ea;
+}
+
+.article-body pre[class*="language-"] .token.property,
+.article-body pre[class*="language-"] .token.tag,
+.article-body pre[class*="language-"] .token.constant,
+.article-body pre[class*="language-"] .token.symbol,
+.article-body pre[class*="language-"] .token.deleted {
+  color: #ff8f70;
+}
+
+.article-body pre[class*="language-"] .token.boolean,
+.article-body pre[class*="language-"] .token.number {
+  color: #ffd166;
+}
+
+.article-body pre[class*="language-"] .token.selector,
+.article-body pre[class*="language-"] .token.attr-name,
+.article-body pre[class*="language-"] .token.string,
+.article-body pre[class*="language-"] .token.char,
+.article-body pre[class*="language-"] .token.builtin,
+.article-body pre[class*="language-"] .token.inserted {
+  color: #8ce99a;
+}
+
+.article-body pre[class*="language-"] .token.operator,
+.article-body pre[class*="language-"] .token.entity,
+.article-body pre[class*="language-"] .token.url,
+.article-body pre[class*="language-"] .token.variable {
+  color: #8bd3ff;
+}
+
+.article-body pre[class*="language-"] .token.atrule,
+.article-body pre[class*="language-"] .token.attr-value,
+.article-body pre[class*="language-"] .token.keyword {
+  color: #7cb7ff;
+}
+
+.article-body pre[class*="language-"] .token.function,
+.article-body pre[class*="language-"] .token.class-name {
+  color: #d2a8ff;
+}
+
+.article-body pre[class*="language-"] .token.regex,
+.article-body pre[class*="language-"] .token.important {
+  color: #ffb86c;
+}
+
+.article-body pre[class*="language-"] .token.bold {
+  font-weight: 700;
+}
+
+.article-body pre[class*="language-"] .token.italic {
+  font-style: italic;
+}
+
 .diagram-shell pre {
   display: flex;
   justify-content: center;
