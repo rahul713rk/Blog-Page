@@ -11,9 +11,15 @@
       document.documentElement.classList.add("js");
       try {
         const savedTheme = localStorage.getItem("blog-theme");
-        const legacyThemeMap = { sand: "default", slate: "dark", paper: "default" };
+        const legacyThemeMap = {
+          sand: "default",
+          slate: "dark",
+          paper: "default",
+          rainbow: "default",
+          colorblind: "default"
+        };
         const normalizedTheme = legacyThemeMap[savedTheme] || savedTheme;
-        if (normalizedTheme) {
+        if (["default", "dark", "computer"].includes(normalizedTheme)) {
           document.documentElement.dataset.theme = normalizedTheme;
         }
       } catch {}
@@ -68,16 +74,10 @@
                     <circle cx="12" cy="12" r="4.2"></circle>
                   </svg>
                 </span>
-                <span class="theme-trigger-label">Theme</span>
-                <span class="theme-trigger-caret" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m5 7 5 6 5-6"></path>
-                  </svg>
-                </span>
               </summary>
 
               <div class="theme-menu">
-                <button class="theme-option" type="button" data-theme-option="default" data-theme-label="Default">
+                <button class="theme-option" type="button" data-theme-option="default" aria-label="Default theme" title="Default theme">
                   <span class="theme-option-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                       <circle cx="12" cy="12" r="5"></circle>
@@ -85,27 +85,15 @@
                       <path d="M12 19v3"></path>
                     </svg>
                   </span>
-                  <span>Default</span>
                 </button>
-                <button class="theme-option" type="button" data-theme-option="dark" data-theme-label="Dark">
+                <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark theme" title="Dark theme">
                   <span class="theme-option-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
                     </svg>
                   </span>
-                  <span>Dark</span>
                 </button>
-                <button class="theme-option" type="button" data-theme-option="rainbow" data-theme-label="Rainbow">
-                  <span class="theme-option-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M4 16a8 8 0 0 1 16 0"></path>
-                      <path d="M7 16a5 5 0 0 1 10 0"></path>
-                      <path d="M10 16a2 2 0 0 1 4 0"></path>
-                    </svg>
-                  </span>
-                  <span>Rainbow</span>
-                </button>
-                <button class="theme-option" type="button" data-theme-option="computer" data-theme-label="Computer">
+                <button class="theme-option" type="button" data-theme-option="computer" aria-label="Computer theme" title="Computer theme">
                   <span class="theme-option-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="3" y="4" width="18" height="12" rx="2"></rect>
@@ -113,17 +101,6 @@
                       <path d="M12 16v4"></path>
                     </svg>
                   </span>
-                  <span>Computer</span>
-                </button>
-                <button class="theme-option" type="button" data-theme-option="colorblind" data-theme-label="Color Blind Friendly">
-                  <span class="theme-option-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="8" cy="12" r="4"></circle>
-                      <circle cx="16" cy="12" r="4"></circle>
-                      <path d="M12 8v8"></path>
-                    </svg>
-                  </span>
-                  <span>Color Blind Friendly</span>
                 </button>
               </div>
             </details>

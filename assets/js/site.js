@@ -19,23 +19,24 @@ function setupThemeSwitcher() {
   const root = document.documentElement;
   const buttons = Array.from(document.querySelectorAll("[data-theme-option]"));
   const dropdown = document.querySelector(".theme-dropdown");
-  const label = document.querySelector(".theme-trigger-label");
   if (!buttons.length) {
     return;
   }
 
-  const legacyThemeMap = { sand: "default", slate: "dark", paper: "default" };
-  const supportedThemes = new Set(["default", "dark", "rainbow", "computer", "colorblind"]);
+  const legacyThemeMap = {
+    sand: "default",
+    slate: "dark",
+    paper: "default",
+    rainbow: "default",
+    colorblind: "default"
+  };
+  const supportedThemes = new Set(["default", "dark", "computer"]);
   const applyTheme = (theme) => {
     const nextTheme = supportedThemes.has(theme) ? theme : legacyThemeMap[theme] || "default";
     root.dataset.theme = nextTheme;
     buttons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.themeOption === nextTheme);
     });
-    const activeButton = buttons.find((button) => button.dataset.themeOption === nextTheme);
-    if (label && activeButton?.dataset.themeLabel) {
-      label.textContent = activeButton.dataset.themeLabel;
-    }
     try {
       localStorage.setItem("blog-theme", nextTheme);
     } catch {}
@@ -63,6 +64,27 @@ function setupThemeSwitcher() {
       dropdown.open = false;
     }
   });
+}
+
+let mermaidLoadHookAttached = false;
+
+function ensureMermaidReady() {
+  if (typeof mermaid !== "undefined") {
+    return true;
+  }
+
+  if (!mermaidLoadHookAttached) {
+    mermaidLoadHookAttached = true;
+    window.addEventListener(
+      "load",
+      () => {
+        setupMermaid();
+      },
+      { once: true }
+    );
+  }
+
+  return false;
 }
 
 function setupSectionCollapses() {
@@ -420,7 +442,7 @@ function setupRevealOnScroll() {
 
 function setupMermaid() {
   const mermaidHosts = Array.from(document.querySelectorAll(".mermaid-host"));
-  if (!mermaidHosts.length || typeof mermaid === "undefined") {
+  if (!mermaidHosts.length || !ensureMermaidReady()) {
     return;
   }
 
