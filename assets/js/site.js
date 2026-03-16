@@ -453,11 +453,11 @@ function setupMermaid() {
     startOnLoad: false,
     securityLevel: "loose",
     theme: "base",
-    fontFamily: diagramFontFamily || "Arial, sans-serif",
+    fontFamily: diagramFontFamily || "inherit",
     themeVariables: {
-      fontFamily: diagramFontFamily || "Arial, sans-serif",
-      fontSize: "18px",
-      background: mermaidBackground,
+      fontFamily: diagramFontFamily || "inherit",
+      fontSize: "16px",
+      background: "transparent",
       primaryColor: mermaidNode,
       primaryTextColor: mermaidContrast,
       primaryBorderColor: mermaidLine,
@@ -486,7 +486,7 @@ function setupMermaid() {
       noteBorderColor: mermaidLine,
       cScale0: mermaidNode,
       cScale1: mermaidNodeAlt,
-      cScale2: mermaidSurface
+      cScale2: "#64748b"
     }
   });
 

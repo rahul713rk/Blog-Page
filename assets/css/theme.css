@@ -35,13 +35,13 @@
   --button-shadow: 0 10px 24px rgba(26, 39, 31, 0.12);
   --theme-trigger-bg: linear-gradient(135deg, #255f46, #3f7d5f);
   --theme-trigger-text: #f7fbf8;
-  --mermaid-bg: #f6f2ea;
-  --mermaid-surface: #eee7dc;
-  --mermaid-line: #445663;
+  --mermaid-bg: rgba(255, 255, 255, 0.45);
+  --mermaid-surface: rgba(37, 95, 70, 0.05);
+  --mermaid-line: #64748b;
   --mermaid-node: #255f46;
-  --mermaid-node-alt: #a96a26;
-  --mermaid-text: #122018;
-  --mermaid-contrast: #f7fbf8;
+  --mermaid-node-alt: #334155;
+  --mermaid-text: #0f172a;
+  --mermaid-contrast: #ffffff;
   --page-gradient:
     radial-gradient(circle at top left, rgba(109, 175, 117, 0.22), transparent 30%),
     radial-gradient(circle at top right, rgba(187, 122, 47, 0.18), transparent 28%),
@@ -85,13 +85,13 @@
   --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
   --theme-trigger-bg: linear-gradient(135deg, #7cd6ff, #f0b35a);
   --theme-trigger-text: #07111b;
-  --mermaid-bg: #071019;
-  --mermaid-surface: #101b29;
-  --mermaid-line: #9ec7dd;
+  --mermaid-bg: rgba(15, 23, 42, 0.45);
+  --mermaid-surface: rgba(124, 214, 255, 0.08);
+  --mermaid-line: #94a3b8;
   --mermaid-node: #7cd6ff;
   --mermaid-node-alt: #f0b35a;
-  --mermaid-text: #ebf5fc;
-  --mermaid-contrast: #071019;
+  --mermaid-text: #f8fafc;
+  --mermaid-contrast: #0f172a;
   --page-gradient:
     radial-gradient(circle at top left, rgba(124, 214, 255, 0.16), transparent 28%),
     radial-gradient(circle at top right, rgba(240, 179, 90, 0.14), transparent 24%),
@@ -137,13 +137,13 @@
   --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
   --theme-trigger-bg: linear-gradient(135deg, #47ff8a, #16c47f);
   --theme-trigger-text: #031008;
-  --mermaid-bg: #000;
-  --mermaid-surface: #07130a;
-  --mermaid-line: #6fc48d;
+  --mermaid-bg: rgba(0, 20, 10, 0.5);
+  --mermaid-surface: rgba(71, 255, 138, 0.05);
+  --mermaid-line: #47ff8a;
   --mermaid-node: #47ff8a;
   --mermaid-node-alt: #16c47f;
   --mermaid-text: #d5ffe2;
-  --mermaid-contrast: #031008;
+  --mermaid-contrast: #000000;
   --page-gradient:
     radial-gradient(circle at top left, rgba(71, 255, 138, 0.14), transparent 28%),
     linear-gradient(180deg, #040b05 0%, #07130a 40%, #0b1c0e 100%);
