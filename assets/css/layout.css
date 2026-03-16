@@ -55,7 +55,6 @@
 }
 
 .section-heading,
-.feature-copy,
 .hero-copy,
 .post-hero,
 .track-header {
@@ -100,40 +99,7 @@
 .home-hero {
   display: grid;
   gap: 1.3rem;
-  grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.7fr);
-  align-items: stretch;
-  overflow: hidden;
-  position: relative;
-}
-
-.home-hero::after,
-.feature-card::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.home-hero::after {
-  right: -5%;
-  bottom: -28%;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, var(--accent-soft), transparent 72%);
-}
-
-.feature-card {
-  position: relative;
-  overflow: hidden;
-  padding: 1.5rem;
-}
-
-.feature-card::after {
-  inset: -20% -10% auto auto;
-  width: 340px;
-  height: 220px;
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 58%),
-    radial-gradient(circle, var(--accent-soft), transparent 68%);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .content-toggle {
@@ -242,10 +208,6 @@
 }
 
 @media (max-width: 900px) {
-  .home-hero {
-    grid-template-columns: 1fr;
-  }
-
   .glass-nav {
     flex-direction: column;
     align-items: stretch;
@@ -268,7 +230,7 @@
   .search-panel,
   .tutorial-track,
   .post-shell,
-  .feature-card {
+  .home-hero {
     padding: 1rem;
     border-radius: 1.35rem;
   }
