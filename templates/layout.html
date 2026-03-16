@@ -1,114 +1,117 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{title}}</title>
-    <meta name="description" content="{{description}}">
-    <link rel="canonical" href="{{canonicalUrl}}">
-    <link rel="icon" type="image/svg+xml" href="{{sitePath}}/assets/icons/tree.svg">
-    <script>
-      document.documentElement.classList.add("js");
-      try {
-        const savedTheme = localStorage.getItem("blog-theme");
-        if (["default", "dark", "computer"].includes(savedTheme)) {
-          document.documentElement.dataset.theme = savedTheme;
-        }
-      } catch {}
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    >
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    >
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
-    >
-    <link rel="stylesheet" href="{{sitePath}}/assets/css/site.css">
-    {{head}}
-  </head>
-  <body data-site-path="{{sitePath}}">
-    <div class="page-shell">
-      <header class="site-header">
-        <nav class="glass-nav">
-          <a class="brand-link" href="{{homeHref}}" aria-label="{{siteName}} home">
-            <span class="brand-mark">
-              <img src="{{sitePath}}/assets/icons/tree.svg" alt="">
-            </span>
-            <span class="brand-copy">
-              <strong>{{siteName}}</strong>
-              <small>Blogs and guides</small>
-            </span>
-          </a>
 
-          <div class="nav-links">
-            <a href="{{homeHref}}#blogs-section">Blogs</a>
-            <a href="{{homeHref}}#guides-section">Guides</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="{{canonicalUrl}}">
+  <link rel="icon" type="image/svg+xml" href="{{sitePath}}/assets/icons/book.svg">
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      const savedTheme = localStorage.getItem("blog-theme");
+      if (["default", "dark", "computer"].includes(savedTheme)) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch { }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+  <link rel="stylesheet" href="{{sitePath}}/assets/css/site.css">
+  {{head}}
+</head>
 
-            <details class="theme-dropdown">
-              <summary class="theme-trigger" aria-label="Theme switcher">
-                <span class="theme-trigger-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3v3"></path>
-                    <path d="M12 18v3"></path>
-                    <path d="M3 12h3"></path>
-                    <path d="M18 12h3"></path>
-                    <path d="M5.64 5.64l2.12 2.12"></path>
-                    <path d="M16.24 16.24l2.12 2.12"></path>
-                    <path d="M5.64 18.36l2.12-2.12"></path>
-                    <path d="M16.24 7.76l2.12-2.12"></path>
-                    <circle cx="12" cy="12" r="4.2"></circle>
+<body data-site-path="{{sitePath}}">
+  <div class="page-shell">
+    <header class="site-header">
+      <nav class="glass-nav">
+        <a class="brand-link" href="{{homeHref}}" aria-label="{{siteName}} home">
+          <span class="brand-mark">
+            <img src="{{sitePath}}/assets/icons/book-rack-cabinet.svg" alt="">
+          </span>
+          <span class="brand-copy">
+            <strong>{{siteName}}</strong>
+            <small>Blogs and guides</small>
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="{{homeHref}}#blogs-section">Blogs</a>
+          <a href="{{homeHref}}#guides-section">Guides</a>
+
+          <details class="theme-dropdown">
+            <summary class="theme-trigger" aria-label="Theme switcher">
+              <span class="theme-trigger-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M12 3v3"></path>
+                  <path d="M12 18v3"></path>
+                  <path d="M3 12h3"></path>
+                  <path d="M18 12h3"></path>
+                  <path d="M5.64 5.64l2.12 2.12"></path>
+                  <path d="M16.24 16.24l2.12 2.12"></path>
+                  <path d="M5.64 18.36l2.12-2.12"></path>
+                  <path d="M16.24 7.76l2.12-2.12"></path>
+                  <circle cx="12" cy="12" r="4.2"></circle>
+                </svg>
+              </span>
+            </summary>
+
+            <div class="theme-menu">
+              <button class="theme-option" type="button" data-theme-option="default" aria-label="Default theme"
+                title="Default theme">
+                <span class="theme-option-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <path d="M12 2v3"></path>
+                    <path d="M12 19v3"></path>
                   </svg>
                 </span>
-              </summary>
+              </button>
+              <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark theme"
+                title="Dark theme">
+                <span class="theme-option-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
+                  </svg>
+                </span>
+              </button>
+              <button class="theme-option" type="button" data-theme-option="computer" aria-label="Computer theme"
+                title="Computer theme">
+                <span class="theme-option-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                    <path d="M8 20h8"></path>
+                    <path d="M12 16v4"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </details>
 
-              <div class="theme-menu">
-                <button class="theme-option" type="button" data-theme-option="default" aria-label="Default theme" title="Default theme">
-                  <span class="theme-option-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="5"></circle>
-                      <path d="M12 2v3"></path>
-                      <path d="M12 19v3"></path>
-                    </svg>
-                  </span>
-                </button>
-                <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark theme" title="Dark theme">
-                  <span class="theme-option-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
-                    </svg>
-                  </span>
-                </button>
-                <button class="theme-option" type="button" data-theme-option="computer" aria-label="Computer theme" title="Computer theme">
-                  <span class="theme-option-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="4" width="18" height="12" rx="2"></rect>
-                      <path d="M8 20h8"></path>
-                      <path d="M12 16v4"></path>
-                    </svg>
-                  </span>
-                </button>
-              </div>
-            </details>
+          <a href="{{homeHref}}#about-section">About Me</a>
+        </div>
+      </nav>
+    </header>
 
-            <a href="{{homeHref}}#about-section">About Me</a>
-          </div>
-        </nav>
-      </header>
+    <main class="container site-main">
+      {{content}}
+    </main>
+  </div>
 
-      <main class="container site-main">
-        {{content}}
-      </main>
-    </div>
+  <button class="scroll-top-button" type="button" aria-label="Scroll to top">↑</button>
+  <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+</body>
 
-    <button class="scroll-top-button" type="button" aria-label="Scroll to top">↑</button>
-    <script src="https://cdn.jsdelivr.net/npm/lunr/lunr.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
-  </body>
 </html>
