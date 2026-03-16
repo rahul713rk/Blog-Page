@@ -199,6 +199,8 @@ a {
   border: 1px solid var(--surface-outline);
   background: var(--panel-bg);
   box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .content-section,
