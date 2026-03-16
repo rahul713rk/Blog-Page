@@ -23,16 +23,9 @@ function setupThemeSwitcher() {
     return;
   }
 
-  const legacyThemeMap = {
-    sand: "default",
-    slate: "dark",
-    paper: "default",
-    rainbow: "default",
-    colorblind: "default"
-  };
   const supportedThemes = new Set(["default", "dark", "computer"]);
   const applyTheme = (theme) => {
-    const nextTheme = supportedThemes.has(theme) ? theme : legacyThemeMap[theme] || "default";
+    const nextTheme = supportedThemes.has(theme) ? theme : "default";
     root.dataset.theme = nextTheme;
     buttons.forEach((button) => {
       button.classList.toggle("is-active", button.dataset.themeOption === nextTheme);
@@ -44,7 +37,7 @@ function setupThemeSwitcher() {
     setupMermaid();
   };
 
-  const activeTheme = legacyThemeMap[root.dataset.theme] || root.dataset.theme || "default";
+  const activeTheme = supportedThemes.has(root.dataset.theme) ? root.dataset.theme : "default";
   applyTheme(activeTheme);
 
   buttons.forEach((button) => {

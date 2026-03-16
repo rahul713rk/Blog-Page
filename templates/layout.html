@@ -11,16 +11,8 @@
       document.documentElement.classList.add("js");
       try {
         const savedTheme = localStorage.getItem("blog-theme");
-        const legacyThemeMap = {
-          sand: "default",
-          slate: "dark",
-          paper: "default",
-          rainbow: "default",
-          colorblind: "default"
-        };
-        const normalizedTheme = legacyThemeMap[savedTheme] || savedTheme;
-        if (["default", "dark", "computer"].includes(normalizedTheme)) {
-          document.documentElement.dataset.theme = normalizedTheme;
+        if (["default", "dark", "computer"].includes(savedTheme)) {
+          document.documentElement.dataset.theme = savedTheme;
         }
       } catch {}
     </script>
@@ -85,12 +77,20 @@
                       <path d="M12 19v3"></path>
                     </svg>
                   </span>
+                  <span class="theme-option-copy">
+                    <strong>Default</strong>
+                    <small>Warm daylight</small>
+                  </span>
                 </button>
                 <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark theme" title="Dark theme">
                   <span class="theme-option-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
                     </svg>
+                  </span>
+                  <span class="theme-option-copy">
+                    <strong>Dark</strong>
+                    <small>Night focus</small>
                   </span>
                 </button>
                 <button class="theme-option" type="button" data-theme-option="computer" aria-label="Computer theme" title="Computer theme">
@@ -100,6 +100,10 @@
                       <path d="M8 20h8"></path>
                       <path d="M12 16v4"></path>
                     </svg>
+                  </span>
+                  <span class="theme-option-copy">
+                    <strong>Computer</strong>
+                    <small>Terminal glow</small>
                   </span>
                 </button>
               </div>
