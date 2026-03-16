@@ -33,6 +33,21 @@ This guide covers spring core — dependency injection & ioc container with prac
 > **With IoC (Inversion of Control):**
 > A **Puppet Master** (Spring Container) builds the strings, connects them, and hands you a fully wired puppet. You just perform! The **control is inverted** — you don't create dependencies; someone GIVES them to you.
 >
+> ```mermaid
+> graph TD
+>     subgraph Traditional ["1. Traditional (No IoC)"]
+>         P1["Puppet (App Code)"] -- "new" --> S1["Stage"]
+>         P1 -- "new" --> M1["Music"]
+>         P1 -- "new" --> L1["Lighting"]
+>     end
+> 
+>     subgraph IoC ["2. With IoC (Spring)"]
+>         PM["Puppet Master (IoC Container)"] -- "creates" --> S2["Stage"]
+>         PM -- "creates" --> M2["Music"]
+>         PM -- "injects" --> P2["Puppet (App Code)"]
+>     end
+> ```
+>
 > ```java
 > class Puppet {
 >     // Puppet RECEIVES its dependencies (injected by Spring)
@@ -168,19 +183,20 @@ class AppConfig {
 ## Bean Lifecycle — From Birth to Death
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Bean Lifecycle                             │
-│                                                              │
-│  1. Container Starts                                         │
-│  2. Bean Definition Read (from annotations/XML/Java config)  │
-│  3. Bean Instantiated (constructor called)                   │
-│  4. Dependencies Injected                                    │
-│  5. @PostConstruct method called                             │
-│  6. Bean Ready for Use                                       │
-│  7. Container Shutting Down                                  │
-│  8. @PreDestroy method called                                │
-│  9. Bean Destroyed                                           │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    Start["1. Container Starts"] --> Read["2. Bean Definition Read<br/>(Annotations/XML/Java Config)"]
+    Read --> Instantiate["3. Bean Instantiated<br/>(Constructor called)"]
+    Instantiate --> Inject["4. Dependencies Injected"]
+    Inject --> PostConstruct["5. @PostConstruct Method called"]
+    PostConstruct --> Ready["6. Bean Ready for Use"]
+    Ready --> Shutdown["7. Container Shutting Down"]
+    Shutdown --> PreDestroy["8. @PreDestroy Method called"]
+    PreDestroy --> Destroyed["9. Bean Destroyed"]
+
+    style Ready fill:#bfb,stroke:#333
+    style Destroyed fill:#fbb,stroke:#333
+```
 ```
 
 ```java
@@ -379,9 +395,12 @@ public class UserController {
 
 **Layered Architecture:**
 
-```
-Client Request → Controller → Service → Repository → Database
-                 (Web Layer)  (Logic)   (Data Access)
+```mermaid
+graph LR
+    Client["Client Request"] --> Controller["Controller<br/>(Web Layer)"]
+    Controller --> Service["Service<br/>(Logic Layer)"]
+    Service --> Repo["Repository<br/>(Data Layer)"]
+    Repo --> DB[("Database")]
 ```
 
 ## Profiles and External Configuration

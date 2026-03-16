@@ -22,35 +22,38 @@ This guide covers system design fundamentals with practical context, implementat
 
 ## Scalability
 
-```
-Vertical Scaling (Scale UP):             Horizontal Scaling (Scale OUT):
-Buy a BIGGER machine                     Add MORE machines
+#### Vertical vs Horizontal Scaling
 
-┌──────────────────┐                     ┌─────────┐ ┌─────────┐ ┌─────────┐
-│ 64 CPU cores     │                     │ Server 1│ │ Server 2│ │ Server 3│
-│ 512 GB RAM       │                     │ 8 cores │ │ 8 cores │ │ 8 cores │
-│ 10 TB SSD        │                     │ 32 GB   │ │ 32 GB   │ │ 32 GB   │
-│ $$$$$$           │                     │ $       │ │ $       │ │ $       │
-└──────────────────┘                     └─────────┘ └─────────┘ └─────────┘
-
-Limit: Physical hardware ceiling          Limit: Almost unlimited
-Fault tolerance: Single point of failure   Fault tolerance: If one dies, others continue
-Complexity: Simple                         Complexity: Need load balancer, distributed state
-```
+| Aspect | Vertical Scaling (Scale UP) | Horizontal Scaling (Scale OUT) |
+| :--- | :--- | :--- |
+| **Strategy** | Buy a BIGGER machine | Add MORE machines |
+| **Visual** | `[ 64 CPU, 512GB RAM ]` | `[ S1 ] [ S2 ] [ S3 ]` |
+| **Cost** | $$$$$$ (Exponential) | $ + $ + $ (Linear) |
+| **Limit** | Physical hardware ceiling | Almost unlimited |
+| **Fault Tolerance** | Single point of failure | If one dies, others continue |
+| **Complexity** | Simple | Need load balancer, distributed state |
 
 ## Load Balancing
 
-```
-                        ┌───────────────────┐
-    Clients ──────────> │  Load Balancer    │
-                        │  (Nginx, HAProxy) │
-                        └──┬──────┬──────┬──┘
-                           │      │      │
-                    ┌──────┘      │      └──────┐
-                    ▼             ▼              ▼
-             ┌─────────┐  ┌─────────┐   ┌─────────┐
-             │Server 1 │  │Server 2 │   │Server 3 │
-             └─────────┘  └─────────┘   └─────────┘
+```mermaid
+graph TD
+    subgraph Clients ["Clients"]
+        C1["Client 1"]
+        C2["Client 2"]
+    end
+
+    LB["Load Balancer<br/>(Nginx, HAProxy)"]
+    
+    subgraph Servers ["Backend Servers"]
+        S1["Server 1"]
+        S2["Server 2"]
+        S3["Server 3"]
+    end
+
+    Clients --> LB
+    LB --> S1
+    LB --> S2
+    LB --> S3
 ```
 
 **Algorithms:**
@@ -66,62 +69,71 @@ Complexity: Simple                         Complexity: Need load balancer, distr
 
 ### Replication
 
-```
-MASTER (Write)                REPLICAS (Read)
-┌──────────────┐     ┌──────────────┐
-│  MySQL       │────>│  Replica 1   │  ← Reads distributed here
-│  (writes)    │────>│  Replica 2   │
-│              │────>│  Replica 3   │
-└──────────────┘     └──────────────┘
+```mermaid
+graph LR
+    Master["MASTER (Write)<br/>MySQL"]
+    R1["Replica 1 (Read)"]
+    R2["Replica 2 (Read)"]
+    R3["Replica 3 (Read)"]
 
-Write → Master only
-Read → Any replica (load balanced)
-Read/Write ratio is typically 80/20, so replicas handle 80% of traffic
+    Master -- "Asynchronous Replication" --> R1
+    Master -- "Asynchronous Replication" --> R2
+    Master -- "Asynchronous Replication" --> R3
+
+    style Master fill:#fbb,stroke:#333,stroke-width:2px
+    style R1 fill:#bfb,stroke:#333,stroke-width:1px
+    style R2 fill:#bfb,stroke:#333,stroke-width:1px
+    style R3 fill:#bfb,stroke:#333,stroke-width:1px
 ```
+
+*   **Write → Master only**
+*   **Read → Any replica (load balanced)**
+*   **Read/Write ratio is typically 80/20**, so replicas handle 80% of traffic.
 
 ### Sharding
 
+```mermaid
+graph LR
+    SK["Shard Key<br/>(User ID)"] --> S1["Shard 1<br/>(IDs 1-1M)"]
+    SK --> S2["Shard 2<br/>(IDs 1M-2M)"]
+    SK --> S3["Shard 3<br/>(IDs 2M-3M)"]
+
+    style S1 fill:#eee
+    style S2 fill:#eee
+    style S3 fill:#eee
 ```
-User ID 1-1M          User ID 1M-2M          User ID 2M-3M
-┌──────────────┐      ┌──────────────┐      ┌──────────────┐
-│  Shard 1     │      │  Shard 2     │      │  Shard 3     │
-│  (MySQL)     │      │  (MySQL)     │      │  (MySQL)     │
-└──────────────┘      └──────────────┘      └──────────────┘
 
 Each shard holds a SUBSET of data. Queries are routed based on a shard key.
-Pros: Massive horizontal scaling for writes
-Cons: Cross-shard queries are complex, re-sharding is painful
-```
+*   **Pros**: Massive horizontal scaling for writes.
+*   **Cons**: Cross-shard queries are complex, re-sharding is painful.
 
 ## CAP Theorem
 
 ```
-You can have AT MOST 2 out of 3:
+#### The CAP Triangle
 
-          Consistency
-             /\
-            /  \
-           /    \
-          / CP   \
-         /  systems\
-        /    (MySQL,\
-       /   PostgreSQL)\
-      /________________\
-     /        AP        \
-    /      systems       \
-   / (Cassandra, DynamoDB)\
-  /________________________\
-Availability           Partition Tolerance
+```mermaid
+graph TD
+    C["Consistency"] --- A["Availability"]
+    A --- P["Partition Tolerance"]
+    P --- C
 
-C = Every read gets the LATEST write (all nodes agree)
-A = Every request gets a response (system never goes down)
-P = System works even if network between nodes fails
+    subgraph Choice ["Database Choices"]
+        CP["CP (MySQL, PostgreSQL)"]
+        AP["AP (Cassandra, DynamoDB)"]
+    end
+```
 
-In distributed systems, P is guaranteed (networks WILL fail).
-So you choose between CP (consistent but might be unavailable) or AP (available but might be stale).
+| Property | Description |
+| :--- | :--- |
+| **C (Consistency)** | Every read gets the LATEST write (all nodes agree) |
+| **A (Availability)** | Every request gets a response (system never goes down) |
+| **P (Partition Tolerance)** | System works even if network between nodes fails |
 
-MongoDB: CP (consistent, sacrifices availability during partition)
-Cassandra: AP (available, may return stale data briefly)
+In distributed systems, **P is guaranteed** (networks WILL fail). So you choose between CP (consistent but might be unavailable) or AP (available but might be stale).
+
+*   **MongoDB**: CP (consistent, sacrifices availability during partition)
+*   **Cassandra**: AP (available, may return stale data briefly)
 ```
 
 ## Rate Limiting
@@ -188,23 +200,13 @@ Requirements:
 - Redirect: short.ly/abc123 → original URL
 - Scale: 100M URLs/month, 10:1 read:write ratio
 
-Architecture:
-                    ┌───────────────┐
-    Client ────────>│ Load Balancer │
-                    └───────┬───────┘
-                            │
-                    ┌───────┴───────┐
-                    │  API Servers   │
-                    │  (Stateless)   │
-                    └───┬───────┬───┘
-                        │       │
-                 ┌──────┘       └──────┐
-                 ▼                     ▼
-          ┌─────────────┐      ┌─────────────┐
-          │   Redis     │      │  PostgreSQL  │
-          │ (Cache)     │      │  (Storage)   │
-          └─────────────┘      └─────────────┘
-
+```mermaid
+graph TD
+    Client --> LB["Load Balancer"]
+    LB --> API["API Servers<br/>(Stateless)"]
+    API --> Cache["Redis<br/>(Cache)"]
+    API --> DB["PostgreSQL<br/>(Storage)"]
+```
 URL Generation:
 - Base62 encoding of auto-increment ID → 6-char string
 - Base62: [0-9a-zA-Z] = 62 chars, 62^6 = 56 billion combinations
@@ -217,11 +219,9 @@ GET /abc123
   → 301 Redirect to original URL
 
 Database:
-┌─────────────────────────────────────────────┐
-│ urls                                         │
-│ id (PK) | short_code | original_url | created│
-│ 1       | abc123     | https://...  | 2024.. │
-└─────────────────────────────────────────────┘
+| id (PK) | short_code | original_url | created_at |
+| :--- | :--- | :--- | :--- |
+| 1 | abc123 | `https://very-long-url.com/...` | 2024-01-01 |
 
 Read path: Check Redis cache first → if miss, query DB → cache result
 Write path: Generate ID → encode to Base62 → store in DB → cache
@@ -236,19 +236,15 @@ Requirements:
 - Template-based messages
 - Priority levels (urgent, normal, low)
 
-Architecture:
-┌──────────┐     ┌──────────────┐     ┌──────────────────┐
-│ Services │────>│ Notification │────>│  Message Queue    │
-│ (events) │     │    API       │     │  (Kafka)          │
-└──────────┘     └──────────────┘     └──┬──────┬────────┬┘
-                                         │      │        │
-                                    ┌────┘      │     ┌──┘
-                                    ▼            ▼     ▼
-                              ┌──────────┐ ┌─────┐ ┌──────┐
-                              │Email Svc │ │SMS  │ │Push  │
-                              │(SendGrid)│ │(SNS)│ │(FCM) │
-                              └──────────┘ └─────┘ └──────┘
-
+```mermaid
+graph LR
+    Services["Services<br/>(Events)"] --> NavAPI["Notification API"]
+    NavAPI --> MQ["Message Queue<br/>(Kafka)"]
+    
+    MQ --> Email["Email Svc<br/>(SendGrid)"]
+    MQ --> SMS["SMS Svc<br/>(SNS)"]
+    MQ --> Push["Push Svc<br/>(FCM)"]
+```
 Flow:
 1. Order Service publishes OrderCreated event to Kafka
 2. Notification API consumes event, determines notification type

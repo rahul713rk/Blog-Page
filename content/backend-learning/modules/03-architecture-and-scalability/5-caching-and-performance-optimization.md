@@ -24,16 +24,24 @@ This guide covers caching and performance optimization with practical context, i
 >
 > **Result:** Library queries drop by 99%, response time drops from 200ms to 2ms.
 
-```
-Without Cache:
-Client → API → Database (100ms+ per query)
-         ↓
-         Response
+```mermaid
+graph TD
+    subgraph NC ["Without Cache"]
+        C1[Client] --> A1[API]
+        A1 --> D1[(Database)]
+        D1 -- "100ms+" --> A1
+        A1 --> C1
+    end
 
-With Cache:
-Client → API → Cache HIT? → Yes → Return cached data (2ms)
-                   ↓ No
-                Database → Store in cache → Return data
+    subgraph WC ["With Cache"]
+        C2[Client] --> A2[API]
+        A2 --> CH{Cache HIT?}
+        CH -- "Yes (2ms)" --> A2
+        CH -- "No" --> D2[(Database)]
+        D2 --> SC[Store in Cache]
+        SC --> A2
+        A2 --> C2
+    end
 ```
 
 ## Caching Strategies

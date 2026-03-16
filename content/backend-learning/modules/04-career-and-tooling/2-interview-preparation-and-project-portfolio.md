@@ -22,20 +22,14 @@ This guide covers interview preparation and project portfolio with practical con
 
 ### Interview Structure at Most Companies
 
-```
-Round 1: Online Assessment (HackerRank/LeetCode)
-    ├── DSA problems + MCQ on Java/Spring
-    │
-Round 2: Technical Interview 1 (Core Java + Spring)
-    ├── OOP, Collections, Multithreading, Spring Boot
-    │
-Round 3: Technical Interview 2 (System Design + DB)
-    ├── Design a system, SQL queries, optimization
-    │
-Round 4: Managerial / HR Round
-    ├── Behavioral, project discussion, culture fit
-    │
-Offer! 🎉
+```mermaid
+graph TD
+    R1["<b>Round 1: Online Assessment</b><br/>(DSA + MCQ)"] --> R2["<b>Round 2: Technical Interview 1</b><br/>(Core Java + Spring)"]
+    R2 --> R3["<b>Round 3: Technical Interview 2</b><br/>(System Design + DB)"]
+    R3 --> R4["<b>Round 4: Managerial / HR</b><br/>(Behavioral + Culture Fit)"]
+    R4 --> Success["<b>Offer Received! 🎉</b>"]
+
+    style Success fill:#bfb,stroke:#333
 ```
 
 ## Core Java Interview Questions
@@ -219,14 +213,16 @@ Redis commands:
 3. If count > 100 → reject with 429
 
 Implementation:
-┌──────────────────────────────────────────────────────┐
-│  Redis: MULTI/ pipeline (atomic)                      │
-│  ┌──────────────────────────────────────────────────┐ │
-│  │ 1. INCR rate:user:123                            │ │
-│  │ 2. IF result == 1 THEN EXPIRE rate:user:123 60   │ │
-│  │ 3. IF result > 100 THEN REJECT (429)             │ │
-│  └──────────────────────────────────────────────────┘ │
-└──────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    Start([Request Received]) --> Incr[INCR rate:user:123]
+    Incr --> CheckNew{Result == 1?}
+    CheckNew -- Yes --> Expire[EXPIRE rate:user:123 60]
+    CheckNew -- No --> CheckLimit{Result > 100?}
+    Expire --> CheckLimit
+    CheckLimit -- Yes --> Reject[Reject 429]
+    CheckLimit -- No --> Process[Process Request]
+```
 
 Why Redis? Shared state across all API servers, O(1) operations, atomic INCR.
 ```
@@ -344,37 +340,18 @@ GitHub Tips:
 ```
 Your Journey Through 24 Sessions:
 
-SESSION 1-5: JAVA CORE
-├── S1:  Java Architecture & OOPs
-├── S2:  Abstract Classes, Interfaces, Exceptions, Singleton
-├── S3:  Lambda, Functional Interfaces, Collections
-├── S4:  Generics, Streams, HashMap, Hashing
-└── S5:  Multithreading, Synchronization, CompletableFuture
+```mermaid
+graph TD
+    Roadmap["Java Backend Roadmap"] --> Core["Java Core<br/>(Sessions 1-5)"]
+    Roadmap --> SpringIntro["Build Tools & Spring Intro<br/>(Sessions 6-8)"]
+    Roadmap --> SpringData["Spring Core & Data<br/>(Sessions 9-11)"]
+    Roadmap --> DBSecurity["Database & Security<br/>(Sessions 12-15)"]
+    Roadmap --> ArchDevOps["Architecture & DevOps<br/>(Sessions 16-19)"]
+    Roadmap --> Advanced["Advanced & Interview Prep<br/>(Sessions 20-24)"]
 
-SESSION 6-8: BUILD TOOLS & SPRING INTRO
-├── S6-7: Maven (POM, Lifecycle, Plugins, Multi-Module)
-└── S8:   Spring MVC & REST APIs
-
-SESSION 9-11: SPRING CORE & DATA
-├── S9:   Spring IoC, DI, Bean Lifecycle, AOP
-└── S10-11: Hibernate, JPA, Entity Relationships, N+1 Problem
-
-SESSION 12-15: DATABASE & SECURITY
-├── S12-13: Database Design, SQL, Indexing, Transactions
-└── S14-15: Spring Security, JWT, OAuth2, RBAC
-
-SESSION 16-19: PATTERNS, ARCHITECTURE & DEVOPS
-├── S16: Design Patterns (Singleton, Factory, Builder, Observer, Strategy)
-├── S17: Microservices (Eureka, Gateway, Circuit Breaker)
-├── S18: Testing (JUnit, Mockito, MockMvc, Integration Tests)
-└── S19: Docker, CI/CD, Kubernetes Basics
-
-SESSION 20-24: ADVANCED & INTERVIEW PREP
-├── S20: Caching (Redis) & Performance Optimization
-├── S21: Message Queues (Kafka, RabbitMQ)
-├── S22: System Design Fundamentals
-├── S23: Git & Logging Best Practices
-└── S24: Interview Preparation (YOU ARE HERE! 🎯)
+    style Roadmap fill:#f9f,stroke:#333
+    style Advanced fill:#bfb,stroke:#333
+```
 ```
 
 > 🎯 **Session 24 Summary — CONGRATULATIONS!** 🎉 You've completed the entire Java Backend Course! You've mastered Java fundamentals, Spring Boot ecosystem, database design, security, microservices, DevOps, caching, messaging, system design, and interview preparation. You are now equipped with the knowledge to build production-grade backend systems and ace technical interviews. Keep building, keep learning, and keep growing! 🚀

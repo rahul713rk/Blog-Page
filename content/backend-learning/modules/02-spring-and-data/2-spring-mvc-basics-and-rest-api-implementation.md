@@ -31,53 +31,28 @@ This guide covers spring mvc basics & rest api implementation with practical con
 
 ### Spring MVC Request Flow
 
-```
-Client (Browser/Postman/React App)
-     │
-     │ HTTP Request (GET /api/books/42)
-     ▼
-┌─────────────────────────────────────────────┐
-│           DispatcherServlet                  │
-│        (Front Controller)                    │
-│                                             │
-│  1. Receives ALL requests                   │
-│  2. Consults HandlerMapping                 │
-│  3. Delegates to correct Controller         │
-│  4. Processes response                      │
-└───────────────┬─────────────────────────────┘
-                │
-                ▼
-┌───────────────────────────┐
-│     Handler Mapping        │ ─── "Who handles /api/books/42?"
-│ (URL → Controller method)  │
-└───────────────┬────────────┘
-                │
-                ▼
-┌───────────────────────────┐
-│       Controller           │ ─── BookController.getBook(42)
-│  (Business Logic Entry)    │
-└───────────────┬────────────┘
-                │
-                ▼
-┌───────────────────────────┐
-│        Service Layer       │ ─── BookService.findById(42)
-│   (Business Logic)         │
-└───────────────┬────────────┘
-                │
-                ▼
-┌───────────────────────────┐
-│       Repository/DAO       │ ─── Database query
-│    (Data Access)           │
-└───────────────┬────────────┘
-                │
-                ▼
-┌───────────────────────────┐
-│  HttpMessageConverter     │ ─── Object → JSON
-│  (Jackson ObjectMapper)    │
-└───────────────┬────────────┘
-                │
-                ▼
-Client receives JSON Response
+```mermaid
+sequenceDiagram
+    participant Client as Client (Browser/Postman)
+    participant DS as DispatcherServlet
+    participant HM as Handler Mapping
+    participant Controller as Controller
+    participant Service as Service Layer
+    participant Repo as Repository/DAO
+    participant HMC as HttpMessageConverter
+
+    Client->>DS: HTTP Request (GET /api/books/42)
+    DS->>HM: 1. Who handles /api/books/42?
+    HM-->>DS: 2. BookController.getBook(42)
+    DS->>Controller: 3. Delegate to Controller
+    Controller->>Service: 4. BookService.findById(42)
+    Service->>Repo: 5. Database query
+    Repo-->>Service: 6. Return Data
+    Service-->>Controller: 7. Return Model Object
+    Controller-->>DS: 8. Return Object
+    DS->>HMC: 9. Serialize Object → JSON
+    HMC-->>DS: 10. JSON Response
+    DS-->>Client: 11. Send JSON Response
 ```
 
 ## Model, View, and Controller Components

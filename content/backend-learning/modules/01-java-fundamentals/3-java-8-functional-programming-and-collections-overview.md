@@ -377,26 +377,50 @@ public class MethodReferenceDemo {
 > - **Map** = A filing cabinet where each drawer has a LABEL (key) and stores ONE document (value). Like a phone book: name → number. No two drawers have the same label.
 > - **Queue** = The ticket counter. First person in line is served first (FIFO). A Deque is like a corridor — you can enter from either end.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                   Collection (interface)                     │
-├──────────────────┬──────────────────┬───────────────────────┤
-│      List        │       Set        │        Queue          │
-│   (ordered,      │   (unique,       │     (FIFO order)      │
-│    indexed)      │    no dups)      │                       │
-├──────────────────┼──────────────────┼───────────────────────┤
-│ • ArrayList      │ • HashSet        │ • LinkedList          │
-│ • LinkedList     │ • LinkedHashSet  │ • PriorityQueue       │
-│ • Vector         │ • TreeSet        │ • ArrayDeque          │
-└──────────────────┴──────────────────┴───────────────────────┘
+### Collections Hierarchy
 
-┌─────────────────────────────────────────────────────────────┐
-│                      Map (interface)                        │
-│               (key-value pairs, unique keys)                │
-├─────────────────────────────────────────────────────────────┤
-│ • HashMap        • LinkedHashMap       • TreeMap            │
-│ • Hashtable      • ConcurrentHashMap                        │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    Collection["Collection (interface)"]
+    List["List (ordered, indexed)"]
+    Set["Set (unique, no dups)"]
+    Queue["Queue (FIFO order)"]
+    
+    Collection --> List
+    Collection --> Set
+    Collection --> Queue
+    
+    List --> ArrayList["ArrayList"]
+    List --> LinkedList["LinkedList"]
+    List --> Vector["Vector"]
+    
+    Set --> HashSet["HashSet"]
+    Set --> LinkedHashSet["LinkedHashSet"]
+    Set --> TreeSet["TreeSet"]
+    
+    Queue --> LinkedListLQ["LinkedList"]
+    Queue --> PriorityQueue["PriorityQueue"]
+    Queue --> ArrayDeque["ArrayDeque"]
+
+    style Collection fill:#f9f,stroke:#333,stroke-width:2px
+    style List fill:#bbf,stroke:#333,stroke-width:2px
+    style Set fill:#bfb,stroke:#333,stroke-width:2px
+    style Queue fill:#fbb,stroke:#333,stroke-width:2px
+```
+
+### Map Hierarchy
+
+```mermaid
+graph TD
+    Map["Map (interface) <br/> (key-value pairs, unique keys)"]
+    
+    Map --> HashMap["HashMap"]
+    Map --> LinkedHashMap["LinkedHashMap"]
+    Map --> TreeMap["TreeMap"]
+    Map --> Hashtable["Hashtable"]
+    Map --> ConcurrentHashMap["ConcurrentHashMap"]
+
+    style Map fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ## Lists, Sets, and Maps Deep-Dive

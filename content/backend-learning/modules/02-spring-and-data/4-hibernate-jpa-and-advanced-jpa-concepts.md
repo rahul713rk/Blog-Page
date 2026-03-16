@@ -46,26 +46,28 @@ This guide covers hibernate, jpa & advanced jpa concepts with practical context,
 
 ## JPA vs Hibernate
 
+```mermaid
+graph TD
+    subgraph SDJ ["Spring Data JPA (Convenience Layer)"]
+        direction TB
+        SDJ_DESC["Sits on top of JPA (Hibernate)<br/>Auto-generates repository implementations<br/>Provides query derivation"]
+    end
+
+    subgraph JPA ["JPA Specification (Standard)"]
+        direction TB
+        JPA_DESC["Defines interfaces: EntityManager, @Entity, etc.<br/>Defines rules: how ORM should behave<br/>Like JDBC — an API contract"]
+    end
+
+    subgraph Hibernate ["Hibernate (Implementation)"]
+        direction TB
+        HIB_DESC["Implements all JPA interfaces<br/>Adds extra features (caching, custom types)<br/>Like MySQL Connector — the actual worker"]
+    end
+
+    SDJ --> JPA
+    JPA --> Hibernate
 ```
-┌─────────────────────────────────────────────────────────┐
-│  JPA (Jakarta Persistence API) — The SPECIFICATION      │
-│  ├── Defines interfaces: EntityManager, @Entity, etc.   │
-│  ├── Defines rules: how ORM should behave               │
-│  └── Like JDBC — an API/contract, not an implementation  │
-├─────────────────────────────────────────────────────────┤
-│  Hibernate — The IMPLEMENTATION                          │
-│  ├── Implements all JPA interfaces                       │
-│  ├── Adds extra features (caching, custom types, etc.)   │
-│  └── Like MySQL Connector — implements JDBC              │
-├─────────────────────────────────────────────────────────┤
-│  Spring Data JPA — The CONVENIENCE LAYER                 │
-│  ├── Sits on top of JPA (Hibernate)                      │
-│  ├── Auto-generates repository implementations           │
-│  └── Provides query derivation from method names         │
-└─────────────────────────────────────────────────────────┘
 
 Code uses JPA annotations → Hibernate implements them → Spring Data JPA makes it easy
-```
 
 ## Setting Up Spring Data JPA
 
@@ -318,6 +320,19 @@ public class UserService {
 > - Each **room** belongs to ONE **house** → `@ManyToOne`
 > - One **person** has ONE **passport** → `@OneToOne`
 > - Many **students** take many **courses** → `@ManyToMany`
+>
+> ```mermaid
+> graph LR
+>     subgraph OTM ["One-to-Many / Many-to-One"]
+>         House -- "1:N" --> Room
+>     end
+>     subgraph OTO ["One-to-One"]
+>         Person -- "1:1" --> Passport
+>     end
+>     subgraph MTM ["Many-to-Many"]
+>         Student -- "N:M" --> Course
+>     end
+> ```
 
 ### OneToMany / ManyToOne
 
@@ -703,13 +718,32 @@ public class ProductService {
 - **L1 Cache (Session cache):** Enabled by default, scoped to a single `EntityManager`/Session/Transaction. If you call `findById(1)` twice in the same transaction, the second call returns the cached object — no SQL. Clears when the session closes.
 - **L2 Cache:** Shared across sessions/transactions. Must be explicitly configured (e.g., with Ehcache, Hazelcast). If User #1 was loaded in Transaction A, Transaction B can get it from L2 cache without hitting the database.
 
-```
-Transaction 1:
-  findById(1) → SQL query → result cached in L1 AND L2
-  findById(1) → L1 cache hit (no SQL)
+```mermaid
+sequenceDiagram
+    participant T1 as Transaction 1
+    participant L1_A as L1 Cache (T1)
+    participant L2 as L2 Cache (Shared)
+    participant DB as Database
+    participant T2 as Transaction 2
+    participant L1_B as L1 Cache (T2)
 
-Transaction 2:
-  findById(1) → L1 miss → L2 cache hit (no SQL)
+    T1->>L1_A: findById(1)
+    L1_A-->>T1: MISS
+    T1->>L2: findById(1)
+    L2-->>T1: MISS
+    T1->>DB: SELECT * FROM users
+    DB-->>T1: Result
+    T1->>L1_A: Store
+    T1->>L2: Store
+
+    T1->>L1_A: findById(1)
+    L1_A-->>T1: HIT! (No SQL)
+
+    Note over T2, DB: In another transaction
+    T2->>L1_B: findById(1)
+    L1_B-->>T2: MISS
+    T2->>L2: findById(1)
+    L2-->>T2: HIT! (No SQL)
 ```
 
 **Q4: What is the N+1 problem? How do you detect and fix it?**

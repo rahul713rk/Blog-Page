@@ -332,11 +332,18 @@ public class BoundsAndWildcardsDemo {
 
 ### Stream Pipeline
 
-```
-Source → filter() → map() → sorted() → collect()
-  │        │          │         │          │
-  │    Intermediate  Intermediate  Intermediate  Terminal
-  │    (lazy)       (lazy)        (lazy)        (triggers execution)
+```mermaid
+graph LR
+    Source["<b>Source</b><br/>(List, Set, etc.)"] --> Filter["<b>filter()</b><br/>(Intermediate)"]
+    Filter --> Map["<b>map()</b><br/>(Intermediate)"]
+    Map --> Sorted["<b>sorted()</b><br/>(Intermediate)"]
+    Sorted --> Collect["<b>collect()</b><br/>(Terminal)"]
+
+    style Source fill:#f9f,stroke:#333
+    style Filter fill:#bbf,stroke:#333
+    style Map fill:#bbf,stroke:#333
+    style Sorted fill:#bbf,stroke:#333
+    style Collect fill:#bfb,stroke:#333
 ```
 
 ```java
@@ -454,23 +461,28 @@ public class StreamsAPIDemo {
 
 ### Internal Structure of HashMap
 
-```
-HashMap<String, Integer> Internal Structure (Java 8+):
+```mermaid
+graph TD
+    subgraph HashMapStructure ["HashMap Internal Structure (Java 8+)"]
+        subgraph Buckets ["Array of Buckets (default size 16)"]
+            B0["[0] : null"]
+            B1["[1] : Node('Amit', 25)"]
+            B2["[2] : null"]
+            B3["[3] : Node('Priya', 23)"]
+            B4["[4] : null"]
+            B5["[5] : Node('Sneha', 22)"]
+            B15["[15] : null"]
+            
+            B3 --> B3_1["Node('Karan', 28)"]
+            B3_1 --> B3_2["... (Hash Collision!)"]
+        end
+        
+        Treeify["When bucket has > 8 entries (treeify threshold),<br/>the linked list converts to a RED-BLACK TREE for O(log n) lookup"]
+        Buckets -.-> Treeify
+    end
 
-    Array of Buckets (size = 16 by default)
-    ┌─────────────────────────────────────────────┐
-    │ [0] → null                                   │
-    │ [1] → Node("Amit", 25) → null               │
-    │ [2] → null                                   │
-    │ [3] → Node("Priya", 23) → Node("Karan", 28) │ ← Hash collision!
-    │ [4] → null                                   │
-    │ [5] → Node("Sneha", 22) → null              │
-    │ ...                                          │
-    │ [15] → null                                  │
-    └─────────────────────────────────────────────┘
-
-    When bucket has > 8 entries (treeify threshold),
-    the linked list converts to a RED-BLACK TREE for O(log n) lookup
+    style B3 fill:#f9f,stroke:#333,stroke-width:2px
+    style B3_1 fill:#f9f,stroke:#333,stroke-width:2px
 ```
 
 ```java

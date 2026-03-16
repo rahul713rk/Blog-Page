@@ -138,21 +138,20 @@ public class RunnableDemo {
 3. Same `Runnable` can be run by different executors (thread pool, scheduled executor, etc.)
 4. Better for resource management — Thread objects are heavier than Runnable objects
 
-## Thread Lifecycle & States
+### Thread States
 
-```
-        ┌─────────────────────────────────────────────────────────┐
-        │                    Thread States                         │
-        │                                                         │
-        │  NEW ──start()──> RUNNABLE ──run()──> TERMINATED        │
-        │                     │    ↑                               │
-        │                     │    │                               │
-        │          sleep()    │    │  sleep done / notify()        │
-        │          wait()     ▼    │  I/O complete                 │
-        │                  BLOCKED /                               │
-        │                 WAITING /                                │
-        │              TIMED_WAITING                               │
-        └─────────────────────────────────────────────────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> NEW
+    NEW --> RUNNABLE : start()
+    RUNNABLE --> TERMINATED : run() completes
+    RUNNABLE --> BLOCKED : waiting for monitor lock
+    RUNNABLE --> WAITING : wait(), join(), park()
+    RUNNABLE --> TIMED_WAITING : sleep(ms), wait(ms), join(ms)
+    
+    BLOCKED --> RUNNABLE : lock acquired
+    WAITING --> RUNNABLE : notify(), notifyAll(), join finished
+    TIMED_WAITING --> RUNNABLE : sleep done, notify(), timeout
 ```
 
 ```java

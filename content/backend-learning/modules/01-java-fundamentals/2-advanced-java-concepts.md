@@ -21,6 +21,20 @@ This guide covers advanced java concepts with practical context, implementation 
 > Imagine a theater company. The **director** (abstract class) gives actors a **partial script** — some scenes are fully written (concrete methods), some just say "improvise here" (abstract methods). Every actor who joins MUST follow the written scenes and fill in the improvisation.
 >
 > Now there's also a **talent agency** (interface) that says: "If you want to be listed with us, you MUST be able to sing, dance, and act." They don't teach you HOW — they just define WHAT you must be able to do. An actor can only belong to ONE theater company (single inheritance) but can register with MULTIPLE talent agencies (implement multiple interfaces).
+>
+> ```mermaid
+> graph TD
+>     subgraph AbstractClass ["Abstract Class (Director)"]
+>         AC["Partial Script<br/>(Shared Code)"]
+>     end
+>     subgraph Interface ["Interface (Agency)"]
+>         INT["Capabilities Checklist<br/>(Contracts)"]
+>     end
+> 
+>     Actor["Actor (Object)"] -- "belongs to (IS-A)" --> AC
+>     Actor -- "can do (CAN-DO)" --> INT
+>     Actor -- "can register with" --> INT2["Multiple Agencies"]
+> ```
 
 ### The Key Differences
 
@@ -188,15 +202,30 @@ public class PaymentSystem {
 >   - **Checked Exceptions** (appointments) — the hospital KNOWS they're coming. The system won't compile unless you have a plan for them. Example: `IOException`, `SQLException`.
 >   - **Unchecked Exceptions (RuntimeExceptions)** — walk-in emergencies. They happen unexpectedly due to programming mistakes. Example: `NullPointerException`, `ArrayIndexOutOfBoundsException`.
 
-```
-                        Throwable
-                       /         \
-                    Error       Exception
-                   /    \        /        \
-        OutOfMemory  StackOverflow  IOException  RuntimeException
-        Error        Error          SQLException     /      |       \
-                                    (Checked)   NullPointer  ClassCast  ArrayIndex
-                                                (Unchecked)  (Unchecked) (Unchecked)
+```mermaid
+graph TD
+    Throwable["Throwable"]
+    Error["Error"]
+    Exception["Exception"]
+    
+    Throwable --> Error
+    Throwable --> Exception
+    
+    Error --> OOM["OutOfMemoryError"]
+    Error --> SOF["StackOverflowError"]
+    
+    Exception --> IOException["IOException (Checked)"]
+    Exception --> SQLException["SQLException (Checked)"]
+    Exception --> RuntimeException["RuntimeException (Unchecked)"]
+    
+    RuntimeException --> NPE["NullPointerException"]
+    RuntimeException --> CCE["ClassCastException"]
+    RuntimeException --> AIB["ArrayIndexOutOfBoundsException"]
+
+    style Throwable fill:#f9f,stroke:#333,stroke-width:2px
+    style Error fill:#fbb,stroke:#333,stroke-width:2px
+    style Exception fill:#bfb,stroke:#333,stroke-width:2px
+    style RuntimeException fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 ### Checked vs Unchecked Exceptions
@@ -246,9 +275,20 @@ public class ExceptionTypesDemo {
 
 > 🏨 **Story: The Hotel Checkout**
 >
+> 🏨 **Story: The Hotel Checkout**
+>
 > When you stay at a hotel, no matter what happens — whether your trip was amazing or a disaster (exception) — you ALWAYS have to check out and return the room key. The `finally` block is like that hotel checkout: **it ALWAYS runs**, regardless of whether an exception occurred.
 >
 > The `throw` keyword is like calling the **fire alarm** yourself. You detect a problem and explicitly RAISE an alert.
+>
+> ```mermaid
+> graph TD
+>     TR["Try: Enter Hotel"] --> EX["Exception: Broken Pipe?"]
+>     EX -- "YES" --> CA["Catch: Call Plumber"]
+>     EX -- "NO" --> RE["Return: Enjoy Stay"]
+>     CA --> FI["Finally: Check Out & Return Key"]
+>     RE --> FI
+> ```
 
 ```java
 // File: FinallyAndThrowDemo.java
@@ -418,11 +458,21 @@ public class ExceptionPropagationDemo {
 
 **Propagation Flow:**
 
-```
-main() → processRequest() → getOrderDetails() → readFromDatabase()
-                                                      ↑ Exception thrown!
-                                                      │
-         Caught here! ← propagates ← propagates ← ← ←
+#### Exception Propagation Flow
+
+```mermaid
+graph LR
+    main["main()"] --> processRequest["processRequest()"]
+    processRequest --> getOrderDetails["getOrderDetails()"]
+    getOrderDetails --> readFromDatabase["readFromDatabase()"]
+    
+    readFromDatabase -- "Exception thrown!" --> Exception
+    Exception -- "propagates" --> getOrderDetails
+    getOrderDetails -- "propagates" --> processRequest
+    processRequest -- "Caught here!" --> Handler["Exception Handler"]
+
+    style readFromDatabase fill:#fbb,stroke:#333,stroke-width:2px
+    style processRequest fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
 **For unchecked exceptions (RuntimeException),** propagation works the same way, but you don't need `throws` declarations. The exception silently propagates up until it's caught or the program crashes.
@@ -557,6 +607,14 @@ public class CustomExceptionsDemo {
 > A country can have only ONE president at a time. No matter how many citizens (threads) want to talk to the president, they all interact with the SAME person. You can't create a new president — the existing one is always returned.
 >
 > The **Singleton pattern** ensures a class has exactly ONE instance and provides a global point of access to it, just like the president.
+>
+> ```mermaid
+> graph LR
+>     U1["Thread A"] --> S["President Object"]
+>     U2["Thread B"] --> S
+>     U3["Thread C"] --> S
+>     Note["One instance, shared globally"]
+> ```
 
 ### Various Singleton Implementations
 

@@ -36,13 +36,18 @@ MCP follows a simple **Client-Server** model:
 2. **MCP Server:** A small program (written in Java, Node.js, or Python) that exposes specific capabilities.
 3. **Transport:** How they talk (usually via Standard Input/Output or HTTP/SSE).
 
-```
-┌──────────────────┐          ┌──────────────────┐          ┌──────────────────┐
-│   MCP Client     │          │   MCP Server     │          │   External Data  │
-│   (e.g. Cursor)  │ <──────> │ (Your Java App)  │ <──────> │ (DB, API, Files) │
-└──────────────────┘    ↑     └──────────────────┘          └──────────────────┘
-                 Model Context
-                   Protocol
+```mermaid
+graph LR
+    Client["<b>MCP Client</b><br/>(e.g. Cursor, Claude)"]
+    Server["<b>MCP Server</b><br/>(Your Java/Node App)"]
+    Data["<b>External Data</b><br/>(DB, API, Files)"]
+
+    Client <== "Model Context Protocol" ==> Server
+    Server <== "Connectors" ==> Data
+
+    style Client fill:#f9f,stroke:#333
+    style Server fill:#ccf,stroke:#333
+    style Data fill:#cfc,stroke:#333
 ```
 
 ## Understanding Tools in MCP

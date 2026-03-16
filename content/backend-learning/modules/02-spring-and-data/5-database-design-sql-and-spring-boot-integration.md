@@ -25,22 +25,14 @@ This guide covers database design, sql, and spring boot integration with practic
 ### Key Concepts
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  PRIMARY KEY (PK) — Unique identifier for each row      │
-│  ├── Cannot be NULL                                      │
-│  ├── Must be unique                                      │
-│  └── Example: student_id, order_id                       │
-│                                                          │
-│  FOREIGN KEY (FK) — Links to PK of another table         │
-│  ├── Creates relationships between tables                │
-│  ├── Enforces referential integrity                      │
-│  └── Example: order.customer_id → customer.id            │
-│                                                          │
-│  CANDIDATE KEY — Any column(s) that COULD be PK          │
-│  COMPOSITE KEY — PK made of multiple columns             │
-│  UNIQUE — Like PK but allows NULL                        │
-│  NOT NULL — Column must have a value                     │
-└─────────────────────────────────────────────────────────┘
+| Concept | Description | Example |
+| :--- | :--- | :--- |
+| **PRIMARY KEY (PK)** | Unique identifier for each row. Cannot be NULL. | `student_id`, `order_id` |
+| **FOREIGN KEY (FK)** | Links to PK of another table. Enforces integrity. | `order.customer_id` → `customer.id` |
+| **CANDIDATE KEY** | Any column(s) that COULD be used as a PK. | `email`, `passport_number` |
+| **COMPOSITE KEY** | PK made of multiple columns combined. | `(order_id, item_id)` |
+| **UNIQUE** | Similar to PK but allows one NULL value. | `phone_number` |
+| **NOT NULL** | Constraint ensuring a column always has a value. | `name`, `created_at` |
 ```
 
 ## Normalization
@@ -355,14 +347,14 @@ EXPLAIN SELECT * FROM employees WHERE department = 'Engineering';
 >
 > If the system crashes after step 1 but before step 2 — Amit loses ₹5000 but Priya doesn't get it! A **transaction** wraps both operations — EITHER both succeed, OR neither happens.
 
-```
-ACID Properties:
-┌─────────────────────────────────────────────────────────┐
-│  A — Atomicity:     All or nothing                       │
-│  C — Consistency:   Database moves from valid → valid    │
-│  I — Isolation:     Concurrent transactions don't interfere│
-│  D — Durability:    Committed data survives crashes       │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph ACID ["ACID Properties"]
+        A["<b>A - Atomicity</b><br/>All or nothing"]
+        C["<b>C - Consistency</b><br/>Valid state to valid state"]
+        I["<b>I - Isolation</b><br/>No interference between concurrent TX"]
+        D["<b>D - Durability</b><br/>Committed data survives crashes"]
+    end
 ```
 
 ```sql

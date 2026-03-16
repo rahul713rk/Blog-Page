@@ -22,11 +22,16 @@ This guide covers git version control & logging best practices with practical co
 
 ### Core Concepts
 
-```
-Working Directory ──(git add)──> Staging Area ──(git commit)──> Local Repo ──(git push)──> Remote Repo
-      │                              │                             │                          │
- Your files as              Files ready to             Committed              Pushed to
- you edit them              be committed               snapshots              GitHub/GitLab
+```mermaid
+graph LR
+    WD["Working Directory<br/>(Your files)"] -- "git add" --> SA["Staging Area<br/>(Ready to commit)"]
+    SA -- "git commit" --> LR["Local Repo<br/>(Snapshots)"]
+    LR -- "git push" --> RR["Remote Repo<br/>(GitHub/GitLab)"]
+
+    style WD fill:#f9f,stroke:#333
+    style SA fill:#ccf,stroke:#333
+    style LR fill:#cfc,stroke:#333
+    style RR fill:#fcf,stroke:#333
 ```
 
 ```bash
@@ -56,15 +61,26 @@ git reset --hard HEAD~1              # Undo last commit, DELETE changes ⚠️
 
 ### Git Flow
 
-```
-main     ────●────────────────●───────────────●────── (production releases)
-              \              / \              /
-hotfix         \    ────●───   \    ────●───
-                \  /            \  /
-develop  ────●───●───●───●───●───●───●───●───────── (integration branch)
-              \       /   \       /
-feature/       ──●──●     ──●──●
-login            (feature branches)
+```mermaid
+gitGraph
+    commit
+    branch develop
+    checkout develop
+    commit
+    branch feature/login
+    checkout feature/login
+    commit
+    commit
+    checkout develop
+    merge feature/login
+    checkout main
+    merge develop tag: "v1.0.0"
+    checkout develop
+    branch hotfix
+    checkout hotfix
+    commit
+    checkout main
+    merge hotfix tag: "v1.0.1"
 ```
 
 ```bash
@@ -78,12 +94,20 @@ git branch -d feature/user-login         # Delete feature branch
 
 ### Trunk-Based Development (Simpler)
 
-```
-main ────●────●────●────●────●────●────── (everyone commits to main)
-              │         │
-     short-lived    short-lived
-     feature        feature
-     (< 1 day)      (< 1 day)
+```mermaid
+gitGraph
+    commit
+    commit
+    branch feature-1
+    commit
+    checkout main
+    merge feature-1
+    commit
+    branch feature-2
+    commit
+    checkout main
+    merge feature-2
+    commit
 ```
 
 | Strategy    | Team Size | Release Cycle         | Complexity |
@@ -292,16 +316,17 @@ public class RequestFilter extends OncePerRequestFilter {
 ## Centralized Logging (ELK Stack)
 
 ```
-ELK Stack for Microservices:
-
-Microservice 1 ──┐          ┌──────────────┐     ┌────────────┐     ┌──────────┐
-Microservice 2 ──┼────────> │  Logstash    │────>│Elasticsearch│────>│ Kibana   │
-Microservice 3 ──┘          │ (Collector)  │     │ (Search DB) │     │ (UI)     │
-                            └──────────────┘     └────────────┘     └──────────┘
-
-Logstash:        Collects, parses, and transforms logs
-Elasticsearch:   Stores and indexes logs (full-text search)
-Kibana:          Web UI for searching, visualizing, and dashboarding
+```mermaid
+graph LR
+    MS1["Microservice 1"] --- Collector
+    MS2["Microservice 2"] --- Collector
+    MS3["Microservice 3"] --- Collector
+    
+    subgraph ELK ["ELK Stack"]
+        Collector["<b>Logstash</b><br/>(Collector)"] --> DB["<b>Elasticsearch</b><br/>(Search DB)"]
+        DB --> UI["<b>Kibana</b><br/>(Web UI)"]
+    end
+```
 ```
 
 ## Interview Questions & Answers

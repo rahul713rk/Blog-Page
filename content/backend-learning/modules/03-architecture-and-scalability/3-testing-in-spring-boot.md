@@ -24,16 +24,20 @@ This guide covers testing in spring boot with practical context, implementation 
 
 ## Testing Pyramid
 
-```
-                    ┌───────────┐
-                    │  E2E /    │  ← Slow, expensive, few
-                    │  UI Tests │
-                   ┌┴───────────┴┐
-                   │ Integration  │  ← Medium speed, moderate count
-                   │ Tests        │
-                  ┌┴──────────────┴┐
-                  │   Unit Tests    │  ← Fast, cheap, MANY
-                  └────────────────┘
+```mermaid
+graph TD
+    subgraph Pyramid ["Testing Pyramid"]
+        E2E["E2E / UI Tests<br/>(Slow, expensive, few)"]
+        Integration["Integration Tests<br/>(Medium speed, moderate count)"]
+        Unit["Unit Tests<br/>(Fast, cheap, MANY)"]
+        
+        E2E --- Integration
+        Integration --- Unit
+    end
+
+    style E2E fill:#fbb,stroke:#333,stroke-width:2px
+    style Integration fill:#bbf,stroke:#333,stroke-width:2px
+    style Unit fill:#bfb,stroke:#333,stroke-width:2px
 ```
 
 | Type            | What it tests                    | Speed      | Dependencies    | Tools                  |

@@ -30,43 +30,29 @@ This guide covers spring security, jwt, and oauth 2.0 with practical context, im
 
 ## Spring Security Architecture
 
-```
-HTTP Request
-    │
-    ▼
-┌──────────────────────────────────────────────────────────┐
-│               SECURITY FILTER CHAIN                       │
-│                                                          │
-│  ┌──────────────────┐                                    │
-│  │ CorsFilter       │ → CORS headers                    │
-│  └────────┬─────────┘                                    │
-│           ▼                                              │
-│  ┌──────────────────┐                                    │
-│  │ CsrfFilter       │ → CSRF protection                 │
-│  └────────┬─────────┘                                    │
-│           ▼                                              │
-│  ┌──────────────────────────┐                            │
-│  │ UsernamePasswordAuth     │  (or JwtAuthFilter)        │
-│  │ Filter                   │ → Extract credentials      │
-│  └────────┬─────────────────┘                            │
-│           ▼                                              │
-│  ┌──────────────────────────┐                            │
-│  │ AuthenticationManager    │                            │
-│  │ ├── AuthProvider 1       │ → Validate credentials     │
-│  │ └── AuthProvider 2       │                            │
-│  └────────┬─────────────────┘                            │
-│           ▼                                              │
-│  ┌──────────────────────────┐                            │
-│  │ AuthorizationFilter      │ → Check roles/permissions  │
-│  └────────┬─────────────────┘                            │
-│           ▼                                              │
-│  ┌──────────────────────────┐                            │
-│  │ ExceptionTranslation     │ → Handle 401/403           │
-│  │ Filter                   │                            │
-│  └────────┬─────────────────┘                            │
-└───────────┼──────────────────────────────────────────────┘
-            ▼
-    DispatcherServlet → Controller
+```mermaid
+graph TD
+    Request["HTTP Request"] --> FilterChain
+    
+    subgraph FilterChain ["Security Filter Chain"]
+        Cors["CorsFilter<br/>(CORS Headers)"]
+        Csrf["CsrfFilter<br/>(CSRF Protection)"]
+        AuthFilter["JwtAuthFilter<br/>(Extract Token)"]
+        AuthManager["AuthenticationManager<br/>(Validate Credentials)"]
+        AuthzFilter["AuthorizationFilter<br/>(Check Roles)"]
+        ExFilter["ExceptionTranslationFilter<br/>(Handle 401/403)"]
+        
+        Cors --> Csrf
+        Csrf --> AuthFilter
+        AuthFilter --> AuthManager
+        AuthManager --> AuthzFilter
+        AuthzFilter --> ExFilter
+    end
+
+    ExFilter --> DS["DispatcherServlet"]
+    DS --> Controller["Controller"]
+
+    style FilterChain fill:#f9f9f9,stroke:#333,stroke-dasharray: 5 5
 ```
 
 ## Authentication vs Authorization
@@ -190,65 +176,55 @@ public class PasswordEncoderDemo {
 
 ### JWT Structure
 
-```
-Header.Payload.Signature
+```mermaid
+graph TD
+    JWT["<b>JWT: Header.Payload.Signature</b>"]
+    
+    subgraph Header ["1. Header"]
+        H["{ 'alg': 'HS256', 'typ': 'JWT' }"]
+    end
+    
+    subgraph Payload ["2. Payload (Claims)"]
+        P["{ 'sub': 'amit', 'roles': ['USER'], 'exp': 1705328000 }"]
+    end
+    
+    subgraph Signature ["3. Signature"]
+        S["HMACSHA256(H + P, Secret)"]
+    end
 
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbWl0QGV4YW1wbGUuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJpYXQiOjE3MDUyNDE2MDAsImV4cCI6MTcwNTMyODAwMH0.abc123signature
-
-┌─────────────────────────────────────────────────────────┐
-│  HEADER                                                  │
-│  {                                                       │
-│    "alg": "HS256",     ← Signing algorithm              │
-│    "typ": "JWT"                                          │
-│  }                                                       │
-├─────────────────────────────────────────────────────────┤
-│  PAYLOAD (Claims)                                        │
-│  {                                                       │
-│    "sub": "amit@example.com",  ← Subject (user)         │
-│    "roles": ["USER"],          ← Custom claim            │
-│    "iat": 1705241600,          ← Issued at              │
-│    "exp": 1705328000           ← Expiration             │
-│  }                                                       │
-├─────────────────────────────────────────────────────────┤
-│  SIGNATURE                                               │
-│  HMACSHA256(                                             │
-│    base64(header) + "." + base64(payload),               │
-│    secretKey                                             │
-│  )                                                       │
-│  → Ensures token hasn't been tampered with!              │
-└─────────────────────────────────────────────────────────┘
+    JWT --- Header
+    JWT --- Payload
+    JWT --- Signature
 ```
 
 ### JWT Authentication Flow
 
 ```
-1. Login Request
-   POST /api/auth/login  { "email": "amit@ex.com", "password": "pass123" }
-        │
-        ▼
-2. Server validates credentials
-   ├── Load user from DB
-   ├── Compare password hash (BCrypt)
-   └── If valid → generate JWT token
-        │
-        ▼
-3. Response: { "token": "eyJhbGci..." }
-   Client stores this token (localStorage, httpOnly cookie)
-        │
-        ▼
-4. Subsequent Requests
-   GET /api/books
-   Header: Authorization: Bearer eyJhbGci...
-        │
-        ▼
-5. JwtAuthFilter intercepts EVERY request
-   ├── Extract token from Authorization header
-   ├── Validate signature & expiry
-   ├── Extract user info from claims
-   └── Set SecurityContext (user is authenticated)
-        │
-        ▼
-6. Controller processes request normally
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Auth as Auth Controller
+    participant DB as Database
+    participant JWT as JwtService
+    participant Filter as JwtAuthFilter
+    participant Secure as Secured Controller
+
+    Note over Client, Auth: 1. Login Phase
+    Client->>Auth: POST /api/auth/login {creds}
+    Auth->>DB: Load user & verify BCrypt hash
+    DB-->>Auth: User Valid
+    Auth->>JWT: Generate Token
+    JWT-->>Auth: JWT Token
+    Auth-->>Client: { "token": "eyJ..." }
+
+    Note over Client, Filter: 2. Subsequent Requests
+    Client->>Filter: GET /api/books (Header: Bearer JWT)
+    Filter->>JWT: Extract username & validate
+    JWT-->>Filter: Valid (User: Amit)
+    Filter->>Filter: Set SecurityContextHolder
+    Filter->>Secure: Forward Request
+    Secure-->>Client: 200 OK [Books]
+```
 ```
 
 ## Implementing JWT Authentication
@@ -429,40 +405,32 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 ### OAuth2 Roles
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│  1. Resource Owner     → The user (you)                       │
-│  2. Client             → Your application (wants access)      │
-│  3. Authorization Srv  → Google/GitHub (issues tokens)        │
-│  4. Resource Server    → API that has the protected data      │
-└──────────────────────────────────────────────────────────────┘
+| Role | Description |
+| :--- | :--- |
+| **1. Resource Owner** | The user (you) who owns the data. |
+| **2. Client** | Your application that wants access to user data. |
+| **3. Authorization Server** | Google/GitHub/Auth0 that verifies identity and issues tokens. |
+| **4. Resource Server** | The API that holds the protected data (e.g., Google Profile API). |
 
-OAuth2 Authorization Code Flow:
+#### OAuth2 Authorization Code Flow
 
-User                    Your App                  Google
-  │                       │                         │
-  │ 1. "Login with Google"│                         │
-  │──────────────────────>│                         │
-  │                       │ 2. Redirect to Google   │
-  │                       │────────────────────────>│
-  │                       │                         │
-  │ 3. Google login page  │                         │
-  │<────────────────────────────────────────────────│
-  │                       │                         │
-  │ 4. User logs in & consents                      │
-  │────────────────────────────────────────────────>│
-  │                       │                         │
-  │                       │ 5. Authorization Code   │
-  │                       │<────────────────────────│
-  │                       │                         │
-  │                       │ 6. Exchange code for    │
-  │                       │    access token         │
-  │                       │────────────────────────>│
-  │                       │                         │
-  │                       │ 7. Access Token         │
-  │                       │<────────────────────────│
-  │                       │                         │
-  │ 8. Authenticated!     │ 9. Use token to get     │
-  │<──────────────────────│    user info from Google │
+```mermaid
+sequenceDiagram
+    participant User
+    participant App as Your App (Client)
+    participant Google as Google (Auth Server)
+    participant Resource as Google API (Resource Server)
+
+    User->>App: 1. Click "Login with Google"
+    App->>Google: 2. Redirect to Auth URL
+    Google-->>User: 3. Show Login Page
+    User->>Google: 4. Log in & Consent
+    Google-->>App: 5. Authorization Code
+    App->>Google: 6. Exchange Code for Access Token
+    Google-->>App: 7. Access Token
+    App->>Resource: 8. Call API with Token
+    Resource-->>App: 9. User Profile Data
+    App-->>User: 10. Authenticated!
 ```
 
 **Spring Boot OAuth2 Configuration:**

@@ -21,28 +21,47 @@ This guide covers message queues with kafka and rabbitmq with practical context,
 > Without a post office, you'd have to personally walk to every friend's house to deliver a letter (synchronous). If they're not home, you wait (blocking). If 100 people want to send letters simultaneously, there's a traffic jam.
 >
 > A **post office** (message queue) accepts all letters, stores them, and delivers them when the recipient is ready. The sender drops the letter and walks away (fire-and-forget). The recipient picks it up when convenient (asynchronous).
+>
+> ```mermaid
+> graph LR
+>     subgraph PO ["Post Office (Message Broker)"]
+>         Q["Mailbox / Queue"]
+>     end
+>     Sender["Sender (Producer)"] -- "Drops letter" --> Q
+>     Q -- "Picks up when ready" --> Recipient["Recipient (Consumer)"]
+> ```
 
-```
-Synchronous (REST):              Asynchronous (Message Queue):
-Order Svc ──> Payment Svc        Order Svc ──> [Queue] ──> Payment Svc
-    │ waits...                        │ returns immediately
-    │ blocked until response          │ continues working
-    └── response comes back           Queue delivers when consumer is ready
+#### Synchronous vs Asynchronous
+
+```mermaid
+graph LR
+    subgraph Sync ["Synchronous (REST)"]
+        OS1["Order Svc"] -- "waits..." --> PS1["Payment Svc"]
+        PS1 -- "response" --> OS1
+    end
+
+    subgraph Async ["Asynchronous (Message Queue)"]
+        OS2["Order Svc"] -- "returns immediately" --> Q["Queue"]
+        Q -- "delivers when ready" --> PS2["Payment Svc"]
+    end
 ```
 
 **Benefits:**
 
 1. **Decoupling** — Services don't know about each other
 2. **Resilience** — If consumer is down, messages are stored, not lost
-3. **Scalability** — Add more consumers to handle load
-4. **Load leveling** — Queue absorbs traffic spikes
-5. **Async processing** — Sender doesn't wait for processing
+1.  **Decoupling** — Services don't know about each other
+2.  **Resilience** — If consumer is down, messages are stored, not lost
+3.  **Scalability** — Add more consumers to handle load
+4.  **Load leveling** — Queue absorbs traffic spikes
+5.  **Async processing** — Sender doesn't wait for processing
 
 ## Message Queue Concepts
 
+```mermaid
+graph LR
+    P["PRODUCER"] --> B["[MESSAGE QUEUE / BROKER]"] --> C["CONSUMER"]
 ```
-PRODUCER ──> [MESSAGE QUEUE / BROKER] ──> CONSUMER
-
 Producer:  Sends messages (publishes events)
 Broker:    Stores and routes messages (RabbitMQ, Kafka)
 Consumer:  Receives and processes messages (subscribes to events)
@@ -50,22 +69,24 @@ Queue:     FIFO storage for messages
 Topic:     Named channel for pub/sub (multiple consumers)
 Exchange:  Routes messages to queues based on rules (RabbitMQ)
 Partition: Divide a topic for parallelism (Kafka)
-```
 
 ## RabbitMQ
 
 ```
 RabbitMQ Architecture:
-
-Producer ──> Exchange ──(routing)──> Queue ──> Consumer
-
+```mermaid
+graph LR
+    Producer --> Exchange
+    Exchange -- "routing" --> Queue
+    Queue --> Consumer
+```
 Exchange Types:
-┌──────────────┬─────────────────────────────────┐
-│ Direct       │ Route by exact routing key       │
-│ Fanout       │ Broadcast to ALL bound queues    │
-│ Topic        │ Route by pattern (*.error, #)    │
-│ Headers      │ Route by message headers         │
-└──────────────┴─────────────────────────────────┘
+| Exchange Type | Routing Logic |
+| :--- | :--- |
+| **Direct** | Route by exact routing key |
+| **Fanout** | Broadcast to ALL bound queues |
+| **Topic** | Route by pattern (`*.error`, `#`) |
+| **Headers** | Route by message headers |
 ```
 
 ```java
@@ -124,21 +145,31 @@ public class PaymentConsumer {
 ```
 Kafka Architecture:
 
-Producer ──> Topic [Partition 0] ──> Consumer Group A (Consumer 1, Consumer 2)
-                   [Partition 1] ──> Consumer Group B (Consumer 3)
-                   [Partition 2]
+```mermaid
+graph LR
+    P["Producer"] --> T["Topic"]
+    subgraph Topic ["Topic"]
+        P0["Partition 0"]
+        P1["Partition 1"]
+        P2["Partition 2"]
+    end
 
-Key Concepts:
-┌──────────────────────────────────────────────────────────┐
-│  Topic:          Named stream of records (like a table)   │
-│  Partition:      Subset of a topic (parallelism unit)     │
-│  Offset:         Position of a message in a partition     │
-│  Consumer Group: Set of consumers that share the work     │
-│  Broker:         Kafka server instance                    │
-│  Replication:    Copies of partitions for fault tolerance │
-└──────────────────────────────────────────────────────────┘
+    P0 --> CG_A["Consumer Group A<br/>(Consumer 1, Consumer 2)"]
+    P1 --> CG_B["Consumer Group B<br/>(Consumer 3)"]
+```
 
-Key Difference from RabbitMQ:
+### Key Concepts:
+
+| Concept | Description |
+| :--- | :--- |
+| **Topic** | Named stream of records (like a table) |
+| **Partition** | Subset of a topic (parallelism unit) |
+| **Offset** | Position of a message in a partition |
+| **Consumer Group** | Set of consumers that share the work |
+| **Broker** | Kafka server instance |
+| **Replication** | Copies of partitions for fault tolerance |
+
+### Key Difference from RabbitMQ:
 - Kafka RETAINS messages even after consumption (configurable retention)
 - Messages are PULLED by consumers (not pushed)
 - Designed for HIGH-THROUGHPUT streaming (millions of messages/sec)

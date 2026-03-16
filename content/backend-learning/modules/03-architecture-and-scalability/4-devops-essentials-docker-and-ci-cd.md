@@ -22,11 +22,11 @@ This guide covers devops essentials — docker & ci/cd with practical context, i
 >
 > **DevOps** is the assembly line for software: automate building (compile), testing, packaging (Docker), and deploying so every release is consistent. "It works on my machine" becomes "It works everywhere."
 
-```
-Dev writes code → Git push → CI builds & tests → CD deploys to production
-     │                │               │                    │
-  Developer        Version          Automated          Automated
-                   Control          Testing            Deployment
+```mermaid
+graph LR
+    Dev["Dev writes code"] -- "Git push" --> Git["Version Control<br/>(Git)"]
+    Git -- "CI Pipeline" --> CI["Automated<br/>Testing"]
+    CI -- "CD Pipeline" --> CD["Automated<br/>Deployment"]
 ```
 
 ## Docker Fundamentals
@@ -38,26 +38,44 @@ Dev writes code → Git push → CI builds & tests → CD deploys to production
 > **Docker containers** do the same for software: package your app + ALL its dependencies into a standardized container. It runs the same on your laptop, CI server, and production.
 
 ```
-Traditional Deployment:        Docker Deployment:
-┌──────────────────────┐       ┌─────────────────────────┐
-│ Server OS            │       │ Server OS               │
-│ ┌──────────────────┐ │       │ ┌────────┐ ┌────────┐   │
-│ │ Install Java 17  │ │       │ │Container│ │Container│  │
-│ │ Install MySQL    │ │       │ │┌──────┐ │ │┌──────┐ │  │
-│ │ Install Redis    │ │       │ ││App+  │ │ ││App+  │ │  │
-│ │ Configure env    │ │       │ ││Java+ │ │ ││MySQL │ │  │
-│ │ Deploy app.jar   │ │       │ ││deps  │ │ ││     │ │  │
-│ │ Hope it works 🤞│ │       │ │└──────┘ │ │└──────┘ │  │
-│ └──────────────────┘ │       │ └────────┘ └────────┘   │
-└──────────────────────┘       └─────────────────────────┘
+#### Traditional vs Docker Deployment
+
+```mermaid
+graph LR
+    subgraph Traditional ["Traditional Deployment"]
+        OS1["Server OS"]
+        Java1["Install Java 17"]
+        DB1["Install MySQL"]
+        Redis1["Install Redis"]
+        App1["Deploy app.jar<br/>(Hope it works!)"]
+        
+        OS1 --- Java1
+        Java1 --- DB1
+        DB1 --- Redis1
+        Redis1 --- App1
+    end
+
+    subgraph Docker ["Docker Deployment"]
+        OS2["Server OS"]
+        subgraph C1 ["Container 1"]
+            AppJava["App + Java + Deps"]
+        end
+        subgraph C2 ["Container 2"]
+            AppDB["MySQL Container"]
+        end
+        
+        OS2 --- C1
+        OS2 --- C2
+    end
 ```
 
 ### Key Docker Concepts
 
 ```
-DOCKERFILE → IMAGE → CONTAINER
-(Recipe)    (Template) (Running instance)
-
+```mermaid
+graph LR
+    DF["DOCKERFILE<br/>(Recipe)"] --> IM["IMAGE<br/>(Template)"] --> CN["CONTAINER<br/>(Running Instance)"]
+```
 Dockerfile:    Blueprint/recipe. Steps to build the image.
 Image:         Immutable template. Built from Dockerfile. Like a class.
 Container:     Running instance of an image. Like an object.
@@ -208,10 +226,12 @@ CI passed → Deploy to staging automatically → Manual approval for production
 Continuous Deployment:
 CI passed → Deploy to production automatically (no manual step)
 
-┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
-│  Code    │──>│  Build   │──>│  Test    │──>│  Package │──>│  Deploy  │
-│  Push    │   │  (Maven) │   │  (JUnit) │   │  (Docker)│   │  (K8s)   │
-└──────────┘   └──────────┘   └──────────┘   └──────────┘   └──────────┘
+```mermaid
+graph LR
+    Code["Code Push"] --> Build["Build<br/>(Maven)"]
+    Build --> Test["Test<br/>(JUnit)"]
+    Test --> Package["Package<br/>(Docker)"]
+    Package --> Deploy["Deploy<br/>(K8s)"]
 ```
 
 ## GitHub Actions for Java Projects
@@ -279,21 +299,32 @@ Why Kubernetes?
 Docker runs containers on ONE machine.
 Kubernetes manages containers across MANY machines.
 
-┌──────────────────────────────────────────────────────────┐
-│  Kubernetes Cluster                                       │
-│  ┌─────────────────┐                                     │
-│  │  Master Node     │  ← API Server, Scheduler,          │
-│  │  (Control Plane) │    Controller Manager               │
-│  └────────┬────────┘                                     │
-│           │                                              │
-│  ┌────────┴────────┐  ┌─────────────────┐               │
-│  │  Worker Node 1   │  │  Worker Node 2   │              │
-│  │  ┌──────┐┌─────┐│  │  ┌──────┐┌─────┐│              │
-│  │  │Pod 1 ││Pod 2││  │  │Pod 3 ││Pod 4││              │
-│  │  │[App] ││[App]││  │  │[App] ││[DB] ││              │
-│  │  └──────┘└─────┘│  │  └──────┘└─────┘│              │
-│  └─────────────────┘  └─────────────────┘               │
-└──────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Master ["Master Node (Control Plane)"]
+        CP["API Server, Scheduler,<br/>Controller Manager"]
+    end
+
+    Master --> W1
+    Master --> W2
+
+    subgraph W1 ["Worker Node 1"]
+        subgraph P1 ["Pod 1"]
+            App1["[App]"]
+        end
+        subgraph P2 ["Pod 2"]
+            App2["[App]"]
+        end
+    end
+
+    subgraph W2 ["Worker Node 2"]
+        subgraph P3 ["Pod 3"]
+            App3["[App]"]
+        end
+        subgraph P4 ["Pod 4"]
+            DB4["[DB]"]
+        end
+    end
 ```
 
 ```yaml

@@ -32,7 +32,24 @@ This guide covers maven project management and plugins with practical context, i
 > - The contractor follows a **fixed process**: foundation → walls → roof → inspection (lifecycle)
 > - If a material version changes, you update ONE line in the spec sheet
 >
-> **Maven** is your project contractor — it manages **dependencies**, **build lifecycle**, and **project structure**.
+> > **Maven** is your project contractor — it manages **dependencies**, **build lifecycle**, and **project structure**.
+>
+> ```mermaid
+> graph TD
+>     subgraph Traditional ["1. Without Contractor (Manual)"]
+>         D1["You"] -- "drive to" --> S1["Brick Supplier"]
+>         D1 -- "drive to" --> S2["Pipe Supplier"]
+>         D1 -- "drive to" --> S3["Wire Supplier"]
+>         Note1["Manually track sizes/quantities/compatibility"]
+>     end
+> 
+>     subgraph MavenFlow ["2. With Contractor (Maven)"]
+>         POM["POM.xml (Spec Sheet)"] -- "defines" --> Materials["Materials & Versions"]
+>         Materials -- "ordered by" --> Contractor["Maven"]
+>         Contractor -- "fetches from" --> Central["Maven Central Repo"]
+>         Contractor -- "follows" --> Lifecycle["Standard Build Process"]
+>     end
+> ```
 
 ### The Problems Maven Solves
 
@@ -46,9 +63,16 @@ This guide covers maven project management and plugins with practical context, i
 
 ## POM.xml — The Heart of Maven
 
-> 📋 **Story: The Recipe Card**
->
 > Every dish in a professional kitchen has a **recipe card** listing: the dish name, ingredients with exact quantities, cooking steps, and serving instructions. The POM (Project Object Model) is your project's recipe card — it tells Maven EVERYTHING about how to build your project.
+>
+> ```mermaid
+> graph LR
+>     Recipe["POM.xml (Recipe)"]
+>     Recipe --> ID["Name & Identity (GAV)"]
+>     Recipe --> Ing["Ingredients (Dependencies)"]
+>     Recipe --> Steps["Build Steps (Plugins/Lifecycle)"]
+>     Recipe --> Vars["Kitchen Tools (Properties)"]
+> ```
 
 ### Anatomy of a POM.xml
 
@@ -123,30 +147,36 @@ This guide covers maven project management and plugins with practical context, i
 
 **Key Elements Explained:**
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  pom.xml Structure                                      │
-├─────────────────────────────────────────────────────────┤
-│                                                         │
-│  GAV Coordinates (unique identity)                      │
-│  ├── groupId:    com.abhishek                          │
-│  ├── artifactId: my-java-app                           │
-│  └── version:    1.0.0-SNAPSHOT                        │
-│                                                         │
-│  Properties (variables for reuse)                       │
-│  ├── java.version: 21                                  │
-│  └── custom variables                                  │
-│                                                         │
-│  Dependencies (libraries needed)                        │
-│  ├── spring-boot-starter-web (compile)                 │
-│  ├── lombok (provided)                                 │
-│  └── junit (test)                                      │
-│                                                         │
-│  Build (how to build)                                   │
-│  ├── Plugins                                           │
-│  └── Resources                                         │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    POM["pom.xml"]
+    
+    subgraph GAV ["Coordinates (Identity)"]
+        G["groupId"]
+        A["artifactId"]
+        V["version"]
+    end
+    
+    subgraph Props ["Properties"]
+        JV["java.version"]
+        CV["custom variables"]
+    end
+    
+    subgraph Deps ["Dependencies"]
+        W["spring-boot (compile)"]
+        L["lombok (provided)"]
+        J["junit (test)"]
+    end
+    
+    subgraph Build ["Build"]
+        P["Plugins"]
+        R["Resources"]
+    end
+
+    POM --> GAV
+    POM --> Props
+    POM --> Deps
+    POM --> Build
 ```
 
 ## Maven Repositories
@@ -157,26 +187,15 @@ This guide covers maven project management and plugins with practical context, i
 > - **Central Repository** (`repo.maven.apache.org`) = The global Amazon warehouse. If your local warehouse doesn't have it, Maven orders from here.
 > - **Remote/Private Repository** (Nexus, Artifactory) = Your company's private warehouse for internal libraries that shouldn't be published publicly.
 
-```
-    Your Project
-        │
-        ▼
-    ┌──────────────────┐
-    │  Local Repository │  (~/.m2/repository)
-    │  Check here first │
-    └──────────────────┘
-        │ (not found?)
-        ▼
-    ┌──────────────────┐
-    │ Central Repository│  (repo.maven.apache.org)
-    │  Public libraries │
-    └──────────────────┘
-        │ (not found?)
-        ▼
-    ┌──────────────────┐
-    │ Remote Repository │  (Company Nexus/Artifactory)
-    │  Private libraries│
-    └──────────────────┘
+```mermaid
+graph TD
+    Project["Your Project"] --> Local["Local Repository<br/>(~/.m2/repository)"]
+    Local -- "Not found?" --> Central["Central Repository<br/>(Maven Central)"]
+    Central -- "Not found?" --> Remote["Remote/Private Repository<br/>(Nexus/Artifactory)"]
+
+    style Local fill:#bfb,stroke:#333
+    style Central fill:#bbf,stroke:#333
+    style Remote fill:#fbb,stroke:#333
 ```
 
 ### Configuring a Remote Repository
@@ -202,16 +221,15 @@ This guide covers maven project management and plugins with practical context, i
 
 ### The Three Lifecycles
 
+```mermaid
+graph LR
+    V["validate<br/>(Check POM)"] --> C["compile<br/>(.java -> .class)"]
+    C --> T["test<br/>(JUnit)"]
+    T --> P["package<br/>(JAR/WAR)"]
+    P --> VR["verify<br/>(Check checks)"]
+    VR --> I["install<br/>(Copy to ~/.m2)"]
+    I --> D["deploy<br/>(Upload remote)"]
 ```
-1. DEFAULT LIFECYCLE (most important — builds the project):
-
-   validate → compile → test → package → verify → install → deploy
-
-   ┌──────────┐  ┌──────────┐  ┌──────┐  ┌─────────┐  ┌────────┐  ┌─────────┐  ┌────────┐
-   │ validate │→│ compile  │→│ test │→│ package │→│ verify │→│ install │→│ deploy │
-   │ Check    │  │ .java →  │  │ Run  │  │ Create  │  │ Check  │  │ Copy to │  │ Upload │
-   │ POM      │  │ .class   │  │ JUnit│  │ JAR/WAR │  │ checks │  │ ~/.m2   │  │ remote │
-   └──────────┘  └──────────┘  └──────┘  └─────────┘  └────────┘  └─────────┘  └────────┘
 
 2. CLEAN LIFECYCLE:
    pre-clean → clean → post-clean
@@ -361,26 +379,21 @@ mvn archetype:generate \
 
 ### Standard Maven Project Structure
 
-```
-my-app/
-├── pom.xml                           # The recipe card
-├── src/
-│   ├── main/
-│   │   ├── java/                     # Application source code
-│   │   │   └── com/abhishek/
-│   │   │       └── App.java
-│   │   └── resources/                # Config files, properties
-│   │       └── application.properties
-│   └── test/
-│       ├── java/                     # Test source code
-│       │   └── com/abhishek/
-│       │       └── AppTest.java
-│       └── resources/                # Test config files
-│           └── test-data.json
-└── target/                           # Build output (generated)
-    ├── classes/                      # Compiled .class files
-    ├── test-classes/                 # Compiled test classes
-    └── my-app-1.0-SNAPSHOT.jar       # Packaged artifact
+```mermaid
+graph TD
+    Root["my-app/"]
+    Root --> POM["pom.xml (Recipe)"]
+    Root --> Target["target/ (Build Output)"]
+    Root --> Src["src/"]
+    
+    Src --> Main["main/ (Application)"]
+    Src --> Test["test/ (Testing)"]
+    
+    Main --> JavaM["java/ (Source code)"]
+    Main --> ResM["resources/ (Config files)"]
+    
+    Test --> JavaT["java/ (Test code)"]
+    Test --> ResT["resources/ (Test data)"]
 ```
 
 ## Dependency Management & Scopes

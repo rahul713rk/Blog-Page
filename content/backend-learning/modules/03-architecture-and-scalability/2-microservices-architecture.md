@@ -21,21 +21,40 @@ This guide covers microservices architecture with practical context, implementat
 > **Monolith = Single Restaurant:** One kitchen handles ALL cuisines — Chinese, Italian, Indian. If the pasta station breaks, the ENTIRE kitchen shuts down. If you need to scale (more customers), you duplicate the ENTIRE kitchen — even parts you don't need.
 >
 > **Microservices = Food Court:** Each stall is independent — the Chinese stall, the Pizza stall, the Chai stall. If the Pizza stall breaks, everyone else keeps running. Need more Chinese food? Just add another Chinese stall (scale independently). Each stall has its OWN chef, oven, and cashier.
+>
+> ```mermaid
+> graph TD
+>     subgraph Monolith ["1. Single Restaurant (Monolith)"]
+>         Kitchen["Main Kitchen<br/>(Shared Oven, Shared Chef)"]
+>         C1["Chinese"] --- Kitchen
+>         I1["Italian"] --- Kitchen
+>         In1["Indian"] --- Kitchen
+>         Note1["One part breaks -> Whole restaurant fails"]
+>     end
+> 
+>     subgraph MicroservicesFlow ["2. Food Court (Microservices)"]
+>         C2["Chinese Stall<br/>(Own Oven/Chef)"]
+>         P2["Pizza Stall<br/>(Own Oven/Chef)"]
+>         Ch2["Chai Stall<br/>(Own Stove/Chef)"]
+>         Note2["Independent scaling & fault isolation"]
+>     end
+> ```
 
-```
-┌── MONOLITH ────────────────────────┐    ┌── MICROSERVICES ──────────────────────────────────┐
-│                                     │    │                                                    │
-│  ┌─────────────────────────────┐   │    │  ┌──────────┐  ┌──────────┐  ┌──────────┐         │
-│  │    Single Application        │   │    │  │ User Svc │  │ Order Svc│  │Payment   │         │
-│  │  ┌─────┬────────┬────────┐  │   │    │  │ Port 8081│  │ Port 8082│  │ Port 8083│         │
-│  │  │Users│ Orders │Payment │  │   │    │  │ [MySQL]  │  │ [MongoDB]│  │ [Redis]  │         │
-│  │  │     │        │        │  │   │    │  └──────────┘  └──────────┘  └──────────┘         │
-│  │  └─────┴────────┴────────┘  │   │    │  ┌──────────┐  ┌──────────┐                       │
-│  │     ONE Database             │   │    │  │ Notif Svc│  │Inventory │                       │
-│  │     ONE Deployment           │   │    │  │ Port 8084│  │ Port 8085│                       │
-│  └─────────────────────────────┘   │    │  │ [Kafka]  │  │ [Postgres]│                      │
-│                                     │    │  └──────────┘  └──────────┘                       │
-└─────────────────────────────────────┘    └────────────────────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph Monolith ["Monolith Architecture"]
+        M_App["Single Application<br/>(Users, Orders, Payments)"]
+        M_DB["ONE Database"]
+        M_App --- M_DB
+    end
+
+    subgraph Microservices ["Microservices Architecture"]
+        U_Svc["User Svc<br/>(MySQL)"]
+        O_Svc["Order Svc<br/>(MongoDB)"]
+        P_Svc["Payment Svc<br/>(Redis)"]
+        N_Svc["Notif Svc<br/>(Kafka)"]
+        I_Svc["Inventory Svc<br/>(Postgres)"]
+    end
 ```
 
 | Aspect         | Monolith               | Microservices                       |
@@ -64,6 +83,14 @@ This guide covers microservices architecture with practical context, implementat
 > 📞 **Story: The Phone Directory**
 >
 > In a city, you don't memorize every shop's address. You look them up in the Yellow Pages (service registry). When a new shop opens, it registers its address. When a shop closes, it's removed. **Eureka** is the Yellow Pages for microservices — services register themselves, and other services look them up.
+>
+> ```mermaid
+> graph LR
+>     US["User Svc"] -- "Register(IP:Port)" --> ES["Eureka (Phone Book)"]
+>     OS["Order Svc"] -- "Search: User-Svc" --> ES
+>     ES -- "Found at IP:Port" --> OS
+>     OS -- "Direct Call" --> US
+> ```
 
 ```java
 // ═══════ EUREKA SERVER (Discovery Service) ═══════
@@ -111,14 +138,20 @@ public class EurekaServerApplication {
 //       defaultZone: http://localhost:8761/eureka/
 ```
 
-```
-Flow:
-1. Eureka Server starts on port 8761
-2. User-Service starts → registers with Eureka: "I'm USER-SERVICE at localhost:8081"
-3. Order-Service starts → registers: "I'm ORDER-SERVICE at localhost:8082"
-4. Order-Service needs User-Service → asks Eureka: "Where is USER-SERVICE?"
-5. Eureka responds: "USER-SERVICE is at localhost:8081"
-6. Order-Service calls http://localhost:8081/api/users/1
+#### Discovery Flow
+
+```mermaid
+sequenceDiagram
+    participant ES as Eureka Server (8761)
+    participant US as User-Service (8081)
+    participant OS as Order-Service (8082)
+
+    US->>ES: Register ("USER-SERVICE at 8081")
+    OS->>ES: Register ("ORDER-SERVICE at 8082")
+    Note over OS, ES: Order-Service needs User-Service
+    OS->>ES: Discover ("Where is USER-SERVICE?")
+    ES-->>OS: Response ("USER-SERVICE at 8081")
+    OS->>US: GET /api/users/1
 ```
 
 ## API Gateway Pattern
@@ -126,6 +159,16 @@ Flow:
 > 🚪 **Story: The Hotel Reception**
 >
 > Guests (clients) don't knock on every room door to find the right service. They go to the **reception** (API Gateway), which routes them to the right service. The reception also handles security badges (authentication), translates languages (request transformation), and limits how many visitors each department gets (rate limiting).
+>
+> ```mermaid
+> graph TD
+>     Client["Client (Guest)"] -- "Request /api/orders" --> Gateway["API Gateway (Reception)"]
+>     subgraph Internal ["Hotel Services"]
+>         Gateway -- "Route" --> OrderSvc["Order Service"]
+>         Gateway -- "Route" --> UserSvc["User Service"]
+>     end
+>     Gateway -- "Auth / Ratelimit" --> Gateway
+> ```
 
 ```java
 // ═══════ API GATEWAY (Spring Cloud Gateway) ═══════
@@ -163,19 +206,26 @@ Flow:
 //             - Path=/api/payments/**
 ```
 
-```
-Client Request                   API Gateway (port 8080)          Microservices
-     │                                  │
-     │  GET /api/users/1                │
-     │─────────────────────────────────>│
-     │                                  │──> Route: /api/users/** → USER-SERVICE
-     │                                  │──> Eureka lookup: USER-SERVICE is at 8081
-     │                                  │──> Forward to http://localhost:8081/api/users/1
-     │                                  │
-     │  POST /api/orders                │
-     │─────────────────────────────────>│
-     │                                  │──> Route: /api/orders/** → ORDER-SERVICE
-     │                                  │──> Forward to http://localhost:8082/api/orders
+#### API Gateway Routing
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant G as API Gateway (8080)
+    participant US as User-Service (8081)
+    participant OS as Order-Service (8082)
+
+    C->>G: GET /api/users/1
+    G->>G: Route: /api/users/** -> USER-SERVICE
+    G->>US: Forward to localhost:8081/api/users/1
+    US-->>G: Response
+    G-->>C: Response
+
+    C->>G: POST /api/orders
+    G->>G: Route: /api/orders/** -> ORDER-SERVICE
+    G->>OS: Forward to localhost:8082/api/orders
+    OS-->>G: Response
+    G-->>C: Response
 ```
 
 ## Inter-Service Communication
@@ -316,11 +366,15 @@ public class PaymentService {
 //         wait-duration: 2s
 ```
 
-```
-Circuit States:
-CLOSED ──(failures > threshold)──> OPEN ──(timeout)──> HALF-OPEN
-  ▲                                                        │
-  └──────────────(test calls succeed)──────────────────────┘
+#### Circuit States
+
+```mermaid
+stateDiagram-v2
+    [*] --> CLOSED
+    CLOSED --> OPEN : failures > threshold
+    OPEN --> HALF_OPEN : wait timeout
+    HALF_OPEN --> OPEN : test call fails
+    HALF_OPEN --> CLOSED : test call succeeds
 ```
 
 ## Centralized Configuration
@@ -329,50 +383,37 @@ CLOSED ──(failures > threshold)──> OPEN ──(timeout)──> HALF-OPEN
 Problem: 10 microservices × 3 environments (dev/staging/prod) = 30 config files!
 Solution: ONE central config server.
 
-┌───────────────────┐
-│ Config Server     │ ← Reads from Git repo
-│ (Spring Cloud     │    /config-repo/user-service-dev.yml
-│  Config)          │    /config-repo/order-service-prod.yml
-└────────┬──────────┘
-         │
-    ┌────┴────┬──────────┐
-    ▼         ▼          ▼
-User-Svc  Order-Svc  Payment-Svc
-(fetches   (fetches   (fetches
- config)    config)    config)
+#### Centralized Configuration Flow
+
+```mermaid
+graph TD
+    Git["Git Repo<br/>(Config Repo)"] --> CS["Config Server<br/>(Spring Cloud Config)"]
+    CS --> US["User-Svc"]
+    CS --> OS["Order-Svc"]
+    CS --> PS["Payment-Svc"]
 ```
 
 ## Complete Project: E-Commerce Microservices
 
 ```
-System Architecture:
+#### System Architecture
 
-                    ┌─────────────────┐
-                    │   API Gateway   │ (port 8080)
-                    │Spring Cloud GW  │
-                    └────────┬────────┘
-                             │
-        ┌────────────────────┼────────────────────┐
-        ▼                    ▼                    ▼
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│ User Service │    │ Order Service│    │Product Svc   │
-│  port 8081   │    │  port 8082   │    │  port 8083   │
-│ [MySQL]      │    │ [MongoDB]    │    │ [PostgreSQL] │
-└──────────────┘    └──────┬───────┘    └──────────────┘
-                           │
-                    ┌──────┴───────┐
-                    │  RabbitMQ    │ (Event Bus)
-                    └──────┬───────┘
-                           │
-                ┌──────────┴──────────┐
-                ▼                     ▼
-        ┌──────────────┐    ┌──────────────┐
-        │Notification  │    │Inventory Svc │
-        │  Service     │    │  port 8085   │
-        │  port 8084   │    │ [Redis]      │
-        └──────────────┘    └──────────────┘
+```mermaid
+graph TD
+    Gateway["API Gateway<br/>(Port 8080)"]
+    
+    Gateway --> US["User Service<br/>(Port 8081, MySQL)"]
+    Gateway --> OS["Order Service<br/>(Port 8082, MongoDB)"]
+    Gateway --> PS["Product Svc<br/>(Port 8083, Postgres)"]
+    
+    OS --> MQ["RabbitMQ<br/>(Event Bus)"]
+    
+    MQ --> NS["Notification Svc<br/>(Port 8084)"]
+    MQ --> IS["Inventory Svc<br/>(Port 8085, Redis)"]
 
-        All services register with Eureka Server (port 8761)
+    subgraph Discovery ["Infrastructure"]
+        Eureka["Eureka Server<br/>(Port 8761)"]
+    end
 ```
 
 ## Interview Questions & Answers

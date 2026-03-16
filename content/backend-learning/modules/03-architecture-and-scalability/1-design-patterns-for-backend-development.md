@@ -98,6 +98,13 @@ enum Logger {
 > 🏭 **Story: The Pizza Shop**
 >
 > You walk into Domino's and say "I want a Margherita." You DON'T go to the kitchen and make it yourself. The **counter** (factory) takes your order and produces the right pizza. You get back a `Pizza` — you don't care HOW it was made.
+>
+> ```mermaid
+> graph LR
+>     Customer["Customer (Client)"] -- "Order: Margherita" --> Factory["Domino's Counter (Factory)"]
+>     Factory -- "creates" --> Pizza["Margherita Pizza (Product)"]
+>     Pizza -- "returns" --> Customer
+> ```
 
 ```java
 // File: FactoryPatternDemo.java
@@ -252,6 +259,13 @@ public class BuilderPatternDemo {
 > 📰 **Story: The Newspaper Subscription**
 >
 > You subscribe to a newspaper. Every morning, the newspaper (subject/publisher) automatically delivers to ALL subscribers. When you unsubscribe, deliveries stop. The newspaper doesn't know what each subscriber does with it — some read it, some recycle it. This is the **Observer pattern** — when one object changes, all registered observers are notified automatically.
+>
+> ```mermaid
+> graph TD
+>     Subject["Newspaper (Subject)"] -- "Notify: New Issue" --> Subscriber1["Reader 1 (Observer)"]
+>     Subject -- "Notify: New Issue" --> Subscriber2["Reader 2 (Observer)"]
+>     Subject -- "Notify: New Issue" --> Subscriber3["Reader 3 (Observer)"]
+> ```
 
 ```java
 // File: ObserverPatternDemo.java

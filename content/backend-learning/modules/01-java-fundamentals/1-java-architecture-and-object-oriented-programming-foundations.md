@@ -17,6 +17,16 @@ This guide covers java architecture and object-oriented programming foundations 
 ## Introduction: The City of Javaville
 
 > 🏙️ **Imagine a city called Javaville.** In this city, every building is constructed using a specific blueprint. The city has a master architect (the **JDK**), a construction crew (the **JRE**), and a magical foundation that can sit on any type of land — rocky, sandy, or clay (the **JVM**). No matter where in the world you ship a building designed in Javaville, it will stand perfectly because the foundation adapts itself to the terrain underneath. This is the magic of Java — **"Write Once, Run Anywhere."**
+>
+> ```mermaid
+> graph TD
+>     JDK["JDK (Architect)<br/>Tools to design buildings"]
+>     JRE["JRE (Construction Crew)<br/>Workers & Materials"]
+>     JVM["JVM (Foundation)<br/>Adapts to any land/OS"]
+>     
+>     JDK --> JRE
+>     JRE --> JVM
+> ```
 
 ## Java Architecture
 
@@ -28,26 +38,18 @@ This guide covers java architecture and object-oriented programming foundations 
 
 #### The Compilation and Execution Flow
 
-```
-  YourCode.java
-       │
-       ▼
-  ┌──────────┐
-  │  javac   │  (Java Compiler)
-  │ compiler │
-  └──────────┘
-       │
-       ▼
-  YourCode.class  (Bytecode — platform independent)
-       │
-       ▼
-  ┌──────────┐
-  │   JVM    │  (Java Virtual Machine — platform specific)
-  │          │
-  └──────────┘
-       │
-       ▼
-  Machine Code (Executed on your OS/Hardware)
+```mermaid
+graph TD
+    A["YourCode.java"] --> B["javac Compiler<br/>(Java Compiler)"]
+    B --> C["YourCode.class<br/>(Bytecode — platform independent)"]
+    C --> D["JVM<br/>(Java Virtual Machine — platform specific)"]
+    D --> E["Machine Code<br/>(Executed on your OS/Hardware)"]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style D fill:#fbb,stroke:#333,stroke-width:2px
+    style E fill:#eee,stroke:#333,stroke-width:2px
 ```
 
 #### Code Example: Your First Java Program
@@ -92,32 +94,30 @@ JVM Name: OpenJDK 64-Bit Server VM
 > - The **JRE (Java Runtime Environment)** is the **workshop** — it has the machines and space to use the furniture (run the program), but you can't build new furniture here.
 > - The **JVM (Java Virtual Machine)** is the **engine** inside every machine in the workshop — it's the thing that actually does the heavy lifting of running your program.
 
-```
-┌─────────────────────────────────────────────┐
-│                   JDK                       │
-│  ┌───────────────────────────────────────┐  │
-│  │              JRE                      │  │
-│  │  ┌─────────────────────────────────┐  │  │
-│  │  │            JVM                  │  │  │
-│  │  │  • Class Loader                 │  │  │
-│  │  │  • Bytecode Verifier            │  │  │
-│  │  │  • Execution Engine             │  │  │
-│  │  │    (Interpreter + JIT Compiler) │  │  │
-│  │  │  • Garbage Collector            │  │  │
-│  │  └─────────────────────────────────┘  │  │
-│  │  • Java Class Libraries (rt.jar)      │  │
-│  └───────────────────────────────────────┘  │
-│  • javac (Compiler)                         │
-│  • javadoc, jar, jdb (Debugger)             │
-│  • Other development tools                  │
-└─────────────────────────────────────────────┘
+```mermaid
+graph TB
+    subgraph JDK ["JDK (Java Development Kit)"]
+        direction TB
+        subgraph JRE ["JRE (Java Runtime Environment)"]
+            direction TB
+            subgraph JVM ["JVM (Java Virtual Machine)"]
+                direction TB
+                CL["Class Loader"]
+                BV["Bytecode Verifier"]
+                EE["Execution Engine<br/>(Interpreter + JIT Compiler)"]
+                GC["Garbage Collector"]
+            end
+            JCL["Java Class Libraries (rt.jar)"]
+        end
+        TOOLS["Development Tools<br/>(javac, javadoc, jar, jdb, etc.)"]
+    end
 ```
 
-| Component | Purpose                 | Contains                             |
+| Component | Purpose | Contains |
 | --------- | ----------------------- | ------------------------------------ |
-| **JDK**   | Development + Execution | JRE + Compiler + Dev Tools           |
-| **JRE**   | Execution only          | JVM + Class Libraries                |
-| **JVM**   | Runtime Engine          | Class Loader + Execution Engine + GC |
+| **JDK** | Development + Execution | JRE + Compiler + Dev Tools |
+| **JRE** | Execution only | JVM + Class Libraries |
+| **JVM** | Runtime Engine | Class Loader + Execution Engine + GC |
 
 ### Platform Independence: Write Once, Run Anywhere
 
@@ -153,33 +153,21 @@ public class PlatformDemo {
 > - **Method Area** — the HR records room where class blueprints and static data are stored.
 > - **PC Register** — each employee's to-do list pointer, tracking which instruction they're executing next.
 
-```
-┌──────────────────────────────────────┐
-│              JVM Memory              │
-├──────────────────────────────────────┤
-│  HEAP (Shared across threads)        │
-│  ┌────────────────────────────────┐  │
-│  │  Young Generation              │  │
-│  │  ├── Eden Space                │  │
-│  │  ├── Survivor Space 1          │  │
-│  │  └── Survivor Space 2          │  │
-│  ├────────────────────────────────┤  │
-│  │  Old Generation                │  │
-│  │  (Long-lived objects)          │  │
-│  └────────────────────────────────┘  │
-├──────────────────────────────────────┤
-│  STACK (One per thread)              │
-│  ┌────────────────────────────────┐  │
-│  │  Frame: main()                 │  │
-│  │    └── Local vars, operand     │  │
-│  │  Frame: methodA()              │  │
-│  │    └── Local vars, operand     │  │
-│  └────────────────────────────────┘  │
-├──────────────────────────────────────┤
-│  METHOD AREA (Class metadata)        │
-│  NATIVE METHOD STACK                 │
-│  PC REGISTERS                        │
-└──────────────────────────────────────┘
+```mermaid
+graph TD
+    subgraph JVMMemory ["JVM Memory"]
+        subgraph Heap ["Heap (Shared across threads)"]
+            Young["Young Generation<br/>(Eden, Survivor Space 1 & 2)"]
+            Old["Old Generation<br/>(Long-lived objects)"]
+        end
+        subgraph Stacks ["Stacks (One per thread)"]
+            Frame1["Frame: main()<br/>(Local vars, operand)"]
+            Frame2["Frame: methodA()<br/>(Local vars, operand)"]
+        end
+        MethodArea["Method Area (Class metadata)"]
+        NativeStack["Native Method Stack"]
+        PC["PC Registers"]
+    end
 ```
 
 ```java
@@ -226,16 +214,25 @@ public class MemoryDemo {
 
 ### What is OOP? The Blueprint Story
 
-> 🏠 **Story: The Architect and the Houses**
->
-> Imagine an architect named **Ravi**. He designs a blueprint for a house. The blueprint says: "Every house will have 4 rooms, 2 bathrooms, a kitchen, and a garden." Now, using this ONE blueprint, Ravi builds 5 different houses in different locations. Each house looks similar but has different colors, different furniture, and different families living inside.
->
 > In Java:
 >
 > - The **blueprint** = **Class**
 > - Each **house** = **Object** (instance of the class)
 > - The **rooms, bathrooms** = **Attributes** (fields/properties)
 > - The **families doing things** = **Methods** (behavior)
+>
+> ```mermaid
+> graph LR
+>     Blueprint["House Blueprint (Class)"] -- "constructs" --> House1["House 1 (Object)"]
+>     Blueprint -- "constructs" --> House2["House 2 (Object)"]
+>     Blueprint -- "constructs" --> House3["House 3 (Object)"]
+>     
+>     subgraph BlueprintDetails ["Blueprint Details"]
+>         direction TB
+>         Data["Fields: color, rooms, owner"]
+>         Logic["Methods: displayInfo()"]
+>     end
+> ```
 
 ### Classes and Objects
 
@@ -426,6 +423,12 @@ Balance: ₹5000.0
 > 👨‍👩‍👧‍👦 **Story: The Family Business**
 >
 > The **Sharma family** runs a restaurant business. Grandpa Sharma started it with a recipe book (base class). His son inherited the entire recipe book AND added 10 fusion dishes. His granddaughter inherited everything from both AND added a vegan menu. Each generation **inherits** what the previous one had and **adds** or **modifies** things. They never had to rewrite the old recipes from scratch!
+>
+> ```mermaid
+> graph TD
+>     Grandpa["Grandpa's Recipes (Base Class)"] --> Son["Son's Recipes (+Fusion Dishes)"]
+>     Son --> Granddaughter["Granddaughter's Recipes (+Vegan)"]
+> ```
 
 ```java
 // File: InheritanceDemo.java
@@ -682,6 +685,16 @@ Result: Hello World
 > When you drive a car, you see a **dashboard** with a steering wheel, pedals, and gear stick. You don't see the thousands of mechanical and electronic parts working underneath. You press the accelerator — the car speeds up. You don't need to know about fuel injection, air-fuel ratio, piston movement, or the ECU.
 >
 > The dashboard is an **abstraction** — it shows WHAT the car can do (accelerate, brake, turn) while hiding HOW it does it internally. Java achieves abstraction through **abstract classes** and **interfaces**.
+>
+> ```mermaid
+> graph LR
+>     User["Driver"] -- "Interface: Dashboard" --> Car["Car Logic (Hidden Complexity)"]
+>     subgraph Dashboard ["Dashboard (Abstraction)"]
+>         A["Accelerator"]
+>         B["Brake"]
+>         S["Steering"]
+>     end
+> ```
 
 ```java
 // File: AbstractionDemo.java
