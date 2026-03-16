@@ -25,6 +25,23 @@
   --accent-soft: rgba(169, 106, 38, 0.14);
   --shadow-soft: 0 22px 60px rgba(26, 39, 31, 0.12);
   --shadow-strong: 0 26px 80px rgba(17, 28, 22, 0.16);
+  --button-bg: #f4efe4;
+  --button-bg-hover: #ebe4d6;
+  --button-border: rgba(20, 45, 31, 0.14);
+  --button-text: #122018;
+  --button-solid-bg: #255f46;
+  --button-solid-hover: #1d4d39;
+  --button-solid-text: #f7fbf8;
+  --button-shadow: 0 10px 24px rgba(26, 39, 31, 0.12);
+  --theme-trigger-bg: linear-gradient(135deg, #255f46, #3f7d5f);
+  --theme-trigger-text: #f7fbf8;
+  --mermaid-bg: #f6f2ea;
+  --mermaid-surface: #eee7dc;
+  --mermaid-line: #445663;
+  --mermaid-node: #255f46;
+  --mermaid-node-alt: #a96a26;
+  --mermaid-text: #122018;
+  --mermaid-contrast: #f7fbf8;
   --page-gradient:
     radial-gradient(circle at top left, rgba(109, 175, 117, 0.22), transparent 30%),
     radial-gradient(circle at top right, rgba(187, 122, 47, 0.18), transparent 28%),
@@ -58,6 +75,23 @@
   --accent-soft: rgba(240, 179, 90, 0.16);
   --shadow-soft: 0 24px 70px rgba(0, 0, 0, 0.32);
   --shadow-strong: 0 30px 90px rgba(0, 0, 0, 0.42);
+  --button-bg: #152232;
+  --button-bg-hover: #1b2b3d;
+  --button-border: rgba(158, 199, 221, 0.18);
+  --button-text: #eaf2fb;
+  --button-solid-bg: #7cd6ff;
+  --button-solid-hover: #5dc9fb;
+  --button-solid-text: #06111d;
+  --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+  --theme-trigger-bg: linear-gradient(135deg, #7cd6ff, #f0b35a);
+  --theme-trigger-text: #07111b;
+  --mermaid-bg: #071019;
+  --mermaid-surface: #101b29;
+  --mermaid-line: #9ec7dd;
+  --mermaid-node: #7cd6ff;
+  --mermaid-node-alt: #f0b35a;
+  --mermaid-text: #ebf5fc;
+  --mermaid-contrast: #071019;
   --page-gradient:
     radial-gradient(circle at top left, rgba(124, 214, 255, 0.16), transparent 28%),
     radial-gradient(circle at top right, rgba(240, 179, 90, 0.14), transparent 24%),
@@ -91,6 +125,23 @@
   --accent-soft: rgba(255, 89, 94, 0.16);
   --shadow-soft: 0 22px 60px rgba(63, 34, 81, 0.14);
   --shadow-strong: 0 28px 84px rgba(63, 34, 81, 0.18);
+  --button-bg: #fff2db;
+  --button-bg-hover: #ffe7c4;
+  --button-border: rgba(67, 31, 95, 0.14);
+  --button-text: #2b1638;
+  --button-solid-bg: #0057b8;
+  --button-solid-hover: #00489a;
+  --button-solid-text: #fffaf4;
+  --button-shadow: 0 12px 26px rgba(63, 34, 81, 0.16);
+  --theme-trigger-bg: linear-gradient(135deg, #ff595e, #0057b8);
+  --theme-trigger-text: #fffaf4;
+  --mermaid-bg: #fff4e7;
+  --mermaid-surface: #ffe8d3;
+  --mermaid-line: #5a4b5d;
+  --mermaid-node: #0057b8;
+  --mermaid-node-alt: #ff595e;
+  --mermaid-text: #21172a;
+  --mermaid-contrast: #fffaf4;
   --page-gradient:
     linear-gradient(135deg, rgba(255, 89, 94, 0.16), transparent 22%),
     linear-gradient(160deg, rgba(255, 202, 58, 0.14), transparent 34%),
@@ -129,6 +180,23 @@
   --accent-soft: rgba(22, 196, 127, 0.16);
   --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.34);
   --shadow-strong: 0 28px 80px rgba(0, 0, 0, 0.44);
+  --button-bg: #081a0d;
+  --button-bg-hover: #0c2312;
+  --button-border: rgba(71, 255, 138, 0.2);
+  --button-text: #d5ffe2;
+  --button-solid-bg: #47ff8a;
+  --button-solid-hover: #2af57a;
+  --button-solid-text: #031008;
+  --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
+  --theme-trigger-bg: linear-gradient(135deg, #47ff8a, #16c47f);
+  --theme-trigger-text: #031008;
+  --mermaid-bg: #000;
+  --mermaid-surface: #07130a;
+  --mermaid-line: #6fc48d;
+  --mermaid-node: #47ff8a;
+  --mermaid-node-alt: #16c47f;
+  --mermaid-text: #d5ffe2;
+  --mermaid-contrast: #031008;
   --page-gradient:
     radial-gradient(circle at top left, rgba(71, 255, 138, 0.14), transparent 28%),
     linear-gradient(180deg, #040b05 0%, #07130a 40%, #0b1c0e 100%);
@@ -161,6 +229,23 @@
   --accent-soft: rgba(230, 159, 0, 0.16);
   --shadow-soft: 0 22px 60px rgba(33, 43, 54, 0.12);
   --shadow-strong: 0 28px 84px rgba(33, 43, 54, 0.16);
+  --button-bg: #f0ece4;
+  --button-bg-hover: #e6dfd3;
+  --button-border: rgba(34, 52, 68, 0.14);
+  --button-text: #1f2730;
+  --button-solid-bg: #0072b2;
+  --button-solid-hover: #005b8e;
+  --button-solid-text: #f7fbff;
+  --button-shadow: 0 12px 26px rgba(33, 43, 54, 0.14);
+  --theme-trigger-bg: linear-gradient(135deg, #0072b2, #e69f00);
+  --theme-trigger-text: #f7fbff;
+  --mermaid-bg: #f2efe9;
+  --mermaid-surface: #e8e1d6;
+  --mermaid-line: #4f5a63;
+  --mermaid-node: #0072b2;
+  --mermaid-node-alt: #e69f00;
+  --mermaid-text: #1f2730;
+  --mermaid-contrast: #f7fbff;
   --page-gradient:
     radial-gradient(circle at top left, rgba(0, 114, 178, 0.12), transparent 28%),
     radial-gradient(circle at top right, rgba(230, 159, 0, 0.12), transparent 24%),
@@ -254,12 +339,11 @@ a {
   padding: 0;
   border: 1px solid var(--surface-outline);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--panel-bg) 86%, transparent);
-  color: var(--pico-h1-color);
+  background: var(--button-solid-bg);
+  color: var(--button-solid-text);
   font-size: 1.35rem;
   line-height: 1;
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px);
+  box-shadow: var(--button-shadow);
   opacity: 0;
   transform: translateY(18px);
   pointer-events: none;

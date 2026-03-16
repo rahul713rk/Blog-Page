@@ -39,6 +39,8 @@ function setupThemeSwitcher() {
     try {
       localStorage.setItem("blog-theme", nextTheme);
     } catch {}
+
+    setupMermaid();
   };
 
   const activeTheme = legacyThemeMap[root.dataset.theme] || root.dataset.theme || "default";
@@ -60,6 +62,36 @@ function setupThemeSwitcher() {
     if (!dropdown.contains(event.target)) {
       dropdown.open = false;
     }
+  });
+}
+
+function setupSectionCollapses() {
+  const triggers = Array.from(document.querySelectorAll("[data-collapsible-trigger]"));
+  if (!triggers.length) {
+    return;
+  }
+
+  triggers.forEach((trigger) => {
+    if (trigger.dataset.collapseBound === "true") {
+      return;
+    }
+
+    const key = trigger.dataset.collapsibleTrigger;
+    const panel = document.querySelector(`[data-collapsible-panel="${key}"]`);
+    if (!panel) {
+      return;
+    }
+
+    trigger.dataset.collapseBound = "true";
+    trigger.addEventListener("click", () => {
+      const isOpen = trigger.classList.toggle("is-open");
+      panel.classList.toggle("is-open", isOpen);
+      trigger.setAttribute("aria-expanded", String(isOpen));
+      const label = trigger.querySelector("span");
+      if (label) {
+        label.textContent = isOpen ? "Hide tags" : "Show tags";
+      }
+    });
   });
 }
 
@@ -307,13 +339,17 @@ function setupCodeBlocks() {
     if (pre.classList.contains("mermaid")) {
       const shell = document.createElement("section");
       shell.className = "diagram-shell";
+      const source = pre.textContent || "";
+      const host = document.createElement("div");
+      host.className = "mermaid-host";
+      host.dataset.mermaidSource = source;
       shell.innerHTML = `
         <header class="diagram-toolbar">
           <span class="diagram-label">Diagram</span>
         </header>
       `;
       pre.replaceWith(shell);
-      shell.appendChild(pre);
+      shell.appendChild(host);
       return;
     }
 
@@ -383,36 +419,81 @@ function setupRevealOnScroll() {
 }
 
 function setupMermaid() {
-  const mermaidBlocks = document.querySelectorAll(".mermaid");
-  if (!mermaidBlocks.length || typeof mermaid === "undefined") {
+  const mermaidHosts = Array.from(document.querySelectorAll(".mermaid-host"));
+  if (!mermaidHosts.length || typeof mermaid === "undefined") {
     return;
   }
 
-  const mermaidThemeMap = {
-    default: "base",
-    dark: "dark",
-    rainbow: "base",
-    computer: "dark",
-    colorblind: "base"
-  };
-  const currentTheme = mermaidThemeMap[document.documentElement.dataset.theme] || "base";
   const computedStyles = getComputedStyle(document.documentElement);
   const diagramFontFamily = computedStyles.getPropertyValue("--diagram-font-family").trim();
+  const mermaidText = computedStyles.getPropertyValue("--mermaid-text").trim() || "#111111";
+  const mermaidContrast = computedStyles.getPropertyValue("--mermaid-contrast").trim() || "#ffffff";
+  const mermaidBackground = computedStyles.getPropertyValue("--mermaid-bg").trim() || "#f6f2ea";
+  const mermaidSurface = computedStyles.getPropertyValue("--mermaid-surface").trim() || "#eee7dc";
+  const mermaidLine = computedStyles.getPropertyValue("--mermaid-line").trim() || "#445663";
+  const mermaidNode = computedStyles.getPropertyValue("--mermaid-node").trim() || "#255f46";
+  const mermaidNodeAlt = computedStyles.getPropertyValue("--mermaid-node-alt").trim() || "#a96a26";
+
   mermaid.initialize({
     startOnLoad: false,
     securityLevel: "loose",
-    theme: currentTheme,
+    theme: "base",
     fontFamily: diagramFontFamily || "Arial, sans-serif",
     themeVariables: {
       fontFamily: diagramFontFamily || "Arial, sans-serif",
-      fontSize: "18px"
+      fontSize: "18px",
+      background: mermaidBackground,
+      primaryColor: mermaidNode,
+      primaryTextColor: mermaidContrast,
+      primaryBorderColor: mermaidLine,
+      secondaryColor: mermaidNodeAlt,
+      secondaryTextColor: mermaidContrast,
+      secondaryBorderColor: mermaidLine,
+      tertiaryColor: mermaidSurface,
+      tertiaryTextColor: mermaidText,
+      tertiaryBorderColor: mermaidLine,
+      lineColor: mermaidLine,
+      mainBkg: mermaidNode,
+      secondBkg: mermaidNodeAlt,
+      tertiaryBkg: mermaidSurface,
+      clusterBkg: mermaidSurface,
+      clusterBorder: mermaidLine,
+      nodeBorder: mermaidLine,
+      defaultLinkColor: mermaidLine,
+      edgeLabelBackground: mermaidBackground,
+      titleColor: mermaidText,
+      textColor: mermaidText,
+      actorTextColor: mermaidText,
+      labelColor: mermaidText,
+      signalColor: mermaidText,
+      noteTextColor: mermaidText,
+      noteBkgColor: mermaidSurface,
+      noteBorderColor: mermaidLine,
+      cScale0: mermaidNode,
+      cScale1: mermaidNodeAlt,
+      cScale2: mermaidSurface
     }
   });
-  mermaid.run({ nodes: mermaidBlocks });
+
+  mermaidHosts.forEach(async (host, index) => {
+    const source = host.dataset.mermaidSource || "";
+    if (!source.trim()) {
+      return;
+    }
+
+    try {
+      const renderId = `mermaid-diagram-${index}-${document.documentElement.dataset.theme || "default"}`;
+      const { svg } = await mermaid.render(renderId, source);
+      host.innerHTML = svg;
+    } catch (error) {
+      host.innerHTML = `<pre>${String(error.message || error)}</pre>`;
+    }
+  });
 }
 
 function initSiteUi() {
   setupThemeSwitcher();
+  setupSectionCollapses();
   setupContentToggle();
   setupPaginationSelects();
   setupScrollTopButton();

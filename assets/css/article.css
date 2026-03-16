@@ -177,6 +177,15 @@
   font-family: var(--diagram-font-family);
 }
 
+.mermaid-host {
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+}
+
+.mermaid-host pre {
+  color: var(--code-color);
+}
+
 .diagram-shell .mermaid svg {
   max-width: none;
   height: auto;

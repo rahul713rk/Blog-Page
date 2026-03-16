@@ -102,13 +102,42 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
+.hero-stats {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.hero-stat-card {
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--surface-outline);
+  border-radius: 1.25rem;
+  background: var(--card-bg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.hero-stat-card strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1;
+  color: var(--pico-h1-color);
+}
+
+.hero-stat-card small {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--pico-muted-color);
+}
+
 .content-toggle {
   display: inline-flex;
   gap: 0.55rem;
   padding: 0.35rem;
-  border: 1px solid var(--surface-outline);
+  border: 1px solid var(--button-border);
   border-radius: 999px;
-  background: var(--soft-bg);
+  background: var(--button-bg);
+  box-shadow: var(--button-shadow);
 }
 
 .content-toggle-button {
@@ -118,13 +147,13 @@
   border: 1px solid transparent;
   border-radius: 999px;
   background: transparent;
-  color: var(--pico-muted-color);
+  color: var(--button-text);
   font-weight: 700;
 }
 
 .content-toggle-button.is-active {
-  background: linear-gradient(135deg, var(--pico-primary), var(--surface-strong));
-  color: #fff;
+  background: var(--button-solid-bg);
+  color: var(--button-solid-text);
 }
 
 .content-panel {
@@ -148,10 +177,11 @@
 
 .pagination-nav,
 .pagination-select select {
-  border: 1px solid var(--surface-outline);
-  background: var(--soft-bg);
-  color: var(--pico-color);
+  border: 1px solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--button-text);
   font-weight: 700;
+  box-shadow: var(--button-shadow);
 }
 
 .pagination-nav {
@@ -207,6 +237,67 @@
   color: var(--accent);
 }
 
+.section-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--button-border);
+  border-radius: 999px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 700;
+  box-shadow: var(--button-shadow);
+}
+
+.section-toggle-icon {
+  position: relative;
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.section-toggle-icon::before,
+.section-toggle-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.9rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.section-toggle-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.section-toggle-button.is-open .section-toggle-icon::after {
+  opacity: 0;
+}
+
+.section-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 220ms ease;
+}
+
+.section-collapse.is-open {
+  grid-template-rows: 1fr;
+}
+
+.section-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.section-collapse.is-open .section-collapse-inner {
+  padding-top: 0.2rem;
+}
+
 @media (max-width: 900px) {
   .glass-nav {
     flex-direction: column;
@@ -246,6 +337,11 @@
   .content-toggle {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .section-toggle-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .content-toggle-button {

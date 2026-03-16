@@ -30,11 +30,12 @@
   gap: 0.45rem;
   min-height: 2.8rem;
   padding: 0.65rem 0.95rem;
-  border: 1px solid var(--surface-outline);
+  border: 1px solid var(--button-border);
   border-radius: 999px;
-  background: var(--soft-bg);
-  color: var(--pico-color);
+  background: var(--button-bg);
+  color: var(--button-text);
   font-weight: 700;
+  box-shadow: var(--button-shadow);
 }
 
 .nav-links > a:hover,
@@ -82,8 +83,14 @@
   height: 1rem;
 }
 
+.theme-trigger {
+  background: var(--theme-trigger-bg);
+  color: var(--theme-trigger-text);
+}
+
 .theme-dropdown[open] .theme-trigger {
-  background: var(--soft-bg);
+  background: var(--theme-trigger-bg);
+  color: var(--theme-trigger-text);
 }
 
 .theme-menu {
@@ -105,17 +112,43 @@
   width: 100%;
   margin: 0;
   padding: 0.72rem 0.85rem;
-  border: 1px solid var(--surface-outline);
+  border: 1px solid var(--button-border);
   border-radius: 1rem;
-  background: transparent;
-  color: var(--pico-color);
+  background: var(--button-bg);
+  color: var(--button-text);
   font-weight: 700;
+  box-shadow: none;
 }
 
 .theme-option.is-active {
   border-color: transparent;
-  background: linear-gradient(135deg, var(--pico-primary), var(--surface-strong));
-  color: #fff;
+  background: var(--theme-trigger-bg);
+  color: var(--theme-trigger-text);
+}
+
+.theme-option[data-theme-option="default"] {
+  background: linear-gradient(135deg, #255f46, #a96a26);
+  color: #f7fbf8;
+}
+
+.theme-option[data-theme-option="dark"] {
+  background: linear-gradient(135deg, #7cd6ff, #f0b35a);
+  color: #06111d;
+}
+
+.theme-option[data-theme-option="rainbow"] {
+  background: linear-gradient(135deg, #ff595e, #0057b8);
+  color: #fffaf4;
+}
+
+.theme-option[data-theme-option="computer"] {
+  background: linear-gradient(135deg, #47ff8a, #16c47f);
+  color: #031008;
+}
+
+.theme-option[data-theme-option="colorblind"] {
+  background: linear-gradient(135deg, #0072b2, #e69f00);
+  color: #f7fbff;
 }
 
 .card-grid,
@@ -149,18 +182,19 @@
   align-items: center;
   gap: 0.55rem;
   padding: 0.55rem 0.8rem;
-  border: 1px solid var(--surface-outline);
+  border: 1px solid var(--button-border);
   border-radius: 999px;
-  background: var(--soft-bg);
-  color: var(--surface-strong);
+  background: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: var(--button-shadow);
 }
 
 .tag-summary strong {
   min-width: 1.8rem;
   padding: 0.2rem 0.45rem;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--pico-h1-color);
+  background: var(--button-solid-bg);
+  color: var(--button-solid-text);
   font-size: 0.82rem;
   text-align: center;
 }
