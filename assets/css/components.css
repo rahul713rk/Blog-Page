@@ -162,7 +162,7 @@
   height: 2.8rem;
   margin: 0;
   padding: 0;
-  border: 1px solid var(--button-border);
+  border: 0px;
   border-radius: 999px;
   background: var(--button-bg);
   color: var(--pico-color);

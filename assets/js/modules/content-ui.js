@@ -164,8 +164,40 @@ function setupQuestionAnswerMask() {
     return;
   }
 
-  const isQaSection = (text) => /q\s*&\s*a|faq|question|exercise/i.test(text || "");
-  const isAnswerNode = (node) => /answer|solution/i.test(node.textContent || "");
+  const isQaSection = (text) => /q\s*&\s*a|faq|question|exercise|interview/i.test(text || "");
+  const getNodeText = (node) => String(node?.textContent || "").trim();
+  const isAnswerStartNode = (node) => /^(?:a\d*|answer|solution)\s*:/i.test(getNodeText(node));
+  const isQuestionStartNode = (node) => /^(?:q\d*|question)\s*:/i.test(getNodeText(node));
+  const hasQuestionAnswerContent = (nodes) =>
+    nodes.some((node) => isQuestionStartNode(node) || isAnswerStartNode(node));
+
+  const collectAnswerTargets = (nodes) => {
+    const targets = [];
+    let collectingAnswer = false;
+
+    nodes.forEach((node) => {
+      if (!(node instanceof HTMLElement) || node.classList.contains("qa-toggle-row")) {
+        return;
+      }
+
+      if (isQuestionStartNode(node)) {
+        collectingAnswer = false;
+        return;
+      }
+
+      if (isAnswerStartNode(node)) {
+        collectingAnswer = true;
+        targets.push(node);
+        return;
+      }
+
+      if (collectingAnswer) {
+        targets.push(node);
+      }
+    });
+
+    return targets;
+  };
 
   const mountToggle = ({ host, targets, compact = false }) => {
     if (!host || !targets.length) {
@@ -195,13 +227,16 @@ function setupQuestionAnswerMask() {
   Array.from(articleBody.querySelectorAll(".collapsible-section")).forEach((section) => {
     const heading = section.querySelector(":scope > .collapsible-toggle .collapsible-heading");
     const content = section.querySelector(":scope > .collapsible-content .collapsible-inner");
-    if (!heading || !content || !isQaSection(heading.textContent || "")) {
+    if (!heading || !content) {
       return;
     }
 
-    const targets = Array.from(
-      content.querySelectorAll("p, li, blockquote, pre, .code-block-shell, .diagram-shell, table")
-    ).filter(isAnswerNode);
+    const sectionNodes = Array.from(content.children);
+    if (!isQaSection(heading.textContent || "") && !hasQuestionAnswerContent(sectionNodes)) {
+      return;
+    }
+
+    const targets = collectAnswerTargets(sectionNodes);
 
     mountToggle({
       host: section.querySelector(":scope > .collapsible-toggle"),
@@ -211,12 +246,12 @@ function setupQuestionAnswerMask() {
   });
 
   Array.from(articleBody.querySelectorAll("h3, h4, h5, h6")).forEach((heading) => {
-    if (heading.closest(".collapsible-section") || !isQaSection(heading.textContent || "")) {
+    if (heading.closest(".collapsible-section")) {
       return;
     }
 
     const level = Number(heading.tagName.slice(1));
-    const targets = [];
+    const nodes = [];
     let current = heading.nextElementSibling;
 
     while (current) {
@@ -224,13 +259,15 @@ function setupQuestionAnswerMask() {
         break;
       }
 
-      if (isAnswerNode(current)) {
-        targets.push(current);
-      }
-
+      nodes.push(current);
       current = current.nextElementSibling;
     }
 
+    if (!isQaSection(heading.textContent || "") && !hasQuestionAnswerContent(nodes)) {
+      return;
+    }
+
+    const targets = collectAnswerTargets(nodes);
     if (!targets.length) {
       return;
     }
