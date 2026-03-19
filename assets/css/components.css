@@ -89,14 +89,25 @@
 
 .theme-icon-image {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
+  transform: scale(1.1);
+  transform-origin: center;
 }
 
 .theme-trigger-icon img,
 .theme-option-icon img {
   width: 1.05rem;
   height: 1.05rem;
+}
+
+:root[data-theme="github-dark"] .theme-icon-image,
+:root[data-theme="abyss"] .theme-icon-image,
+:root[data-code-theme="github-dark"] .code-block-toolbar .theme-icon-image,
+:root[data-code-theme="abyss"] .code-block-toolbar .theme-icon-image,
+:root[data-diagram-theme="github-dark"] .diagram-toolbar .theme-icon-image,
+:root[data-diagram-theme="abyss"] .diagram-toolbar .theme-icon-image {
+  filter: brightness(0) invert(1);
 }
 
 .theme-trigger {
