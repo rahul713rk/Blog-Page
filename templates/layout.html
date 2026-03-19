@@ -13,17 +13,17 @@
     try {
       const root = document.documentElement;
       const savedTheme = localStorage.getItem("blog-theme");
-      if (["default", "dark", "computer"].includes(savedTheme)) {
+      if (["github-dark", "abyss", "light-modern", "light-plus"].includes(savedTheme)) {
         root.dataset.theme = savedTheme;
       }
 
       const savedCodeTheme = localStorage.getItem("blog-code-theme");
-      if (["github-light", "light-plus", "light-modern", "abyss"].includes(savedCodeTheme)) {
+      if (["github-dark", "abyss", "light-modern", "light-plus"].includes(savedCodeTheme)) {
         root.dataset.codeTheme = savedCodeTheme;
       }
 
       const savedDiagramTheme = localStorage.getItem("blog-diagram-theme");
-      if (["github-light", "light-plus", "light-modern", "abyss"].includes(savedDiagramTheme)) {
+      if (["github-dark", "abyss", "light-modern", "light-plus"].includes(savedDiagramTheme)) {
         root.dataset.diagramTheme = savedDiagramTheme;
       }
     } catch { }
@@ -60,51 +60,38 @@
           <details class="theme-dropdown" data-theme-group="page">
             <summary class="theme-trigger" aria-label="Site theme switcher">
               <span class="theme-trigger-icon" data-theme-active-icon aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M12 3v3"></path>
-                  <path d="M12 18v3"></path>
-                  <path d="M3 12h3"></path>
-                  <path d="M18 12h3"></path>
-                  <path d="M5.64 5.64l2.12 2.12"></path>
-                  <path d="M16.24 16.24l2.12 2.12"></path>
-                  <path d="M5.64 18.36l2.12-2.12"></path>
-                  <path d="M16.24 7.76l2.12-2.12"></path>
-                  <circle cx="12" cy="12" r="4.2"></circle>
-                </svg>
+                <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-github-dark.svg" alt=""
+                  aria-hidden="true">
               </span>
             </summary>
 
             <div class="theme-menu">
-              <button class="theme-option" type="button" data-theme-option="default" aria-label="Default theme"
-                title="Default theme">
+              <button class="theme-option" type="button" data-theme-option="github-dark" aria-label="GitHub Dark theme"
+                title="GitHub Dark">
                 <span class="theme-option-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <path d="M12 2v3"></path>
-                    <path d="M12 19v3"></path>
-                  </svg>
+                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-github-dark.svg" alt=""
+                    aria-hidden="true">
                 </span>
               </button>
-              <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark theme"
-                title="Dark theme">
+              <button class="theme-option" type="button" data-theme-option="abyss" aria-label="Abyss theme"
+                title="Abyss">
                 <span class="theme-option-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
-                  </svg>
+                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-abyss.svg" alt=""
+                    aria-hidden="true">
                 </span>
               </button>
-              <button class="theme-option" type="button" data-theme-option="computer" aria-label="Computer theme"
-                title="Computer theme">
+              <button class="theme-option" type="button" data-theme-option="light-modern"
+                aria-label="Light Modern theme" title="Light Modern">
                 <span class="theme-option-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="12" rx="2"></rect>
-                    <path d="M8 20h8"></path>
-                    <path d="M12 16v4"></path>
-                  </svg>
+                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-light-modern.svg" alt=""
+                    aria-hidden="true">
+                </span>
+              </button>
+              <button class="theme-option" type="button" data-theme-option="light-plus"
+                aria-label="Light+ theme" title="Light+">
+                <span class="theme-option-icon" aria-hidden="true">
+                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-light-plus.svg" alt=""
+                    aria-hidden="true">
                 </span>
               </button>
             </div>
