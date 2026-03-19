@@ -2,7 +2,6 @@
 :root[data-theme="default"] {
   --pico-font-family: "Space Grotesk", sans-serif;
   --code-font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  --diagram-font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
   --pico-border-radius: 1.25rem;
   --pico-background-color: #eef2ea;
   --pico-card-background-color: rgba(255, 255, 255, 0.78);
@@ -35,22 +34,10 @@
   --button-shadow: 0 10px 24px rgba(26, 39, 31, 0.12);
   --theme-trigger-bg: linear-gradient(135deg, #255f46, #3f7d5f);
   --theme-trigger-text: #f7fbf8;
-  --mermaid-bg: rgba(255, 255, 255, 0.45);
-  --mermaid-surface: rgba(37, 95, 70, 0.05);
-  --mermaid-line: #64748b;
-  --mermaid-node: #255f46;
-  --mermaid-node-alt: #334155;
-  --mermaid-text: #0f172a;
-  --mermaid-contrast: #ffffff;
   --page-gradient:
     radial-gradient(circle at top left, rgba(109, 175, 117, 0.22), transparent 30%),
     radial-gradient(circle at top right, rgba(187, 122, 47, 0.18), transparent 28%),
     linear-gradient(180deg, #f7f3e9 0%, #edf2ea 48%, #e8efe9 100%);
-  --code-bg: #f6f2ea;
-  --code-bg-strong: #eee7dc;
-  --code-color: #111;
-  --code-muted: #4f5b63;
-  --code-border: rgba(34, 43, 52, 0.14);
 }
 
 :root[data-theme="dark"] {
@@ -85,27 +72,14 @@
   --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
   --theme-trigger-bg: linear-gradient(135deg, #7cd6ff, #f0b35a);
   --theme-trigger-text: #07111b;
-  --mermaid-bg: rgba(15, 23, 42, 0.45);
-  --mermaid-surface: rgba(124, 214, 255, 0.08);
-  --mermaid-line: #94a3b8;
-  --mermaid-node: #7cd6ff;
-  --mermaid-node-alt: #f0b35a;
-  --mermaid-text: #f8fafc;
-  --mermaid-contrast: #0f172a;
   --page-gradient:
     radial-gradient(circle at top left, rgba(124, 214, 255, 0.16), transparent 28%),
     radial-gradient(circle at top right, rgba(240, 179, 90, 0.14), transparent 24%),
     linear-gradient(180deg, #08111b 0%, #0d1623 48%, #142031 100%);
-  --code-bg: #071019;
-  --code-bg-strong: #040b12;
-  --code-color: #ebf5fc;
-  --code-muted: #9ec7dd;
-  --code-border: rgba(158, 199, 221, 0.16);
 }
 
 :root[data-theme="computer"] {
   --pico-font-family: "IBM Plex Mono", monospace;
-  --diagram-font-family: "IBM Plex Mono", monospace;
   --pico-background-color: #07130a;
   --pico-card-background-color: rgba(6, 20, 11, 0.86);
   --pico-card-sectioning-background-color: rgba(6, 20, 11, 0.92);
@@ -137,21 +111,143 @@
   --button-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
   --theme-trigger-bg: linear-gradient(135deg, #47ff8a, #16c47f);
   --theme-trigger-text: #031008;
-  --mermaid-bg: rgba(0, 20, 10, 0.5);
-  --mermaid-surface: rgba(71, 255, 138, 0.05);
-  --mermaid-line: #47ff8a;
-  --mermaid-node: #47ff8a;
-  --mermaid-node-alt: #16c47f;
-  --mermaid-text: #d5ffe2;
-  --mermaid-contrast: #000000;
   --page-gradient:
     radial-gradient(circle at top left, rgba(71, 255, 138, 0.14), transparent 28%),
     linear-gradient(180deg, #040b05 0%, #07130a 40%, #0b1c0e 100%);
-  --code-bg: #000;
-  --code-bg-strong: #020502;
-  --code-color: #9bffbf;
-  --code-muted: #6fc48d;
-  --code-border: rgba(71, 255, 138, 0.16);
+}
+
+:root,
+:root[data-code-theme="github-light"] {
+  --code-bg: #f6f8fa;
+  --code-toolbar-bg: #eef2f6;
+  --code-color: #24292f;
+  --code-muted: #57606a;
+  --code-border: #d0d7de;
+  --code-token-comment: #6e7781;
+  --code-token-punctuation: #24292f;
+  --code-token-property: #cf222e;
+  --code-token-number: #0550ae;
+  --code-token-string: #116329;
+  --code-token-operator: #0a3069;
+  --code-token-keyword: #8250df;
+  --code-token-function: #953800;
+  --code-token-regex: #bc4c00;
+}
+
+:root[data-code-theme="light-plus"] {
+  --code-bg: #ffffff;
+  --code-toolbar-bg: #f3f3f3;
+  --code-color: #1f1f1f;
+  --code-muted: #616161;
+  --code-border: #d4d4d4;
+  --code-token-comment: #008000;
+  --code-token-punctuation: #1f1f1f;
+  --code-token-property: #af00db;
+  --code-token-number: #098658;
+  --code-token-string: #a31515;
+  --code-token-operator: #0451a5;
+  --code-token-keyword: #0000ff;
+  --code-token-function: #795e26;
+  --code-token-regex: #811f3f;
+}
+
+:root[data-code-theme="light-modern"] {
+  --code-bg: #fcfcfd;
+  --code-toolbar-bg: #f2f4f7;
+  --code-color: #1f2933;
+  --code-muted: #637381;
+  --code-border: #d7dee7;
+  --code-token-comment: #7a8699;
+  --code-token-punctuation: #1f2933;
+  --code-token-property: #d73a49;
+  --code-token-number: #0f8b8d;
+  --code-token-string: #18794e;
+  --code-token-operator: #0065d1;
+  --code-token-keyword: #7c3aed;
+  --code-token-function: #b45309;
+  --code-token-regex: #c2410c;
+}
+
+:root[data-code-theme="abyss"] {
+  --code-bg: #000c18;
+  --code-toolbar-bg: #001221;
+  --code-color: #d7e7ff;
+  --code-muted: #7ea6c6;
+  --code-border: #123149;
+  --code-token-comment: #3b6a8f;
+  --code-token-punctuation: #d7e7ff;
+  --code-token-property: #ff8f6b;
+  --code-token-number: #ddb26f;
+  --code-token-string: #a7db78;
+  --code-token-operator: #66d9ef;
+  --code-token-keyword: #c792ea;
+  --code-token-function: #ffd580;
+  --code-token-regex: #ffb454;
+}
+
+:root,
+:root[data-diagram-theme="github-light"] {
+  --diagram-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --diagram-bg: #f6f8fa;
+  --diagram-toolbar-bg: #eef2f6;
+  --diagram-text: #24292f;
+  --diagram-muted: #57606a;
+  --diagram-border: #d0d7de;
+  --mermaid-bg: #ffffff;
+  --mermaid-surface: #eaeef2;
+  --mermaid-line: #57606a;
+  --mermaid-node: #0969da;
+  --mermaid-node-alt: #8250df;
+  --mermaid-text: #24292f;
+  --mermaid-contrast: #ffffff;
+}
+
+:root[data-diagram-theme="light-plus"] {
+  --diagram-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --diagram-bg: #ffffff;
+  --diagram-toolbar-bg: #f3f3f3;
+  --diagram-text: #1f1f1f;
+  --diagram-muted: #616161;
+  --diagram-border: #d4d4d4;
+  --mermaid-bg: #ffffff;
+  --mermaid-surface: #f3f5f7;
+  --mermaid-line: #6b7280;
+  --mermaid-node: #0b6bc8;
+  --mermaid-node-alt: #c586c0;
+  --mermaid-text: #1f1f1f;
+  --mermaid-contrast: #ffffff;
+}
+
+:root[data-diagram-theme="light-modern"] {
+  --diagram-font-family: "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --diagram-bg: #fcfcfd;
+  --diagram-toolbar-bg: #f2f4f7;
+  --diagram-text: #1f2933;
+  --diagram-muted: #637381;
+  --diagram-border: #d7dee7;
+  --mermaid-bg: #fcfcfd;
+  --mermaid-surface: #eef3f8;
+  --mermaid-line: #64748b;
+  --mermaid-node: #2563eb;
+  --mermaid-node-alt: #0f766e;
+  --mermaid-text: #1f2933;
+  --mermaid-contrast: #ffffff;
+}
+
+:root[data-diagram-theme="abyss"] {
+  --diagram-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --diagram-bg: #000c18;
+  --diagram-toolbar-bg: #001221;
+  --diagram-text: #d7e7ff;
+  --diagram-muted: #7ea6c6;
+  --diagram-border: #123149;
+  --mermaid-bg: #001221;
+  --mermaid-surface: #032036;
+  --mermaid-line: #3d6b8d;
+  --mermaid-node: #4fc1ff;
+  --mermaid-node-alt: #c792ea;
+  --mermaid-text: #d7e7ff;
+  --mermaid-contrast: #04131f;
 }
 
 html {

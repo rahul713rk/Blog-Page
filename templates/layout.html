@@ -11,9 +11,20 @@
   <script>
     document.documentElement.classList.add("js");
     try {
+      const root = document.documentElement;
       const savedTheme = localStorage.getItem("blog-theme");
       if (["default", "dark", "computer"].includes(savedTheme)) {
-        document.documentElement.dataset.theme = savedTheme;
+        root.dataset.theme = savedTheme;
+      }
+
+      const savedCodeTheme = localStorage.getItem("blog-code-theme");
+      if (["github-light", "light-plus", "light-modern", "abyss"].includes(savedCodeTheme)) {
+        root.dataset.codeTheme = savedCodeTheme;
+      }
+
+      const savedDiagramTheme = localStorage.getItem("blog-diagram-theme");
+      if (["github-light", "light-plus", "light-modern", "abyss"].includes(savedDiagramTheme)) {
+        root.dataset.diagramTheme = savedDiagramTheme;
       }
     } catch { }
   </script>
@@ -46,9 +57,9 @@
           <a href="{{homeHref}}#blogs-section">Blogs</a>
           <a href="{{homeHref}}#guides-section">Guides</a>
 
-          <details class="theme-dropdown">
-            <summary class="theme-trigger" aria-label="Theme switcher">
-              <span class="theme-trigger-icon" aria-hidden="true">
+          <details class="theme-dropdown" data-theme-group="page">
+            <summary class="theme-trigger" aria-label="Site theme switcher">
+              <span class="theme-trigger-icon" data-theme-active-icon aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
                   stroke-linejoin="round">
                   <path d="M12 3v3"></path>

@@ -53,14 +53,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1rem;
   padding: 0.8rem 1rem;
-  border-bottom: 1px solid var(--code-border);
-  background: var(--code-bg-strong);
 }
 
-.code-block-language,
-.diagram-label {
+.code-block-toolbar {
+  border-bottom: 1px solid var(--code-border);
+  background: var(--code-toolbar-bg);
+}
+
+.diagram-toolbar {
+  border-bottom: 1px solid var(--diagram-border);
+  background: var(--diagram-toolbar-bg);
+}
+
+.code-block-language {
   color: var(--code-muted);
   font-family: var(--code-font-family);
   font-size: 0.8rem;
@@ -68,15 +76,70 @@
   text-transform: uppercase;
 }
 
+.diagram-label {
+  color: var(--diagram-muted);
+  font-family: var(--diagram-font-family);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.code-block-actions,
+.diagram-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: auto;
+}
+
 .code-copy-button {
   margin: 0;
   padding: 0.45rem 0.8rem;
   border: 1px solid var(--code-border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: color-mix(in srgb, var(--code-bg) 76%, transparent);
   color: var(--code-color);
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+.code-block-toolbar .theme-trigger,
+.code-block-toolbar .theme-option {
+  border-color: var(--code-border);
+  background: color-mix(in srgb, var(--code-bg) 82%, transparent);
+  color: var(--code-color);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.diagram-toolbar .theme-trigger,
+.diagram-toolbar .theme-option {
+  border-color: var(--diagram-border);
+  background: color-mix(in srgb, var(--diagram-bg) 82%, transparent);
+  color: var(--diagram-text);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.code-block-toolbar .theme-dropdown[open] .theme-trigger,
+.diagram-toolbar .theme-dropdown[open] .theme-trigger {
+  box-shadow: none;
+}
+
+.code-block-toolbar .theme-menu {
+  border-color: var(--code-border);
+  background: var(--code-toolbar-bg);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--code-bg) 80%, transparent);
+  backdrop-filter: none;
+}
+
+.diagram-toolbar .theme-menu {
+  border-color: var(--diagram-border);
+  background: var(--diagram-toolbar-bg);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--diagram-bg) 80%, transparent);
+  backdrop-filter: none;
 }
 
 .code-block-shell pre,
@@ -85,10 +148,13 @@
   margin: 0;
   padding: 1.1rem 1.15rem;
   overflow-x: auto;
-  background: transparent;
-  color: var(--code-color);
   font-size: 0.98rem;
   line-height: 1.7;
+}
+
+.code-block-shell pre {
+  background: var(--code-bg);
+  color: var(--code-color);
 }
 
 .article-body pre code,
@@ -112,11 +178,11 @@
 .article-body pre[class*="language-"] .token.prolog,
 .article-body pre[class*="language-"] .token.doctype,
 .article-body pre[class*="language-"] .token.cdata {
-  color: #6f859f;
+  color: var(--code-token-comment);
 }
 
 .article-body pre[class*="language-"] .token.punctuation {
-  color: #c9d7ea;
+  color: var(--code-token-punctuation);
 }
 
 .article-body pre[class*="language-"] .token.property,
@@ -124,12 +190,12 @@
 .article-body pre[class*="language-"] .token.constant,
 .article-body pre[class*="language-"] .token.symbol,
 .article-body pre[class*="language-"] .token.deleted {
-  color: #ff8f70;
+  color: var(--code-token-property);
 }
 
 .article-body pre[class*="language-"] .token.boolean,
 .article-body pre[class*="language-"] .token.number {
-  color: #ffd166;
+  color: var(--code-token-number);
 }
 
 .article-body pre[class*="language-"] .token.selector,
@@ -138,30 +204,30 @@
 .article-body pre[class*="language-"] .token.char,
 .article-body pre[class*="language-"] .token.builtin,
 .article-body pre[class*="language-"] .token.inserted {
-  color: #8ce99a;
+  color: var(--code-token-string);
 }
 
 .article-body pre[class*="language-"] .token.operator,
 .article-body pre[class*="language-"] .token.entity,
 .article-body pre[class*="language-"] .token.url,
 .article-body pre[class*="language-"] .token.variable {
-  color: #8bd3ff;
+  color: var(--code-token-operator);
 }
 
 .article-body pre[class*="language-"] .token.atrule,
 .article-body pre[class*="language-"] .token.attr-value,
 .article-body pre[class*="language-"] .token.keyword {
-  color: #7cb7ff;
+  color: var(--code-token-keyword);
 }
 
 .article-body pre[class*="language-"] .token.function,
 .article-body pre[class*="language-"] .token.class-name {
-  color: #d2a8ff;
+  color: var(--code-token-function);
 }
 
 .article-body pre[class*="language-"] .token.regex,
 .article-body pre[class*="language-"] .token.important {
-  color: #ffb86c;
+  color: var(--code-token-regex);
 }
 
 .article-body pre[class*="language-"] .token.bold {
@@ -176,16 +242,20 @@
   display: flex;
   justify-content: center;
   min-width: max-content;
+  background: var(--diagram-bg);
+  color: var(--diagram-text);
   font-family: var(--diagram-font-family);
 }
 
 .mermaid-host {
   padding: 1rem 1.15rem;
   overflow-x: auto;
+  background: var(--diagram-bg);
+  color: var(--diagram-text);
 }
 
 .mermaid-host pre {
-  color: var(--code-color);
+  color: var(--diagram-text);
 }
 
 .diagram-shell .mermaid svg {

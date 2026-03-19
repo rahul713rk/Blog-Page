@@ -1,3 +1,156 @@
+const THEME_ICONS = {
+  default: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v3"></path>
+      <path d="M12 18v3"></path>
+      <path d="M3 12h3"></path>
+      <path d="M18 12h3"></path>
+      <path d="M5.64 5.64l2.12 2.12"></path>
+      <path d="M16.24 16.24l2.12 2.12"></path>
+      <path d="M5.64 18.36l2.12-2.12"></path>
+      <path d="M16.24 7.76l2.12-2.12"></path>
+      <circle cx="12" cy="12" r="4.2"></circle>
+    </svg>
+  `,
+  dark: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
+    </svg>
+  `,
+  computer: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+      <path d="M8 20h8"></path>
+      <path d="M12 16v4"></path>
+    </svg>
+  `,
+  "github-light": `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8"></circle>
+      <path d="M12 8v8"></path>
+      <path d="M8 12h8"></path>
+    </svg>
+  `,
+  "light-plus": `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="10" cy="10" r="4.5"></circle>
+      <path d="M10 2.5v2"></path>
+      <path d="M10 15.5v2"></path>
+      <path d="M2.5 10h2"></path>
+      <path d="M15.5 10h2"></path>
+      <path d="M17.5 17.5v4"></path>
+      <path d="M15.5 19.5h4"></path>
+    </svg>
+  `,
+  "light-modern": `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3l1.5 3.8L17 8.2l-3.5 1.3L12 13.5l-1.5-4L7 8.2l3.5-1.4L12 3Z"></path>
+      <path d="M18.5 13.5l.9 2.2 2.1.8-2.1.8-.9 2.2-.9-2.2-2.1-.8 2.1-.8.9-2.2Z"></path>
+      <path d="M7 14l1.1 2.8L11 18l-2.9 1.2L7 22l-1.1-2.8L3 18l2.9-1.2L7 14Z"></path>
+    </svg>
+  `,
+  abyss: `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15.5A6.5 6.5 0 0 1 8.5 6a7.5 7.5 0 1 0 9.5 9.5Z"></path>
+      <path d="M16.5 4.5v1.5"></path>
+      <path d="M16.5 9v1.5"></path>
+      <path d="M14.25 7.25h1.5"></path>
+      <path d="M18.75 7.25h1.5"></path>
+    </svg>
+  `
+};
+
+const THEME_LABELS = {
+  default: "Default",
+  dark: "Dark",
+  computer: "Computer",
+  "github-light": "GitHub Light",
+  "light-plus": "Light+",
+  "light-modern": "Light Modern",
+  abyss: "Abyss"
+};
+
+const THEME_GROUPS = {
+  page: {
+    datasetKey: "theme",
+    storageKey: "blog-theme",
+    defaultTheme: "default",
+    supportedThemes: ["default", "dark", "computer"],
+    triggerLabel: "Site theme switcher"
+  },
+  code: {
+    datasetKey: "codeTheme",
+    storageKey: "blog-code-theme",
+    defaultTheme: "github-light",
+    supportedThemes: ["github-light", "light-plus", "light-modern", "abyss"],
+    triggerLabel: "Code theme switcher"
+  },
+  diagram: {
+    datasetKey: "diagramTheme",
+    storageKey: "blog-diagram-theme",
+    defaultTheme: "github-light",
+    supportedThemes: ["github-light", "light-plus", "light-modern", "abyss"],
+    triggerLabel: "Diagram theme switcher"
+  }
+};
+
+let themeDropdownCloseHandlerAttached = false;
+
+function renderThemeIcon(themeName) {
+  return THEME_ICONS[themeName] || THEME_ICONS.default;
+}
+
+function syncThemeDropdown(dropdown, activeTheme) {
+  if (!dropdown) {
+    return;
+  }
+
+  dropdown.querySelectorAll("[data-theme-option]").forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.themeOption === activeTheme);
+  });
+
+  const iconHost = dropdown.querySelector("[data-theme-active-icon]");
+  if (iconHost) {
+    iconHost.innerHTML = renderThemeIcon(activeTheme);
+  }
+}
+
+function createThemeDropdown(groupName) {
+  const config = THEME_GROUPS[groupName];
+  if (!config) {
+    return null;
+  }
+
+  const dropdown = document.createElement("details");
+  dropdown.className = "theme-dropdown block-theme-dropdown";
+  dropdown.dataset.themeGroup = groupName;
+
+  const optionsMarkup = config.supportedThemes
+    .map(
+      (themeName) => `
+        <button class="theme-option" type="button" data-theme-option="${themeName}" aria-label="${THEME_LABELS[themeName]} theme" title="${THEME_LABELS[themeName]}">
+          <span class="theme-option-icon" aria-hidden="true">
+            ${renderThemeIcon(themeName)}
+          </span>
+        </button>
+      `
+    )
+    .join("");
+
+  dropdown.innerHTML = `
+    <summary class="theme-trigger theme-trigger--compact" aria-label="${config.triggerLabel}">
+      <span class="theme-trigger-icon" data-theme-active-icon aria-hidden="true">
+        ${renderThemeIcon(config.defaultTheme)}
+      </span>
+    </summary>
+    <div class="theme-menu" role="menu" aria-label="${config.triggerLabel}">
+      ${optionsMarkup}
+    </div>
+  `;
+
+  return dropdown;
+}
+
 function setupScrollTopButton() {
   const button = document.querySelector(".scroll-top-button");
   if (!button) {
@@ -15,48 +168,88 @@ function setupScrollTopButton() {
   toggleVisibility();
 }
 
-function setupThemeSwitcher() {
+function setupThemeControls() {
   const root = document.documentElement;
-  const buttons = Array.from(document.querySelectorAll("[data-theme-option]"));
-  const dropdown = document.querySelector(".theme-dropdown");
-  if (!buttons.length) {
+  const dropdowns = Array.from(document.querySelectorAll("[data-theme-group]"));
+  if (!dropdowns.length) {
     return;
   }
 
-  const supportedThemes = new Set(["default", "dark", "computer"]);
-  const applyTheme = (theme) => {
-    const nextTheme = supportedThemes.has(theme) ? theme : "default";
-    root.dataset.theme = nextTheme;
-    buttons.forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.themeOption === nextTheme);
-    });
-    try {
-      localStorage.setItem("blog-theme", nextTheme);
-    } catch {}
-
-    setupMermaid();
-  };
-
-  const activeTheme = supportedThemes.has(root.dataset.theme) ? root.dataset.theme : "default";
-  applyTheme(activeTheme);
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      applyTheme(button.dataset.themeOption || "default");
-      if (dropdown) {
-        dropdown.open = false;
-      }
-    });
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!dropdown?.open) {
+  const applyTheme = (groupName, themeName) => {
+    const config = THEME_GROUPS[groupName];
+    if (!config) {
       return;
     }
-    if (!dropdown.contains(event.target)) {
-      dropdown.open = false;
+
+    const nextTheme = config.supportedThemes.includes(themeName) ? themeName : config.defaultTheme;
+    root.dataset[config.datasetKey] = nextTheme;
+
+    document.querySelectorAll(`[data-theme-group="${groupName}"]`).forEach((dropdown) => {
+      syncThemeDropdown(dropdown, nextTheme);
+    });
+
+    try {
+      localStorage.setItem(config.storageKey, nextTheme);
+    } catch {}
+
+    if (groupName === "page" || groupName === "diagram") {
+      setupMermaid();
     }
+  };
+
+  dropdowns.forEach((dropdown) => {
+    if (dropdown.dataset.themeBound === "true") {
+      return;
+    }
+
+    dropdown.dataset.themeBound = "true";
+    const groupName = dropdown.dataset.themeGroup;
+    const config = THEME_GROUPS[groupName];
+    if (!config) {
+      return;
+    }
+
+    dropdown.querySelectorAll("[data-theme-option]").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyTheme(groupName, button.dataset.themeOption || config.defaultTheme);
+        dropdown.open = false;
+      });
+    });
+
+    dropdown.addEventListener("toggle", () => {
+      if (!dropdown.open) {
+        return;
+      }
+
+      document.querySelectorAll("[data-theme-group]").forEach((otherDropdown) => {
+        if (otherDropdown !== dropdown) {
+          otherDropdown.open = false;
+        }
+      });
+    });
   });
+
+  Object.entries(THEME_GROUPS).forEach(([groupName, config]) => {
+    if (!document.querySelector(`[data-theme-group="${groupName}"]`)) {
+      return;
+    }
+
+    const activeTheme = config.supportedThemes.includes(root.dataset[config.datasetKey])
+      ? root.dataset[config.datasetKey]
+      : config.defaultTheme;
+    applyTheme(groupName, activeTheme);
+  });
+
+  if (!themeDropdownCloseHandlerAttached) {
+    themeDropdownCloseHandlerAttached = true;
+    document.addEventListener("click", (event) => {
+      document.querySelectorAll("[data-theme-group]").forEach((dropdown) => {
+        if (dropdown.open && !dropdown.contains(event.target)) {
+          dropdown.open = false;
+        }
+      });
+    });
+  }
 }
 
 let mermaidLoadHookAttached = false;
@@ -355,16 +548,29 @@ function setupCodeBlocks() {
       const shell = document.createElement("section");
       shell.className = "diagram-shell";
       const source = pre.textContent || "";
+
+      const toolbar = document.createElement("header");
+      toolbar.className = "diagram-toolbar";
+
+      const label = document.createElement("span");
+      label.className = "diagram-label";
+      label.textContent = "Diagram";
+
+      const actions = document.createElement("div");
+      actions.className = "diagram-toolbar-actions";
+      const themeDropdown = createThemeDropdown("diagram");
+      if (themeDropdown) {
+        actions.appendChild(themeDropdown);
+      }
+
+      toolbar.append(label, actions);
+
       const host = document.createElement("div");
       host.className = "mermaid-host";
       host.dataset.mermaidSource = source;
-      shell.innerHTML = `
-        <header class="diagram-toolbar">
-          <span class="diagram-label">Diagram</span>
-        </header>
-      `;
+
       pre.replaceWith(shell);
-      shell.appendChild(host);
+      shell.append(toolbar, host);
       return;
     }
 
@@ -377,6 +583,14 @@ function setupCodeBlocks() {
     const label = document.createElement("span");
     label.className = "code-block-language";
     label.textContent = getCodeLanguage(pre);
+
+    const actions = document.createElement("div");
+    actions.className = "code-block-actions";
+
+    const themeDropdown = createThemeDropdown("code");
+    if (themeDropdown) {
+      actions.appendChild(themeDropdown);
+    }
 
     const copyButton = document.createElement("button");
     copyButton.type = "button";
@@ -400,7 +614,8 @@ function setupCodeBlocks() {
       }, 1600);
     });
 
-    toolbar.append(label, copyButton);
+    actions.appendChild(copyButton);
+    toolbar.append(label, actions);
 
     pre.replaceWith(shell);
     shell.append(toolbar, pre);
@@ -497,7 +712,9 @@ function setupMermaid() {
     }
 
     try {
-      const renderId = `mermaid-diagram-${index}-${document.documentElement.dataset.theme || "default"}`;
+      const pageTheme = document.documentElement.dataset.theme || "default";
+      const diagramTheme = document.documentElement.dataset.diagramTheme || "github-light";
+      const renderId = `mermaid-diagram-${index}-${pageTheme}-${diagramTheme}`;
       const { svg } = await mermaid.render(renderId, source);
       host.innerHTML = svg;
     } catch (error) {
@@ -507,7 +724,6 @@ function setupMermaid() {
 }
 
 function initSiteUi() {
-  setupThemeSwitcher();
   setupSectionCollapses();
   setupContentToggle();
   setupPaginationSelects();
@@ -515,6 +731,7 @@ function initSiteUi() {
   buildHeadingCollapsibles();
   setupQuestionAnswerMask();
   setupCodeBlocks();
+  setupThemeControls();
   setupRevealOnScroll();
   setupMermaid();
   document.querySelectorAll(".reveal-on-scroll").forEach((node) => node.classList.add("is-visible"));
