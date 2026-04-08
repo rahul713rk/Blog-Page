@@ -1,10 +1,21 @@
-# Binary Search: Common Patterns for DSA Problems
+---
+title: "Binary Search: Common Patterns for DSA Problems"
+description: "Master binary search with these common patterns found in Data Structure and Algorithm problems."
+date: 2026-03-10
+author: Rahul Kumar
+tags: [DSA, Binary Search, Patterns, Algorithms]
+category: "DSA"
+cover: ""
+readingTime: "15 min read"
+draft: false
+slug: "binary-search-patterns"
+---
 
-*A Comprehensive Guide for Beginners and Experts*
+# Binary Search: Common Patterns for DSA Problems
 
 ---
 
-## **1. Introduction to Binary Search**
+## Introduction
 
 Binary search is a **divide-and-conquer** algorithm used to find the position of a target value within a **sorted array**. It works by repeatedly dividing the search interval in half, eliminating half of the remaining elements each time.
 
@@ -34,9 +45,7 @@ Binary search is a **divide-and-conquer** algorithm used to find the position of
 
 ---
 
----
-
-## **2. Common Patterns in Binary Search**
+## 🧠 1. Common Patterns in Binary Search
 
 Binary search is not just about finding an element—it’s about **adapting** its core logic to solve a variety of problems efficiently. Below are the most common patterns with detailed explanations, code examples, and use cases.
 
@@ -647,9 +656,7 @@ def kth_smallest(matrix, k):
 
 ---
 
----
-
-## **3. Tips and Tricks for Binary Search**
+## 🛠️ Tips and Tricks for Binary Search
 
 1. **Avoid Overflow:**
    
@@ -679,7 +686,7 @@ def kth_smallest(matrix, k):
 
 ---
 
-## **4. Interview Q&A: Binary Search Edition**
+## ❓ Interview Q&A: Binary Search Edition
 
 ### **Conceptual Questions**
 

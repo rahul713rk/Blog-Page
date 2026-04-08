@@ -1,4 +1,19 @@
+---
+title: "Tree Patterns in DSA: A Comprehensive Guide"
+description: "Explore fundamental and advanced tree patterns for data structures and algorithms with Python and Java examples."
+date: 2026-03-20
+author: Rahul Kumar
+tags: [DSA, Trees, Patterns, Algorithms]
+category: "DSA"
+cover: ""
+readingTime: "25 min read"
+draft: false
+slug: "tree-patterns-guide"
+---
+
 # Tree Patterns in DSA: A Comprehensive Guide
+
+---
 
 ## Introduction
 
@@ -16,9 +31,7 @@ This guide covers:
 
 ---
 
----
-
-## 1. Core Tree Patterns
+## 🧠 1. Core Tree Patterns
 
 ---
 
@@ -371,9 +384,7 @@ public class BuildTree {
 
 ---
 
----
-
-## 2. Advanced Tree Patterns
+## 🧠 2. Advanced Tree Patterns
 
 ---
 
@@ -599,9 +610,7 @@ public class ValidateBST {
 
 ---
 
----
-
-## 3. Tips & Tricks
+## 🛠️ 3. Tips & Tricks
 
 ---
 
@@ -632,9 +641,7 @@ public class ValidateBST {
 
 ---
 
----
-
-## 4. Interview Q&A
+## ❓ 4. Interview Q&A
 
 ---
 
@@ -720,9 +727,7 @@ public class DiameterOfBinaryTree {
 
 ---
 
----
-
-## 5. Common Mistakes and Edge Cases
+## 🧠 5. Common Mistakes and Edge Cases
 
 ---
 
@@ -753,9 +758,7 @@ public class DiameterOfBinaryTree {
 
 ---
 
----
-
-## 6. Additional Resources
+## 📚 6. Additional Resources
 
 ---
 

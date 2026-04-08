@@ -1,6 +1,6 @@
 ---
 title: "Searching and Sorting Algorithms"
-description: ""
+description: "A comprehensive guide to searching and sorting algorithms with Python and Java implementations."
 date: 2026-02-04
 author: Rahul Kumar
 tags: [Data Structure and Algorithms , DSA , Searching , Sorting]
@@ -10,7 +10,14 @@ readingTime: "20 min read"
 draft: false
 slug: "Searching-and-Sorting-Algorithms"
 ---
+
 # Searching and Sorting Algorithms
+
+---
+
+## Introduction
+
+Searching and Sorting are fundamental operations in data structures and algorithms. This guide covers the most common algorithms, their time and space complexities, and provides standalone implementations in Python and Java.
 
 ---
 
