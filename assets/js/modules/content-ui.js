@@ -37,10 +37,13 @@ function setupSectionCollapses() {
       const isOpen = trigger.classList.toggle("is-open");
       panel.classList.toggle("is-open", isOpen);
       trigger.setAttribute("aria-expanded", String(isOpen));
+      const openLabel = trigger.dataset.openLabel || "Hide";
+      const closeLabel = trigger.dataset.closeLabel || "Show";
       const label = trigger.querySelector("span");
       if (label) {
-        label.textContent = isOpen ? "Hide tags" : "Show tags";
+        label.textContent = isOpen ? openLabel : closeLabel;
       }
+
     });
   });
 }

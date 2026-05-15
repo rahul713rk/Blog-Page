@@ -53,5 +53,6 @@ Every Markdown file must start with YAML frontmatter.
 - **External Links**: Open in a new tab automatically.
 - **Images**: Use standard markdown `![alt](url)`. Images are automatically lazy-loaded.
 
+
 ### Admonitions (Callouts)
 - Use bold text or blockquotes for important notes, as no specific plugin is currently installed for custom callouts.
