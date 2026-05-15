@@ -1,3 +1,12 @@
+function escapeHtml(text) {
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 async function setupSearch() {
   const input = document.querySelector("#search-input");
   const results = document.querySelector("#search-results");
@@ -7,10 +16,20 @@ async function setupSearch() {
     return;
   }
 
-  const response = await fetch(`${sitePath}/search-index.json`);
-  const payload = await response.json();
-  const index = lunr.Index.load(payload.index);
-  const documents = new Map(payload.documents.map((doc) => [doc.id, doc]));
+  let index, documents;
+  try {
+    const response = await fetch(`${sitePath}/search-index.json`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const payload = await response.json();
+    index = lunr.Index.load(payload.index);
+    documents = new Map(payload.documents.map((doc) => [doc.id, doc]));
+  } catch (err) {
+    console.error("Search index failed to load:", err);
+    results.innerHTML = "<p>Search is unavailable right now.</p>";
+    return;
+  }
 
   input.addEventListener("input", () => {
     const query = input.value.trim();
@@ -26,8 +45,8 @@ async function setupSearch() {
             const doc = documents.get(match.ref);
             return `
               <article>
-                <h3><a href="${doc.url}">${doc.title}</a></h3>
-                <p>${doc.description}</p>
+                <h3><a href="${escapeHtml(doc.url)}">${escapeHtml(doc.title)}</a></h3>
+                <p>${escapeHtml(doc.description)}</p>
               </article>
             `;
           })
@@ -35,5 +54,6 @@ async function setupSearch() {
       : "<p>No results found.</p>";
   });
 }
+
 
 setupSearch();

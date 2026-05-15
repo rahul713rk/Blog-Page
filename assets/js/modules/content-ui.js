@@ -97,7 +97,10 @@ function setupPaginationSelects() {
   });
 }
 
+let headingCounter = 0;
+
 function buildHeadingCollapsibles() {
+
   const container = document.querySelector(".article-body");
   if (!container) {
     return;
@@ -117,7 +120,8 @@ function buildHeadingCollapsibles() {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "collapsible-toggle";
-      button.setAttribute("aria-controls", `${heading.id || `section-${level}`}-content`);
+      const safeId = heading.id || `section-${level}-${++headingCounter}`;
+      button.setAttribute("aria-controls", `${safeId}-content`);
       button.setAttribute("aria-expanded", "false");
       button.innerHTML = `
         <span class="collapsible-heading">${heading.textContent}</span>
@@ -126,7 +130,8 @@ function buildHeadingCollapsibles() {
 
       const content = document.createElement("div");
       content.className = "collapsible-content";
-      content.id = `${heading.id || `section-${level}`}-content`;
+      content.id = `${safeId}-content`;
+
 
       const inner = document.createElement("div");
       inner.className = "collapsible-inner";

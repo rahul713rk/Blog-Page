@@ -320,8 +320,7 @@
   .content-section,
   .search-panel,
   .tutorial-track,
-  .post-shell,
-  .home-hero {
+  .post-shell {
     padding: 1rem;
     border-radius: 1.35rem;
   }
@@ -357,4 +356,18 @@
     width: 100%;
     justify-content: center;
   }
+}
+
+.site-footer {
+
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--surface-outline);
+  text-align: center;
+  color: var(--pico-muted-color);
+}
+
+.site-footer p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
 }

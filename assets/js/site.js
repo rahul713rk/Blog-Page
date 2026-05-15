@@ -8,7 +8,7 @@ function initSiteUi() {
   setupCodeBlocks();
   setupThemeControls();
   setupMermaid();
-  document.querySelectorAll(".reveal-on-scroll").forEach((node) => node.classList.add("is-visible"));
+
 }
 
 if (document.readyState === "loading") {

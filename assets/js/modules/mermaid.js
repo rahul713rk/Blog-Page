@@ -37,7 +37,7 @@ function setupMermaid() {
 
   mermaid.initialize({
     startOnLoad: false,
-    securityLevel: "loose",
+    securityLevel: "strict",
     theme: "base",
     fontFamily: diagramFontFamily || "inherit",
     themeVariables: {

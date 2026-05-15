@@ -415,10 +415,10 @@
 .qa-toggle {
   margin: 0;
   padding: 0.42rem 0.82rem;
-  border: 1px solid #0f172a;
+  border: 1px solid var(--button-border);
   border-radius: 999px;
-  background: #0f172a;
-  color: #ffffff;
+  background: var(--button-solid-bg);
+  color: var(--button-solid-text);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.01em;
@@ -427,10 +427,11 @@
 }
 
 .qa-toggle[data-state="hidden"] {
-  background: #ffffff;
-  color: #0f172a;
-  border-color: #0f172a;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border-color: var(--button-border);
 }
+
 
 .qa-toggle.is-compact {
   margin-left: auto;
