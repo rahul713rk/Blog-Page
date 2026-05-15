@@ -47,9 +47,15 @@ function getThemeIconSrc(themeName) {
   return `${getSitePath()}/assets/icons/${iconFile}`;
 }
 
+const THEME_ABBREVIATIONS = {
+  "github-dark": "GD",
+  abyss: "AB",
+  "light-modern": "LM",
+  "light-plus": "LP"
+};
+
 function renderThemeIcon(themeName) {
-  const label = THEME_LABELS[themeName] || THEME_LABELS["github-dark"];
-  return `<img class="theme-icon-image" src="${getThemeIconSrc(themeName)}" alt="" aria-hidden="true" title="${label}">`;
+  return `<span class="theme-text-icon">${THEME_ABBREVIATIONS[themeName] || "TH"}</span>`;
 }
 
 export { CLASSIC_THEME_NAMES, THEME_GROUPS, THEME_LABELS, getThemeIconSrc, renderThemeIcon };

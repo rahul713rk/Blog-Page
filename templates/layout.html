@@ -7,7 +7,7 @@
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
   <link rel="canonical" href="{{canonicalUrl}}">
-  <link rel="icon" type="image/svg+xml" href="{{sitePath}}/assets/icons/book.svg">
+
   <script>
     document.documentElement.classList.add("js");
     try {
@@ -55,9 +55,6 @@
     <header class="site-header">
       <nav class="glass-nav reveal-on-scroll">
         <a class="brand-link" href="{{homeHref}}" aria-label="{{siteName}} home">
-          <span class="brand-mark">
-            <img src="{{sitePath}}/assets/icons/book-rack-cabinet.svg" alt="">
-          </span>
           <span class="brand-copy">
             <strong>{{siteName}}</strong>
             <small>Blogs and guides</small>
@@ -65,46 +62,22 @@
         </a>
 
         <div class="nav-links">
-          <a href="{{sitePath}}/index.html" {{blogsActive}}>Blogs</a>
-          <a href="{{sitePath}}/guides/index.html" {{guidesActive}}>Guides</a>
+          <a href="{{homeHref}}" {{homeActive}}>Home</a>
+          <a href="{{sitePath}}/posts/" {{blogsActive}}>Blogs</a>
+          <a href="{{sitePath}}/guides/" {{guidesActive}}>Guides</a>
 
           <details class="theme-dropdown" data-theme-group="page">
             <summary class="theme-trigger" aria-label="Site theme switcher">
               <span class="theme-trigger-icon" data-theme-active-icon aria-hidden="true">
-                <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-github-dark.svg" alt=""
-                  aria-hidden="true">
+                Theme
               </span>
             </summary>
 
             <div class="theme-menu">
-              <button class="theme-option" type="button" data-theme-option="github-dark" aria-label="GitHub Dark theme"
-                title="GitHub Dark">
-                <span class="theme-option-icon" aria-hidden="true">
-                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-github-dark.svg" alt=""
-                    aria-hidden="true">
-                </span>
-              </button>
-              <button class="theme-option" type="button" data-theme-option="abyss" aria-label="Abyss theme"
-                title="Abyss">
-                <span class="theme-option-icon" aria-hidden="true">
-                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-abyss.svg" alt=""
-                    aria-hidden="true">
-                </span>
-              </button>
-              <button class="theme-option" type="button" data-theme-option="light-modern"
-                aria-label="Light Modern theme" title="Light Modern">
-                <span class="theme-option-icon" aria-hidden="true">
-                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-light-modern.svg" alt=""
-                    aria-hidden="true">
-                </span>
-              </button>
-              <button class="theme-option" type="button" data-theme-option="light-plus" aria-label="Light+ theme"
-                title="Light+">
-                <span class="theme-option-icon" aria-hidden="true">
-                  <img class="theme-icon-image" src="{{sitePath}}/assets/icons/theme-light-plus.svg" alt=""
-                    aria-hidden="true">
-                </span>
-              </button>
+              <button class="theme-option" type="button" data-theme-option="github-dark" title="GitHub Dark">GD</button>
+              <button class="theme-option" type="button" data-theme-option="abyss" title="Abyss">AB</button>
+              <button class="theme-option" type="button" data-theme-option="light-modern" title="Light Modern">LM</button>
+              <button class="theme-option" type="button" data-theme-option="light-plus" title="Light+">LP</button>
             </div>
           </details>
 
@@ -119,8 +92,7 @@
 
     <footer class="site-footer reveal-on-scroll">
       <div class="footer-content">
-        <p>&copy; {{year}} {{siteName}}. All rights reserved.</p>
-        <p>Built with minimal-gh-pages-ssg.</p>
+        <p>made with ❤️ by rahul | <a href="https://github.com/rahul713rk" target="_blank" rel="noopener noreferrer">GitHub</a></p>
       </div>
     </footer>
   </div>
