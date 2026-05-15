@@ -7,6 +7,7 @@
   <title>{{title}}</title>
   <meta name="description" content="{{description}}">
   <link rel="canonical" href="{{canonicalUrl}}">
+  <link rel="icon" type="image/svg+xml" href="{{sitePath}}/assets/icons/book.svg">
 
   <script>
     document.documentElement.classList.add("js");
@@ -55,6 +56,9 @@
     <header class="site-header">
       <nav class="glass-nav reveal-on-scroll">
         <a class="brand-link" href="{{homeHref}}" aria-label="{{siteName}} home">
+          <span class="brand-mark">
+            <img src="{{sitePath}}/assets/icons/book-rack-cabinet.svg" alt="" aria-hidden="true">
+          </span>
           <span class="brand-copy">
             <strong>{{siteName}}</strong>
             <small>Blogs and guides</small>

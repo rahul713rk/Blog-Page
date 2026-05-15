@@ -1,124 +1,76 @@
-# Minimal GitHub Pages SSG
+# 📚 Technical Learning Blog Engine
 
-A minimal static site generator that converts Markdown posts into a GitHub Pages-ready blog.
+A modern, high-performance static site generator (SSG) tailered for technical writing. This engine converts Markdown content into a sleek, responsive, and SEO-optimized blog, featuring deep Mermaid diagram integration and a comprehensive search system.
 
-## Structure
+## 🚀 Key Features
+
+- **Standardized Content**: Strict compliance with [content standards](standards/content-rules.md) for consistent formatting across all posts and guides.
+- **Advanced Markdown**: Enhanced with `markdown-it`, including support for footnotes, anchors, and GitHub-flavored markdown.
+- **Mermaid Diagrams**: Native support for complex architecture diagrams, flowcharts, and mindmaps directly within Markdown.
+- **Technical Guides**: Specialized rendering for structured learning tracks and tutorial series.
+- **Blazing Fast Search**: Client-side full-text search powered by Lunr.js.
+- **Multi-Theme Support**: Dark and light modes with specialized themes like Abyss and GitHub Dark.
+- **SEO Ready**: Automatically generated JSON-LD, OpenGraph tags, and sitemaps.
+
+## 🛠️ Project Structure
 
 ```text
-project/
-├── .github/workflows/build.yml
-├── assets/
-│   ├── css/site.css
-│   └── js/search.js
-├── build.js
-├── config.json
-├── content/
-│   └── posts/hello-world.md
-├── package.json
-├── public/
-├── templates/
-│   ├── index.html
-│   ├── layout.html
-│   ├── post.html
-│   └── tag.html
-└── README.md
+.
+├── assets/             # Global CSS, JS, and SVG icons
+├── content/            # Markdown content source
+│   ├── posts/          # Independent technical articles
+│   └── <collection>/   # Structured learning guides
+├── lib/                # SSG core logic and renderers
+├── templates/          # HTML templates (Layout, Post, Index)
+├── standards/          # Style guides and blueprints
+├── config.json         # Global site configuration
+└── build.js            # SSG entry point
 ```
 
-## Features
+## 🏁 Getting Started
 
-- Markdown parsing with `markdown-it`
-- Frontmatter with `gray-matter`
-- Prism.js syntax highlighting
-- PicoCSS via CDN
-- Blog index page
-- Tags
-- Pagination
-- `sitemap.xml`
-- Lunr search index generation
-- GitHub Actions deployment to GitHub Pages
+### Prerequisites
 
-## Install
+- Node.js (version specified in `.nvmrc`)
+- npm
+
+### Installation
 
 ```bash
 npm install
 ```
 
-## Build
+### Development & Build
+
+To generate the static site into the `public/` directory:
 
 ```bash
 npm run build
 ```
 
-Generated files are written to `public/`.
+The generated files can then be served using any static web server or deployed directly to GitHub Pages.
 
-## Content format
+## 📖 Content Creation
 
-Create Markdown files anywhere under `content/`. Metadata goes in YAML frontmatter at the top of the file.
+New articles should be placed in `content/posts/` and follow the `post-blueprint.md` standard.
+
+**Example Frontmatter:**
 
 ```md
 ---
-title: "System Design Foundations"
-description: "best SEO description"
-date: 2026-03-10
-author: Rahul Kumar
-tags: [system design]
-category: system design
-cover: ""
-readingTime: ""
-draft: false
-slug: system-design-1
+title: "Article Title"
+description: "Concise summary for SEO"
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [DSA, Algorithms]
+category: "Computer Science"
+slug: "article-slug"
 ---
-
-# Your content
 ```
 
-Supported fields:
+## 🌍 Deployment
 
-- `title`
-- `description`
-- `date`
-- `author`
-- `tags`
-- `category`
-- `cover`
-- `readingTime`
-- `draft`
-- `slug`
+This project is configured for automated deployment via GitHub Actions. Simply push to the `main` branch to trigger the production build and deployment to GitHub Pages.
 
-## Config
-
-Edit `config.json`:
-
-```json
-{
-  "siteName": "Minimal Blog",
-  "siteDescription": "A minimal static blog generated from Markdown.",
-  "baseUrl": "https://rahul713rk.github.io/Blog-Page",
-  "postsPerPage": 5
-}
-```
-
-## Output
-
-Running the build creates:
-
-- `public/index.html`
-- `public/posts/<slug>/index.html`
-- `public/tags/<tag>/index.html`
-- `public/page/<n>/index.html`
-- `public/search-index.json`
-- `public/sitemap.xml`
-
-## GitHub Pages
-
-1. Push the project to GitHub.
-2. In repository settings, enable GitHub Pages and set source to GitHub Actions.
-3. Set `baseUrl` in `config.json` to `https://rahul713rk.github.io/Blog-Page`.
-4. Push to `main` to trigger deployment.
-
-## Extend later
-
-- Add more templates
-- Add RSS generation
-- Add drafts or series support
-- Add custom collections under `content/`
+---
+*Maintained by [Rahul Kumar](https://github.com/rahul713rk)*
