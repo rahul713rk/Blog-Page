@@ -1,5 +1,12 @@
-# Chapter 25: Introduction to Generative AI
-
+---
+title: "Chapter 25 Introduction To Generative Ai"
+description: "We have spent 24 chapters teaching machines to \"recognize\" and \"predict.\" Now, we teach them to **Create**. This chapter introduces **Generative AI**, the..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 We have spent 24 chapters teaching machines to "recognize" and "predict." Now, we teach them to **Create**. This chapter introduces **Generative AI**, the frontier of data science. We explore the difference between Generative and Discriminative models, the intuition behind **GANs** and **Diffusion**, and the rise of **Large Language Models (LLMs)**.
 

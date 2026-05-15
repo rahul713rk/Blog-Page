@@ -1,5 +1,12 @@
-# Chapter 26: Data Pipelines
-
+---
+title: "Chapter 26 Data Pipelines"
+description: "Data doesn't just \"appear\" in a clean CSV file. This chapter explores **Data Pipelines**, the industrial machinery that moves data from its messy origin to its..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Data doesn't just "appear" in a clean CSV file. This chapter explores **Data Pipelines**, the industrial machinery that moves data from its messy origin to its usable destination. We cover the **ETL (Extract, Transform, Load)** process, the rise of **Data Lakes** and **Warehouses**, and how to use orchestrators like **Apache Airflow**.
 

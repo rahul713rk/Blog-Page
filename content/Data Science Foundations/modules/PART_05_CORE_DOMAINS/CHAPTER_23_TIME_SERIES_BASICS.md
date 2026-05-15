@@ -1,5 +1,12 @@
-# Chapter 23: Time Series Basics
-
+---
+title: "Chapter 23 Time Series Basics"
+description: "What will happen tomorrow? This chapter explores **Time Series Analysis**, the study of data points collected sequentially over time. We cover the core..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 What will happen tomorrow? This chapter explores **Time Series Analysis**, the study of data points collected sequentially over time. We cover the core components of time-based data—**Trend**, **Seasonality**, and **Residuals**—and dive into the foundation of classical forecasting: the **ARIMA** model.
 

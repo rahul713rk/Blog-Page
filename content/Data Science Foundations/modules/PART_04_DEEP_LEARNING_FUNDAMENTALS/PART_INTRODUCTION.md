@@ -1,5 +1,12 @@
-# Part IV: Deep Learning Fundamentals
-
+---
+title: "Part Introduction"
+description: "Welcome to the era of \"Deep Learning.\" In this part, we transition from classical algorithms to **Neural Networks**\u2014computational systems loosely inspired by..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 Welcome to the era of "Deep Learning." In this part, we transition from classical algorithms to **Neural Networks**—computational systems loosely inspired by the structure of the human brain.

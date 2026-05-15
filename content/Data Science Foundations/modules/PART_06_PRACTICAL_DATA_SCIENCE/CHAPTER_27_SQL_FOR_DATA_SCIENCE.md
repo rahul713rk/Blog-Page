@@ -1,5 +1,12 @@
-# Chapter 27: SQL for Data Science
-
+---
+title: "Chapter 27 Sql For Data Science"
+description: "Python is the language of models, but **SQL (Structured Query Language)** is the language of data. This chapter moves beyond simple `SELECT` statements to..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Python is the language of models, but **SQL (Structured Query Language)** is the language of data. This chapter moves beyond simple `SELECT` statements to explore high-level SQL techniques: **Joins**, **Window Functions**, **Common Table Expressions (CTEs)**, and how to query billions of rows in modern warehouses like BigQuery and Snowflake.
 

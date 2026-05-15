@@ -1,5 +1,12 @@
-# Chapter 15: Model Evaluation
-
+---
+title: "Chapter 15 Model Evaluation"
+description: "How do you know if your model is actually \"good\"? This chapter explores the rigorous process of **Model Evaluation**. We go beyond simple accuracy to discuss..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 How do you know if your model is actually "good"? This chapter explores the rigorous process of **Model Evaluation**. We go beyond simple accuracy to discuss Precision, Recall, F1-Score, and ROC-AUC. We also cover the essential techniques of **Cross-Validation** and how to spot the silent killers of ML: **Overfitting** and **Data Leakage**.
 

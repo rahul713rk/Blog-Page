@@ -1,5 +1,12 @@
-# Chapter 21: Computer Vision Basics
-
+---
+title: "Chapter 21 Computer Vision Basics"
+description: "Now that we understand the math of CNNs, how do we apply it to the real world? This chapter covers the foundational tasks of **Computer Vision**: from..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Now that we understand the math of CNNs, how do we apply it to the real world? This chapter covers the foundational tasks of **Computer Vision**: from essential image preprocessing techniques to advanced concepts like **Object Detection** and **Semantic Segmentation**.
 

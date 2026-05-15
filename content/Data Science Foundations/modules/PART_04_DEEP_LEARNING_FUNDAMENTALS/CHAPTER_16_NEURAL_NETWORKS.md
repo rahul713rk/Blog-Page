@@ -1,5 +1,12 @@
-# Chapter 16: Neural Networks
-
+---
+title: "Chapter 16 Neural Networks"
+description: "What makes a network \"deep\"? This chapter introduces the building blocks of modern AI: the **Perceptron**, **Activation Functions**, and the incredible..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 What makes a network "deep"? This chapter introduces the building blocks of modern AI: the **Perceptron**, **Activation Functions**, and the incredible mathematical feat called **Backpropagation**. We explore how millions of simple calculations can join together to solve complex, non-linear problems.
 

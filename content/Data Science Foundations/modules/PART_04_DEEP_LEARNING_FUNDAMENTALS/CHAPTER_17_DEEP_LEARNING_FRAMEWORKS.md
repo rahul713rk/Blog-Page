@@ -1,5 +1,12 @@
-# Chapter 17: Deep Learning Frameworks
-
+---
+title: "Chapter 17 Deep Learning Frameworks"
+description: "You don't need to write every backpropagation step by hand. This chapter introduces the \"Big Two\" of deep learning: **PyTorch** and **TensorFlow**. We explore..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 You don't need to write every backpropagation step by hand. This chapter introduces the "Big Two" of deep learning: **PyTorch** and **TensorFlow**. We explore how these frameworks automate the math, manage GPU memory, and allow us to build complex architectures with just a few lines of code.
 

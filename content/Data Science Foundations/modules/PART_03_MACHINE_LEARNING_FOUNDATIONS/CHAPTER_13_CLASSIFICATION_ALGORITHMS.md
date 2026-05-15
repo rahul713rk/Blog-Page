@@ -1,5 +1,12 @@
-# Chapter 13: Classification Algorithms
-
+---
+title: "Chapter 13 Classification Algorithms"
+description: "The world isn't always about numbers; often, it's about categories. This chapter explores **Classification**, the art of sorting data into buckets. We cover..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 The world isn't always about numbers; often, it's about categories. This chapter explores **Classification**, the art of sorting data into buckets. We cover Logistic Regression, K-Nearest Neighbors (KNN), Naive Bayes, and the power of ensembles like Decision Trees and Random Forests.
 

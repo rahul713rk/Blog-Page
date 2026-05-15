@@ -1,5 +1,12 @@
-# Part I: The World of Data
-
+---
+title: "Part Introduction"
+description: "Welcome to the beginning of your journey. Before we dive into complex algorithms or high-dimensional math, we must understand the raw material of our craft:..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 Welcome to the beginning of your journey. Before we dive into complex algorithms or high-dimensional math, we must understand the raw material of our craft: **Data**.

@@ -1,5 +1,12 @@
-# Chapter 30: Final Projects
-
+---
+title: "Chapter 30 Final Projects"
+description: "This is where everything comes together. This chapter provides four **Capstone Projects** that require you to use the full stack of skills you've learned\u2014from..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 This is where everything comes together. This chapter provides four **Capstone Projects** that require you to use the full stack of skills you've learned—from Data Engineering and Math to Deep Learning and Deployment. Choose a project that matches your career interests and build it from the ground up.
 

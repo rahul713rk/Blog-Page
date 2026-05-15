@@ -1,5 +1,12 @@
-# Chapter 2: Setting Up Your Environment
-
+---
+title: "Chapter 02 Setting Up Your Environment"
+description: "A professional data science project is only as good as the environment it runs in. This chapter walks you through the essential tools of the trade: from the..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 A professional data science project is only as good as the environment it runs in. This chapter walks you through the essential tools of the trade: from the Python ecosystem and virtual environments to powerful IDEs like VS Code and high-performance hardware like GPUs.
 

@@ -1,5 +1,12 @@
-# Part II: Mathematics for Intelligence
-
+---
+title: "Part Introduction"
+description: "Mathematics is the invisible engine of Artificial Intelligence. While high-level libraries allow you to train models with a single line of code, understanding..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-02-mathematics-for-intelligence, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 Mathematics is the invisible engine of Artificial Intelligence. While high-level libraries allow you to train models with a single line of code, understanding the "why" requires a journey into the world of numbers, distributions, and transformations.

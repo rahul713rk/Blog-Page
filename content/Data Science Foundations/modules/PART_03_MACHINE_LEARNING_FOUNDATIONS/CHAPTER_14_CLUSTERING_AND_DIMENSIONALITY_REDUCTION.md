@@ -1,5 +1,12 @@
-# Chapter 14: Clustering and Dimensionality Reduction
-
+---
+title: "Chapter 14 Clustering And Dimensionality Reduction"
+description: "What if we don't have tags for our data? This chapter explores **Unsupervised Learning**, the art of finding structure in the dark. We dive into **Clustering**..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 What if we don't have tags for our data? This chapter explores **Unsupervised Learning**, the art of finding structure in the dark. We dive into **Clustering** (K-Means, Hierarchical) and **Dimensionality Reduction** (PCA, t-SNE, UMAP), tools that allow us to simplify complex data and reveal hidden patterns.
 

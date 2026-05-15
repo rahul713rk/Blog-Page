@@ -1,5 +1,12 @@
-# Chapter 5: Data Handling
-
+---
+title: "Chapter 05 Data Handling"
+description: "Data in the wild is messy. This chapter introduces **Pandas**, the industry-standard library for data manipulation. We move from raw arrays to **DataFrames**..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Data in the wild is messy. This chapter introduces **Pandas**, the industry-standard library for data manipulation. We move from raw arrays to **DataFrames** (smart spreadsheets), learning how to clean missing values, merge datasets, and aggregate information for analysis.
 

@@ -1,5 +1,12 @@
-# Chapter 11: Introduction to Machine Learning
-
+---
+title: "Chapter 11 Introduction To Machine Learning"
+description: "What does it mean for a machine to \"learn\"? This chapter defines the fundamental paradigms of Machine Learning: Supervised, Unsupervised, and Reinforcement..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 What does it mean for a machine to "learn"? This chapter defines the fundamental paradigms of Machine Learning: Supervised, Unsupervised, and Reinforcement Learning. We also discuss the critical concept of the **Train/Test Split** and how we measure success with evaluation metrics.
 

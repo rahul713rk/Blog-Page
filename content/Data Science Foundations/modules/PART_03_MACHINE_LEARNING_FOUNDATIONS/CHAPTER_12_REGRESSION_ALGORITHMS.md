@@ -1,5 +1,12 @@
-# Chapter 12: Regression Algorithms
-
+---
+title: "Chapter 12 Regression Algorithms"
+description: "How do we predict a continuous number? This chapter explores **Regression**, the foundation of predictive modeling. We dive into Linear and Polynomial..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 How do we predict a continuous number? This chapter explores **Regression**, the foundation of predictive modeling. We dive into Linear and Polynomial regression, the critical concept of **Regularization** (Lasso and Ridge), and the fundamental struggle of every data scientist: the **Bias-Variance Tradeoff**.
 

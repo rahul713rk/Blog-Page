@@ -1,5 +1,12 @@
-# Chapter 1: What is Data Science?
-
+---
+title: "Chapter 01 What Is Data Science"
+description: "This chapter serves as the compass for the entire book. We define what Data Science is, untangle it from related fields like Machine Learning and AI, and..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 This chapter serves as the compass for the entire book. We define what Data Science is, untangle it from related fields like Machine Learning and AI, and explore the lifecycle of a typical project. You will learn to see data not just as numbers in a table, but as a digital reflection of physical reality.
 

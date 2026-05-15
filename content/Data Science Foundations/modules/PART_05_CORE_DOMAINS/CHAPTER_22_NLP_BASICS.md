@@ -1,5 +1,12 @@
-# Chapter 22: NLP Basics
-
+---
+title: "Chapter 22 Nlp Basics"
+description: "How do we turn words into numbers? This chapter explores **Natural Language Processing (NLP)**, the field that enables machines to read, understand, and..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 How do we turn words into numbers? This chapter explores **Natural Language Processing (NLP)**, the field that enables machines to read, understand, and generate human language. We cover the entire pipeline: from **Tokenization** and cleaning to the power of **Word Embeddings** and the context-aware revolutionary model: **BERT**.
 

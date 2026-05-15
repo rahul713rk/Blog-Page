@@ -1,5 +1,12 @@
-# Chapter 9: Calculus for ML
-
+---
+title: "Chapter 09 Calculus For Ml"
+description: "Calculus is the \"verb\" of machine learning. If your data is a map, calculus is the engine that moves you across it. This chapter introduces the concepts of..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-02-mathematics-for-intelligence]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Calculus is the "verb" of machine learning. If your data is a map, calculus is the engine that moves you across it. This chapter introduces the concepts of Derivatives, Gradients, and the Chain Rule, culminating in the most important algorithm in AI: **Gradient Descent**.
 

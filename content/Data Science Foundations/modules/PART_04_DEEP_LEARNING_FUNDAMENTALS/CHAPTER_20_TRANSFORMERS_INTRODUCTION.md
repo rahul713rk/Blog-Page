@@ -1,5 +1,12 @@
-# Chapter 20: Transformers Introduction
-
+---
+title: "Chapter 20 Transformers Introduction"
+description: "Since 2017, the world of AI has been dominated by a single architecture: the **Transformer**. This chapter introduces the \"Attention\" mechanism that allows..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Since 2017, the world of AI has been dominated by a single architecture: the **Transformer**. This chapter introduces the "Attention" mechanism that allows models to process entire sentences at once, the concept of **Self-Attention**, and why this discovery led directly to the creation of GPT-4, Claude, and Gemini.
 

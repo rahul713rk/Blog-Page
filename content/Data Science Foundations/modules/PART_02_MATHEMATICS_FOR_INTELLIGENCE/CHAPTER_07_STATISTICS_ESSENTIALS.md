@@ -1,5 +1,12 @@
-# Chapter 7: Statistics Essentials
-
+---
+title: "Chapter 07 Statistics Essentials"
+description: "Statistics is the science of learning from data. This chapter covers the fundamental tools used to summarize information and make decisions under uncertainty:..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-02-mathematics-for-intelligence]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Statistics is the science of learning from data. This chapter covers the fundamental tools used to summarize information and make decisions under uncertainty: from measures of central tendency to probability distributions and the Central Limit Theorem.
 

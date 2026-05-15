@@ -1,5 +1,12 @@
-# Chapter 24: Recommendation Systems
-
+---
+title: "Chapter 24 Recommendation Systems"
+description: "How do Netflix and Amazon know exactly what you want before you do? This chapter explores **Recommendation Systems**, the algorithms that power the..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 How do Netflix and Amazon know exactly what you want before you do? This chapter explores **Recommendation Systems**, the algorithms that power the personalized internet. We cover **Content-Based Filtering**, **Collaborative Filtering**, and the mathematics of **Matrix Factorization**. We also discuss the "Cold Start" problem and how to evaluate recommendations.
 

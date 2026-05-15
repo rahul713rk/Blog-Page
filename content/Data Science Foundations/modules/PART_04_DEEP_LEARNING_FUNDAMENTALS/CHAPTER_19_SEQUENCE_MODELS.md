@@ -1,5 +1,12 @@
-# Chapter 19: Sequence Models
-
+---
+title: "Chapter 19 Sequence Models"
+description: "The world isn't just static images; it's a stream of events. This chapter explores **Recurrent Neural Networks (RNNs)**, the models designed to handle..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 The world isn't just static images; it's a stream of events. This chapter explores **Recurrent Neural Networks (RNNs)**, the models designed to handle sequential data like text, speech, and stock prices. We dive into the "Memory" of the network and explore how **LSTMs** and **GRUs** solve the problem of long-term forgetting.
 

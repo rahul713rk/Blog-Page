@@ -1,5 +1,12 @@
-# Chapter 18: CNN Fundamentals
-
+---
+title: "Chapter 18 Cnn Fundamentals"
+description: "Standard neural networks \"flatten\" images into a single long line of numbers, losing all information about which pixels are next to each other. This chapter..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-04-deep-learning-fundamentals]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Standard neural networks "flatten" images into a single long line of numbers, losing all information about which pixels are next to each other. This chapter introduces **Convolutional Neural Networks (CNNs)**, the specialized architecture that preserves spatial relationships. We explore **Convolutions**, **Pooling**, and the intuition behind **Feature Maps**.
 

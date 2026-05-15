@@ -1,5 +1,12 @@
-# Chapter 3: Python for Data Science
-
+---
+title: "Chapter 03 Python For Data Science"
+description: "Python is the bridge between human logic and machine intelligence. This chapter covers the foundational programming concepts required for data science: from..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Python is the bridge between human logic and machine intelligence. This chapter covers the foundational programming concepts required for data science: from variables and control flow to Object-Oriented Programming (OOP) and interacting with web APIs.
 

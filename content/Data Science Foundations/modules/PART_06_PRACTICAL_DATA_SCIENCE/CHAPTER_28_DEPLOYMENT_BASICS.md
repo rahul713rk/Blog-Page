@@ -1,5 +1,12 @@
-# Chapter 28: Deployment Basics
-
+---
+title: "Chapter 28 Deployment Basics"
+description: "A model that stay in a Jupyter Notebook is useless. This chapter explores **Model Deployment**, the process of turning your Python code into a live service..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 A model that stay in a Jupyter Notebook is useless. This chapter explores **Model Deployment**, the process of turning your Python code into a live service that other apps can use. We cover **APIs (FastAPI)**, **Containerization (Docker)**, and the basic principles of **MLOps**.
 

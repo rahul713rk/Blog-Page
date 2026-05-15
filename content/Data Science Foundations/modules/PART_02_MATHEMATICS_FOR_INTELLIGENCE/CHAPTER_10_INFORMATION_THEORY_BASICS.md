@@ -1,5 +1,12 @@
-# Chapter 10: Information Theory Basics
-
+---
+title: "Chapter 10 Information Theory Basics"
+description: "How do you measure a \"surprise\"? This chapter introduces **Information Theory**, the bridge between probability and communication. We explore **Entropy**..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-02-mathematics-for-intelligence]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 How do you measure a "surprise"? This chapter introduces **Information Theory**, the bridge between probability and communication. We explore **Entropy** (uncertainty), **Cross-Entropy** (how we compare models), and **KL Divergence** (how we measure the distance between two distributions).
 

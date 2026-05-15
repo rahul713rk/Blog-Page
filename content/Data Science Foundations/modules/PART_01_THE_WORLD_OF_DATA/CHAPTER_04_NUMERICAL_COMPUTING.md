@@ -1,5 +1,12 @@
-# Chapter 4: Numerical Computing
-
+---
+title: "Chapter 04 Numerical Computing"
+description: "Standard Python is too slow for big data. This chapter introduces **NumPy**, the library that makes Python \"fast.\" We explore the power of arrays and tensors,..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Standard Python is too slow for big data. This chapter introduces **NumPy**, the library that makes Python "fast." We explore the power of arrays and tensors, the speed of vectorization, and build a geometric intuition for linear algebra.
 

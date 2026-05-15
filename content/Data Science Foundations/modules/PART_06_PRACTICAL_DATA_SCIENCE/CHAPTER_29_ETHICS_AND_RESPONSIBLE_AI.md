@@ -1,5 +1,12 @@
-# Chapter 29: Ethics and Responsible AI
-
+---
+title: "Chapter 29 Ethics And Responsible Ai"
+description: "Data science is not just about \"what we can do,\" but \"what we *should* do.\" This chapter explores the ethical challenges of the AI era: **Algorithmic Bias**,..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Data science is not just about "what we can do," but "what we *should* do." This chapter explores the ethical challenges of the AI era: **Algorithmic Bias**, **Data Privacy**, **Explainability**, and the environmental impact of large models. We learn how to build AI that is not only powerful but also fair, transparent, and sustainable.
 

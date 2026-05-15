@@ -1,5 +1,12 @@
-# Part V: Core Domains
-
+---
+title: "Part Introduction"
+description: "Data science isn't a single skill; it's a toolbox that can be applied to many different worlds. In this part, we explore the most impactful domains where AI is..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-05-core-domains, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 Data science isn't a single skill; it's a toolbox that can be applied to many different worlds. In this part, we explore the most impactful domains where AI is changing how we live and work.

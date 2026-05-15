@@ -1,5 +1,12 @@
-# Chapter 8: Linear Algebra for ML
-
+---
+title: "Chapter 08 Linear Algebra For Ml"
+description: "If statistics is the \"brain\" of data science, Linear Algebra is the \"circulatory system.\" This chapter explores how to represent data as vectors and matrices,..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-02-mathematics-for-intelligence]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 If statistics is the "brain" of data science, Linear Algebra is the "circulatory system." This chapter explores how to represent data as vectors and matrices, perform high-dimensional transformations, and understand the core intuition behind Singular Value Decomposition (SVD) and Eigenvalues.
 

@@ -1,5 +1,12 @@
-# Part III: Machine Learning Foundations
-
+---
+title: "Part Introduction"
+description: "In the previous parts, we built our laboratory (Part I) and sharpened our tools (Part II). Now, we begin the work of building models that can see, predict, and..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-03-machine-learning-foundations, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 In the previous parts, we built our laboratory (Part I) and sharpened our tools (Part II). Now, we begin the work of building models that can see, predict, and categorize the world.

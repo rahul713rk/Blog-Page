@@ -1,5 +1,12 @@
-# Part VI: Practical Data Science
-
+---
+title: "Part Introduction"
+description: "Knowing how to build a model is only 20% of the job. The remaining 80% is the \"Engineering\"\u2014moving data at scale, writing efficient SQL, deploying your model..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-06-practical-data-science, part-introductionmd]
+category: "Data Science Foundations"
+draft: false
+---
 ## Introduction
 
 Knowing how to build a model is only 20% of the job. The remaining 80% is the "Engineering"—moving data at scale, writing efficient SQL, deploying your model so users can actually use it, and ensuring your AI is ethical and safe.

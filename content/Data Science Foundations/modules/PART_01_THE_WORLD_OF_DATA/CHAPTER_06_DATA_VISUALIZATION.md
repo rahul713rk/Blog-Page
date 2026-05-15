@@ -1,5 +1,12 @@
-# Chapter 6: Data Visualization
-
+---
+title: "Chapter 06 Data Visualization"
+description: "Data without visualization is just a collection of abstract numbers. This chapter explores how to turn raw data into persuasive stories using **Matplotlib**,..."
+date: 2026-05-15
+author: "Rahul Kumar"
+tags: [data-science, foundations, part-01-the-world-of-data]
+category: "Data Science Foundations"
+draft: false
+---
 ## 1. Chapter Overview
 Data without visualization is just a collection of abstract numbers. This chapter explores how to turn raw data into persuasive stories using **Matplotlib**, **Seaborn**, and **Plotly**. We discuss the psychology of color, the importance of chart selection, and how to build interactive dashboards that people actually want to use.
 
