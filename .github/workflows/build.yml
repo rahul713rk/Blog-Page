@@ -25,13 +25,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Lint and Format Check
+        run: npm run lint
 
       - name: Build site
-        run: node build.js
+        run: npm run build
+
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
