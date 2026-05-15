@@ -55,5 +55,4 @@ async function setupSearch() {
   });
 }
 
-
 setupSearch();

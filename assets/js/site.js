@@ -8,7 +8,6 @@ function initSiteUi() {
   setupCodeBlocks();
   setupThemeControls();
   setupMermaid();
-
 }
 
 if (document.readyState === "loading") {

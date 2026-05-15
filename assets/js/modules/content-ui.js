@@ -43,7 +43,6 @@ function setupSectionCollapses() {
       if (label) {
         label.textContent = isOpen ? openLabel : closeLabel;
       }
-
     });
   });
 }
@@ -103,7 +102,6 @@ function setupPaginationSelects() {
 let headingCounter = 0;
 
 function buildHeadingCollapsibles() {
-
   const container = document.querySelector(".article-body");
   if (!container) {
     return;
@@ -134,7 +132,6 @@ function buildHeadingCollapsibles() {
       const content = document.createElement("div");
       content.className = "collapsible-content";
       content.id = `${safeId}-content`;
-
 
       const inner = document.createElement("div");
       inner.className = "collapsible-inner";

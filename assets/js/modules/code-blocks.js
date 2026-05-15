@@ -33,9 +33,7 @@ function getCodeLanguage(pre) {
     return "Code";
   }
 
-  return match[1]
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
+  return match[1].replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
 function setupCodeBlocks() {

@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "description": "Minimal static site generator for GitHub Pages",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "lint": "eslint lib/ assets/js/",
+    "format": "prettier --write lib/ assets/js/ assets/css/"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -13,6 +18,11 @@
     "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "esbuild": "^0.28.0"
+    "@eslint/js": "^9.39.4",
+    "esbuild": "^0.28.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.6.0",
+    "prettier": "^3.8.3"
   }
 }

@@ -349,7 +349,9 @@ a {
 .reveal-on-scroll {
   opacity: 1;
   transform: none;
-  transition: opacity 420ms ease, transform 420ms ease;
+  transition:
+    opacity 420ms ease,
+    transform 420ms ease;
 }
 
 .js .reveal-on-scroll {

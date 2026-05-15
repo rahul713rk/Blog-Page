@@ -365,7 +365,9 @@
   background: var(--accent);
   border-radius: 999px;
   transform: translate(-50%, -50%);
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
 }
 
 .collapsible-icon::after {
@@ -432,7 +434,6 @@
   border-color: var(--button-border);
 }
 
-
 .qa-toggle.is-compact {
   margin-left: auto;
   flex: 0 0 auto;
@@ -462,4 +463,3 @@
   height: 100%;
   object-fit: cover;
 }
-
