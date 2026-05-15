@@ -1,11 +1,11 @@
 ---
 title: "Tree Patterns in DSA: A Comprehensive Guide"
-description: "Explore fundamental and advanced tree patterns for data structures and algorithms with Python and Java examples."
+description: "Master tree algorithms with essential patterns like DFS, BFS, AVL rotations, and Tree Views. Explore comprehensive implementations and interview-style Q&A for all tree-based problems."
 date: 2026-03-20
 author: Rahul Kumar
 tags: [DSA, Trees, Patterns, Algorithms]
 category: "DSA"
-cover: ""
+cover: "/assets/images/posts/tree-patterns-cover.png"
 readingTime: "25 min read"
 draft: false
 slug: "tree-patterns-guide"
@@ -31,11 +31,11 @@ This guide covers:
 
 ---
 
-## 🧠 1. Core Tree Patterns
+## Core Tree Patterns
 
 ---
 
-### 1.1 Depth-First Search (DFS)
+### Depth-First Search (DFS)
 
 **DFS** is a fundamental tree traversal method that explores as far as possible along each branch before backtracking. It is the foundation for many tree-based algorithms.
 
@@ -50,7 +50,7 @@ This guide covers:
 
 #### Code Examples
 
-**Python (Preorder, Inorder, Postorder)**
+#### Python
 
 ```python
 class TreeNode:
@@ -81,7 +81,7 @@ print("Inorder:", inorder(root))    # Output: [2, 1, 3]
 print("Postorder:", postorder(root)) # Output: [2, 3, 1]
 ```
 
-**Java (Preorder, Inorder, Postorder)**
+#### Java
 
 ```java
 import java.util.*;
@@ -149,13 +149,15 @@ This story helps visualize the traversal order.
 
 ---
 
-### 1.2 Breadth-First Search (BFS)
+---
+
+### Breadth-First Search (BFS)
 
 **BFS** explores the tree level by level, using a queue. It is essential for problems involving levels, such as finding the maximum depth of a tree.
 
 #### Code Examples
 
-**Python (Level Order Traversal)**
+#### Python
 
 ```python
 from collections import deque
@@ -181,7 +183,7 @@ root = TreeNode(1, TreeNode(2), TreeNode(3))
 print("Level Order:", level_order(root))  # Output: [[1], [2, 3]]
 ```
 
-**Java (Level Order Traversal)**
+#### Java
 
 ```java
 import java.util.*;
@@ -235,7 +237,9 @@ graph TD
 
 ---
 
-### 1.3 Path-Based Patterns
+---
+
+### Path-Based Patterns
 
 **Path-based patterns** involve traversing from the root to a leaf or finding paths that satisfy certain conditions (e.g., sum of node values).
 
@@ -316,7 +320,9 @@ Imagine a treasure map (the tree) where each node is a clue. The treasure (targe
 
 ---
 
-### 1.4 Tree Construction Patterns
+---
+
+### Tree Construction Patterns
 
 **Tree construction patterns** involve building a tree from given traversal orders (e.g., inorder + preorder/postorder).
 
@@ -384,11 +390,13 @@ public class BuildTree {
 
 ---
 
-## 🧠 2. Advanced Tree Patterns
+---
+
+## Advanced Tree Patterns
 
 ---
 
-### 2.1 Balanced Tree Patterns (AVL Trees)
+### Balanced Tree Patterns (AVL Trees)
 
 **AVL trees** are self-balancing binary search trees where the height difference between left and right subtrees (balance factor) is at most 1.
 
@@ -491,7 +499,9 @@ graph TD
 
 ---
 
-### 2.2 Tree Views (Top, Bottom, Left, Right)
+---
+
+### Tree Views (Top, Bottom, Left, Right)
 
 **Tree views** involve visualizing the tree from specific angles (e.g., top view, bottom view, left view, right view).
 
@@ -564,7 +574,9 @@ Imagine you are an architect designing a building (the tree). The **left view** 
 
 ---
 
-### 2.3 Binary Search Tree (BST) Patterns
+---
+
+### Binary Search Tree (BST) Patterns
 
 **BST patterns** involve operations specific to binary search trees, such as validation, insertion, deletion, and finding the lowest common ancestor (LCA).
 
@@ -610,7 +622,9 @@ public class ValidateBST {
 
 ---
 
-## 🛠️ 3. Tips & Tricks
+---
+
+## Tips & Tricks
 
 ---
 
@@ -641,7 +655,9 @@ public class ValidateBST {
 
 ---
 
-## ❓ 4. Interview Q&A
+---
+
+## Interview Q&A
 
 ---
 
@@ -727,7 +743,9 @@ public class DiameterOfBinaryTree {
 
 ---
 
-## 🧠 5. Common Mistakes and Edge Cases
+---
+
+## Common Mistakes and Edge Cases
 
 ---
 
@@ -758,7 +776,9 @@ public class DiameterOfBinaryTree {
 
 ---
 
-## 📚 6. Additional Resources
+---
+
+## Additional Resources
 
 ---
 

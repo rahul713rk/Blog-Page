@@ -1,11 +1,11 @@
 ---
 title: "Binary Search: Common Patterns for DSA Problems"
-description: "Master binary search with these common patterns found in Data Structure and Algorithm problems."
+description: "A comprehensive guide to mastering binary search patterns in Data Structures and Algorithms, covering standard search, bounds, rotations, and 2D matrices."
 date: 2026-03-10
 author: Rahul Kumar
 tags: [DSA, Binary Search, Patterns, Algorithms]
 category: "DSA"
-cover: ""
+cover: "/assets/images/posts/binary-search-cover.png"
 readingTime: "15 min read"
 draft: false
 slug: "binary-search-patterns"
@@ -45,7 +45,9 @@ Binary search is a **divide-and-conquer** algorithm used to find the position of
 
 ---
 
-## 🧠 1. Common Patterns in Binary Search
+---
+
+## Common Patterns in Binary Search
 
 Binary search is not just about finding an element—it’s about **adapting** its core logic to solve a variety of problems efficiently. Below are the most common patterns with detailed explanations, code examples, and use cases.
 
@@ -61,7 +63,7 @@ Binary search is not just about finding an element—it’s about **adapting** i
 
 - Adjust the search boundaries based on comparisons.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int binarySearch(int[] arr, int target) {
@@ -82,7 +84,7 @@ public int binarySearch(int[] arr, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def binary_search(arr, target):
@@ -116,7 +118,9 @@ def binary_search(arr, target):
 
 ---
 
-### **Pattern 2: Lower Bound (First Occurrence of Target or First Element ≥ Target)**
+---
+
+### Lower Bound
 
 **Problem:** Find the **first index** where the element is **not less than** the target (i.e., `arr[i] >= target`).
 
@@ -126,7 +130,7 @@ def binary_search(arr, target):
 
 - The answer is the first index where `arr[i] >= target`.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int lowerBound(int[] arr, int target) {
@@ -147,7 +151,7 @@ public int lowerBound(int[] arr, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def lower_bound(arr, target):
@@ -171,7 +175,9 @@ def lower_bound(arr, target):
 
 ---
 
-### **Pattern 3: Upper Bound (First Element > Target)**
+---
+
+### Upper Bound
 
 **Problem:** Find the **first index** where the element is **greater than** the target.
 
@@ -179,7 +185,7 @@ def lower_bound(arr, target):
 
 - Similar to lower bound, but we look for `arr[i] > target`.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int upperBound(int[] arr, int target) {
@@ -200,7 +206,7 @@ public int upperBound(int[] arr, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def upper_bound(arr, target):
@@ -224,7 +230,9 @@ def upper_bound(arr, target):
 
 ---
 
-### **Pattern 4: Finding First and Last Occurrence of a Target**
+---
+
+### Finding First and Last Occurrence of a Target
 
 **Problem:** Find the **first and last occurrence** of a target in a sorted array with duplicates.
 
@@ -238,7 +246,7 @@ Imagine you’re searching for a book in a **large library** with **multiple cop
 
 - Use **upper bound - 1** for the last occurrence.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int[] searchRange(int[] arr, int target) {
@@ -251,7 +259,7 @@ public int[] searchRange(int[] arr, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def search_range(arr, target):
@@ -272,7 +280,9 @@ def search_range(arr, target):
 
 ---
 
-### **Pattern 5: Search in a Rotated Sorted Array**
+---
+
+### Search in a Rotated Sorted Array
 
 **Problem:** Find the index of a target in a **rotated sorted array** (e.g., `[4,5,6,7,0,1,2]`).
 
@@ -290,7 +300,7 @@ You’re searching for a friend in a **circular building** where the rooms are n
 
 4. Adjust the search range accordingly.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int searchRotatedArray(int[] arr, int target) {
@@ -323,7 +333,7 @@ public int searchRotatedArray(int[] arr, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def search_rotated_array(arr, target):
@@ -357,7 +367,9 @@ def search_rotated_array(arr, target):
 
 ---
 
-### **Pattern 6: Search in a 2D Matrix**
+---
+
+### Search in a 2D Matrix
 
 **Problem:** Search for a target value in a **2D matrix** where each row and column is sorted.
 
@@ -375,7 +387,7 @@ You’re looking for a treasure in a **grid of islands**, where the islands are 
 
 4. If the current element is less than the target, move down.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public boolean searchMatrix(int[][] matrix, int target) {
@@ -397,7 +409,7 @@ public boolean searchMatrix(int[][] matrix, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def search_matrix(matrix, target):
@@ -425,7 +437,9 @@ def search_matrix(matrix, target):
 
 ---
 
-### **Pattern 7: Finding a Peak Element**
+---
+
+### Finding a Peak Element
 
 **Problem:** Find a **peak element** in an array. A peak element is an element that is greater than or equal to its neighbors.
 
@@ -439,7 +453,7 @@ You’re hiking in a **mountain range**. You want to find the highest peak where
 
 - If the middle element is not a peak, move towards the side with the higher value.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int findPeakElement(int[] arr) {
@@ -458,7 +472,7 @@ public int findPeakElement(int[] arr) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def find_peak_element(arr):
@@ -482,7 +496,9 @@ def find_peak_element(arr):
 
 ---
 
-### **Pattern 8: Allocate Minimum Number of Pages**
+---
+
+### Allocate Minimum Number of Pages
 
 **Problem:** Given an array of book pages and `m` students, allocate books such that the **maximum number of pages** assigned to a student is minimized.
 
@@ -492,7 +508,7 @@ def find_peak_element(arr):
 
 - For each mid value, check if it’s possible to allocate books such that no student gets more than `mid` pages.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int minPages(int[] pages, int m) {
@@ -532,7 +548,7 @@ private boolean isPossible(int[] pages, int m, int maxPages) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def min_pages(pages, m):
@@ -574,7 +590,9 @@ def min_pages(pages, m):
 
 ---
 
-### **Pattern 9: Kth Smallest Element in a Sorted Matrix**
+---
+
+### Kth Smallest Element in a Sorted Matrix
 
 **Problem:** Find the **kth smallest element** in a **row-wise and column-wise sorted** matrix.
 
@@ -584,7 +602,7 @@ def min_pages(pages, m):
 
 - For each mid value, count how many elements are **less than or equal to** mid.
 
-#### **Java Implementation**
+#### Java
 
 ```java
 public int kthSmallest(int[][] matrix, int k) {
@@ -620,7 +638,7 @@ private int countLessEqual(int[][] matrix, int target) {
 }
 ```
 
-#### **Python Implementation**
+#### Python
 
 ```python
 def kth_smallest(matrix, k):
@@ -656,7 +674,7 @@ def kth_smallest(matrix, k):
 
 ---
 
-## 🛠️ Tips and Tricks for Binary Search
+## Tips & Tricks
 
 1. **Avoid Overflow:**
    
@@ -686,7 +704,7 @@ def kth_smallest(matrix, k):
 
 ---
 
-## ❓ Interview Q&A: Binary Search Edition
+## Interview Q&A
 
 ### **Conceptual Questions**
 

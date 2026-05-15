@@ -21,7 +21,7 @@ Searching and Sorting are fundamental operations in data structures and algorith
 
 ---
 
-## 🧠 Binary Search
+## Binary Search
 
 ### Core Idea
 
@@ -97,7 +97,9 @@ public class BinarySearch {
 
 ---
 
-## 🧠 Linear Search
+---
+
+## Linear Search
 
 ### **Core Idea**
 
@@ -156,7 +158,9 @@ public class LinearSearch {
 
 ---
 
-## 🧠 Merge Sort
+---
+
+## Merge Sort
 
 ### **Core Idea**
 
@@ -251,7 +255,9 @@ public class MergeSort {
 
 ---
 
-## 🧠 Quick Sort
+---
+
+## Quick Sort
 
 ### **Core Idea**
 
@@ -331,7 +337,9 @@ public class QuickSort {
 
 ---
 
-## 🧠 Heap Sort
+---
+
+## Heap Sort
 
 ### **Core Idea**
 
@@ -432,7 +440,9 @@ public class HeapSort {
 
 ---
 
-## 🧠 Counting Sort
+---
+
+## Counting Sort
 
 ### **Core Idea**
 
@@ -523,7 +533,9 @@ public class CountingSort {
 
 ---
 
-## 🧠 Bucket Sort
+---
+
+## Bucket Sort
 
 ### **Core Idea**
 
@@ -608,7 +620,9 @@ public class BucketSort {
 
 ---
 
-## 🧠 Radix Sort
+---
+
+## Radix Sort
 
 ### **Core Idea**
 
@@ -711,7 +725,9 @@ public class RadixSort {
 
 ---
 
-## 🧠 Shell Sort
+---
+
+## Shell Sort
 
 ### **Core Idea**
 
@@ -787,7 +803,9 @@ Understood. Below is a complete **blog-style explanation** for the four algorith
 
 ---
 
-## 🧠 Insertion Sort
+---
+
+## Insertion Sort
 
 ### **Core Idea**
 
@@ -808,7 +826,7 @@ Efficient for small or nearly sorted datasets.
 
 ---
 
-### Python Code
+#### Python
 
 ```python
 # Insertion Sort Implementation in Python
@@ -837,7 +855,7 @@ if __name__ == "__main__":
 
 ---
 
-### Java Code
+#### Java
 
 ```java
 public class InsertionSort {
@@ -872,7 +890,9 @@ public class InsertionSort {
 
 ---
 
-## 🧠 Selection Sort
+---
+
+## Selection Sort
 
 ### **Core Idea**
 
@@ -890,7 +910,7 @@ Simple and predictable for small data sets.
 
 ---
 
-### Python Code
+#### Python
 
 ```python
 def selection_sort(arr):
@@ -914,7 +934,7 @@ if __name__ == "__main__":
 
 ---
 
-### Java Code
+#### Java
 
 ```java
 public class SelectionSort {
@@ -950,7 +970,9 @@ public class SelectionSort {
 
 ---
 
-## 🧠 Tim Sort
+---
+
+## Tim Sort
 
 ### **Core Idea**
 
@@ -973,7 +995,7 @@ Real-world general-purpose sorting (used in standard libraries).
 
 ---
 
-### Python Code
+#### Python
 
 ```python
 # Simplified version of TimSort
@@ -1027,7 +1049,7 @@ if __name__ == "__main__":
 
 ---
 
-### Java Code
+#### Java
 
 ```java
 import java.util.Arrays;
@@ -1088,7 +1110,9 @@ public class TimSort {
 
 ---
 
-## 🧠 Dutch National Flag Algorithm
+---
+
+## Dutch National Flag Algorithm
 
 ### **Core Idea**
 
@@ -1113,7 +1137,7 @@ Used in quicksort’s partitioning and color sorting problems.
 
 ---
 
-### Python Code
+#### Python
 
 ```python
 def dutch_national_flag(arr):
@@ -1141,7 +1165,7 @@ if __name__ == "__main__":
 
 ---
 
-### Java Code
+#### Java
 
 ```java
 import java.util.Arrays;

@@ -1,11 +1,11 @@
 ---
 title: "Common Patterns for 1-D Dynamic Programming: A Structured Approach"
-description: "Master 1-D Dynamic Programming with common patterns like Fibonacci, Climbing Stairs, House Robber, and Coin Change."
+description: "Master 1-D Dynamic Programming with foundational patterns like Fibonacci, Climbing Stairs, House Robber, and Coin Change. Learn how to optimize recursion with memoization and tabulation."
 date: 2026-03-20
 author: Rahul Kumar
 tags: [DSA, Dynamic Programming, DP, 1-D DP, Algorithms]
 category: "DSA"
-cover: ""
+cover: "/assets/images/posts/1d-dp-cover.png"
 readingTime: "12 min read"
 draft: false
 slug: "1d-dp-patterns"
@@ -16,7 +16,7 @@ slug: "1d-dp-patterns"
 
 ---
 
-## 🚀 Introduction
+## Introduction
 
 Dynamic Programming (DP) is a powerful technique for solving complex problems by breaking them down into simpler subproblems. **1-D DP** problems are among the most common in coding interviews and competitive programming. These problems typically involve making decisions at each step, where the solution depends on the results of previous steps.
 
@@ -46,7 +46,7 @@ This blog outlines **common patterns** in 1-D DP, providing a structured approac
 
 ---
 
-## 🧠 1. Pattern: Fibonacci Sequence
+## Pattern: Fibonacci Sequence
 
 ### **Problem Statement**
 
@@ -64,8 +64,7 @@ Imagine climbing a staircase with `n` steps. You can take either **1 or 2 steps*
 ### **Brute Force Approach**
 
 **Approach**: Recursively compute Fibonacci numbers.  
-**Code**:
-
+#### Python
 ```python
 def fib_brute(n):
     if n <= 1:
@@ -73,6 +72,7 @@ def fib_brute(n):
     return fib_brute(n-1) + fib_brute(n-2)
 ```
 
+#### Java
 ```java
 public int fibBrute(int n) {
     if (n <= 1) return n;
@@ -145,8 +145,7 @@ For `n = 4`:
 
 **Idea**: Fill a table iteratively from the bottom up.
 
-**Code**:
-
+#### Python
 ```python
 def fib_tab(n):
     if n <= 1:
@@ -158,6 +157,7 @@ def fib_tab(n):
     return dp[n]
 ```
 
+#### Java
 ```java
 public int fibTab(int n) {
     if (n <= 1) return n;
@@ -187,7 +187,9 @@ For `n = 4`:
 
 ---
 
-## 🪜 2. Pattern: Climbing Stairs
+---
+
+## Pattern: Climbing Stairs
 
 ### **Problem Statement**
 
@@ -199,6 +201,7 @@ This is identical to the Fibonacci problem! The number of ways to reach step `n`
 
 ### **Brute Force Approach**
 
+#### Python
 ```python
 def climb_brute(n):
     if n <= 2:
@@ -206,6 +209,7 @@ def climb_brute(n):
     return climb_brute(n-1) + climb_brute(n-2)
 ```
 
+#### Java
 ```java
 public int climbBrute(int n) {
     if (n <= 2) return n;
@@ -225,7 +229,9 @@ Use memoization or tabulation as shown in the Fibonacci pattern.
 
 ---
 
-## 🏠 3. Pattern: House Robber
+---
+
+## Pattern: House Robber
 
 ### **Problem Statement**
 
@@ -247,6 +253,7 @@ The solution is the maximum of these two choices.
 
 **Code**:
 
+#### Python
 ```python
 def rob_brute(nums):
     def helper(i):
@@ -256,6 +263,7 @@ def rob_brute(nums):
     return helper(len(nums)-1)
 ```
 
+#### Java
 ```java
 public int robBrute(int[] nums) {
     return helper(nums, nums.length - 1);
@@ -275,6 +283,7 @@ private int helper(int[] nums, int i) {
 
 **Code**:
 
+#### Python
 ```python
 def rob_memo(nums):
     memo = {}
@@ -288,6 +297,7 @@ def rob_memo(nums):
     return helper(len(nums)-1)
 ```
 
+#### Java
 ```java
 public int robMemo(int[] nums) {
     int[] memo = new int[nums.length];
@@ -312,8 +322,7 @@ private int helper(int[] nums, int i, int[] memo) {
 
 ### **Optimized Approach: Tabulation**
 
-**Code**:
-
+#### Python
 ```python
 def rob_tab(nums):
     if not nums:
@@ -325,6 +334,7 @@ def rob_tab(nums):
     return dp[-1]
 ```
 
+#### Java
 ```java
 public int robTab(int[] nums) {
     if (nums.length == 0) return 0;
@@ -347,7 +357,9 @@ public int robTab(int[] nums) {
 
 ---
 
-## 💰 4. Pattern: Coin Change
+---
+
+## Pattern: Coin Change
 
 ### **Problem Statement**
 
@@ -359,6 +371,7 @@ For each coin, decide whether to include it or not. The total ways for amount `n
 
 ### **Brute Force Approach**
 
+#### Python
 ```python
 def coin_change_brute(coins, amount):
     if amount == 0:
@@ -377,8 +390,7 @@ def coin_change_brute(coins, amount):
 
 ### **Optimized Approach: Memoization**
 
-**Code**:
-
+#### Python
 ```python
 def coin_change_memo(coins, amount, memo={}):
     if amount in memo:
@@ -403,8 +415,7 @@ def coin_change_memo(coins, amount, memo={}):
 
 ### **Optimized Approach: Tabulation**
 
-**Code**:
-
+#### Python
 ```python
 def coin_change_tab(coins, amount):
     dp = [0] * (amount + 1)
@@ -425,7 +436,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## 🛠️ How to Think About 1-D DP Problems
+---
+
+## How to Think About 1-D DP Problems
 
 ### **Step-by-Step Framework**
 
@@ -463,7 +476,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## 🔗 Patterns and Connections
+---
+
+## Patterns and Connections
 
 |              |                                           |                                    |
 | ------------ | ----------------------------------------- | ---------------------------------- |
@@ -477,7 +492,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## ⚠️ Edge Cases and Pitfalls
+---
+
+## Edge Cases and Pitfalls
 
 ### **Common Edge Cases**
 
@@ -513,7 +530,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## 💡 Tips and Tricks
+---
+
+## Tips & Tricks
 
 1. **Start with Recursion**: Write the brute-force solution first to understand the recurrence.
 
@@ -529,7 +548,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## ❓ Interview Q&A: 1-D DP Edition
+---
+
+## Interview Q&A
 
 ### **Conceptual Questions**
 
@@ -583,7 +604,9 @@ def coin_change_tab(coins, amount):
 
 ---
 
-## 🔬 Advanced Insights
+---
+
+## Advanced Insights
 
 ### **1. State Compression**
 
@@ -617,7 +640,9 @@ For Fibonacci, use **matrix exponentiation** or **Binet’s formula** for O(log 
 
 ---
 
-## 📝 Summary
+---
+
+## Summary
 
 |                     |                                                                                            |
 | ------------------- | ------------------------------------------------------------------------------------------ |

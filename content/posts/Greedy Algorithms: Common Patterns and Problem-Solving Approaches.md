@@ -1,11 +1,11 @@
 ---
 title: "Greedy Algorithms: Common Patterns and Problem-Solving Approaches"
-description: "Master greedy algorithms with common patterns like Activity Selection, Fractional Knapsack, and Job Sequencing."
+description: "Master greedy algorithms with essential patterns like Activity Selection, Fractional Knapsack, and Job Sequencing. Learn when to use greedy choices and how to justify their optimality."
 date: 2026-03-25
 author: Rahul Kumar
 tags: [DSA, Greedy Algorithms, Algorithms, Competitive Programming]
 category: "DSA"
-cover: ""
+cover: "/assets/images/posts/greedy-algorithms-cover.png"
 readingTime: "15 min read"
 draft: false
 slug: "greedy-algorithm-patterns"
@@ -16,7 +16,7 @@ slug: "greedy-algorithm-patterns"
 
 ---
 
-## 🚀 Introduction: Why Greedy Algorithms?
+## Introduction: Why Greedy Algorithms?
 
 Greedy algorithms are a class of algorithms that make locally optimal choices at each step with the hope of finding a globally optimal solution. They are **simple, intuitive, and efficient** for many problems, especially in competitive programming and technical interviews. However, not all problems can be solved greedily—it requires a **specific structure** where local optimality leads to global optimality.
 
@@ -44,7 +44,9 @@ This blog will:
 
 ---
 
-## 💡 Intuition Building: The "Shortest Job First" Analogy
+---
+
+## Intuition: The "Shortest Job First" Analogy
 
 Imagine you are a **scheduling manager** in a factory. You have multiple tasks to assign to workers, but each task takes a different amount of time. To maximize efficiency, you would always pick the **shortest task first**—this way, all tasks are completed as quickly as possible.
 
@@ -58,7 +60,9 @@ This is the essence of greedy algorithms: **make the locally optimal choice at e
 
 ---
 
-## 🐢 Brute Force Approach: Exhaustive Search
+---
+
+## Brute Force Approach: Exhaustive Search
 
 ### **Problem Statement: Activity Selection Problem**
 
@@ -99,7 +103,9 @@ return count
 
 ---
 
-## ⚡ Optimized Approach: Greedy Algorithm
+---
+
+## Optimized Approach: Greedy Algorithm
 
 ### **Step-by-Step Reasoning**
 
@@ -132,6 +138,7 @@ return count
 
 ### **Java Implementation**
 
+#### Java
 ```java
 import java.util.*;
 
@@ -165,7 +172,7 @@ public class ActivitySelection {
 }
 ```
 
-### **Python Implementation**
+#### Python
 
 ```python
 def max_activities(start, finish):
@@ -195,7 +202,9 @@ print("Maximum activities:", max_activities(start, finish))
 
 ---
 
-## 🛠️ How to Think: A Framework for Greedy Problems
+---
+
+## Problem-Solving Framework
 
 ### **Step 1: Identify the Problem Type**
 
@@ -235,7 +244,9 @@ Ask:
 
 ---
 
-## 🔗 Common Greedy Patterns
+---
+
+## Common Greedy Patterns
 
 |                          |                                       |                                                      |
 | ------------------------ | ------------------------------------- | ---------------------------------------------------- |
@@ -250,7 +261,9 @@ Ask:
 
 ---
 
-## ⚠️ Edge Cases and Pitfalls
+---
+
+## Edge Cases and Pitfalls
 
 |                              |                               |                                      |
 | ---------------------------- | ----------------------------- | ------------------------------------ |
@@ -265,7 +278,9 @@ Ask:
 
 ---
 
-## 🎯 Tips and Tricks
+---
+
+## Tips & Tricks
 
 1. **Always sort the input** by a relevant key (e.g., finish time, value/weight).
 
@@ -283,7 +298,9 @@ Ask:
 
 ---
 
-## ❓ Interview Q&A: Greedy Edition
+---
+
+## Interview Q&A
 
 Greedy algorithms are a favorite in interviews because they test a candidate’s ability to **identify optimal substructure**, **make locally optimal choices**, and **justify their decisions**. Below, we dissect **three classic greedy problems** with detailed problem statements, solutions, and conceptual discussions.
 
@@ -412,7 +429,9 @@ Given a set of `n` jobs where each job has a deadline and profit, find the maxim
 
 ---
 
-## 🔬 Advanced Insights
+---
+
+## Advanced Insights
 
 ### **When Greedy Fails: Counterexamples**
 
@@ -437,7 +456,9 @@ Given a set of `n` jobs where each job has a deadline and profit, find the maxim
 
 ---
 
-## 📝 Summary: Key Takeaways
+---
+
+## Summary
 
 
 |                                 |                                                                    |
