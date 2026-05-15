@@ -1,7 +1,7 @@
 :root,
 :root[data-theme="github-dark"] {
   --pico-font-family: "Space Grotesk", sans-serif;
-  --code-font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --code-font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --pico-border-radius: 1.25rem;
   --pico-background-color: #0d1117;
   --pico-card-background-color: rgba(22, 27, 34, 0.86);
