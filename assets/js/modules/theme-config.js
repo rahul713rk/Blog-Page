@@ -55,7 +55,11 @@ const THEME_ABBREVIATIONS = {
 };
 
 function renderThemeIcon(themeName) {
-  return `<span class="theme-text-icon">${THEME_ABBREVIATIONS[themeName] || "TH"}</span>`;
+  const abbreviation = THEME_ABBREVIATIONS[themeName] || "TH";
+  return `
+    <img class="theme-icon-image" src="${getThemeIconSrc(themeName)}" alt="" aria-hidden="true">
+    <span class="theme-text-icon">${abbreviation}</span>
+  `;
 }
 
 export { CLASSIC_THEME_NAMES, THEME_GROUPS, THEME_LABELS, getThemeIconSrc, renderThemeIcon };
